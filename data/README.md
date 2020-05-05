@@ -1,3 +1,8 @@
 # Data
 
-Save raw data files here.
+`iris.csv`
+
+```r
+Rscript -e 'write.csv(iris, "iris.csv", row.names = FALSE)'
+```
+

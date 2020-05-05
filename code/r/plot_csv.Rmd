@@ -1,0 +1,42 @@
+---
+title: "Table report"
+date: "`r Sys.Date()`"
+output: html_document
+params:
+  file: ""
+  columns: ""
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(GGally)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+This is a [parameterised R Markdown document](https://bookdown.org/yihui/rmarkdown/parameterized-reports.html). Parameters used for this report.
+
+```{r output_params, echo=FALSE}
+paste0("File: ", params$file)
+paste0("Columns: ", params$columns)
+```
+
+Read `r params$file` into R.
+
+```{r read_file}
+input <- read_csv(params$file)
+DT::datatable(input)
+```
+
+We will keep `r params$columns` columns.
+
+```{r subset_columns}
+if (ncol(input) > params$columns){
+  input <- input[, 1:params$columns]
+}
+```
+
+Plot all pairs.
+
+```{r ggpairs, message=FALSE, warning=FALSE}
+ggpairs(input)
+```
