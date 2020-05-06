@@ -1,0 +1,10 @@
+{
+    "project_name": "new_project",
+    "documentation": "doc",
+    "data": "data",
+    "source": "src",
+    "bin": "bin",
+    "results": "results",
+    "README": "README"
+}
+
