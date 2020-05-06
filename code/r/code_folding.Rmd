@@ -1,0 +1,46 @@
+---
+title: "Code folding and tabs"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Example R Markdown document demonstrating how to show or hide code (code folding) and how to use tabs. Requires the `rmarkdown` package.
+
+## Simple plot {.tabset .tabset-fade .tabset-pills}
+
+### Code
+
+```{r simple_plot_code, eval=FALSE}
+plot(1:10)
+```
+
+### Plot
+
+```{r simple_plot, echo=FALSE, ref.label='simple_plot_code'}
+```
+
+## Another plot {.tabset .tabset-fade .tabset-pills}
+
+### Code
+
+```{r another_plot_code, eval=FALSE}
+plot(1:10, pch = 16, main = "My excellent plot")
+```
+
+### Plot
+
+```{r another_plot, echo=FALSE, ref.label='another_plot_code'}
+```
+
+## Session info
+
+```{r session_info}
+sessionInfo()
+```
+
