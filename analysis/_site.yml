@@ -7,6 +7,10 @@ navbar:
     href: index.html
   - text: About
     href: about.html
+  - text: Tips
+    menu:
+    - text: Command line arguments
+      href: get_option.html
   - text: License
     href: license.html
 output:
