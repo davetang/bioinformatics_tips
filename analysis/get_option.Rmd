@@ -1,0 +1,36 @@
+---
+title: "Command line arguments"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output: workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+Each script you write will serve a certain purpose; for example, a script to convert one file format to another (if such a script doesn't already exist). Since you will invest your time into writing this script, you should ensure that it can be reused, at the very least, by yourself. You may have another file that you need to convert or you want to convert the file in a slightly different manner (BED3 instead of BED6).
+
+One simple way of achieving this flexibility is to write a script that accepts [command line arguments](https://en.wikipedia.org/wiki/Command-line_interface#Arguments). Using the format converter example, our script may accept two arguments.
+
+```
+psl_to_bed.pl -i input.psl -f bed6 > output.bed
+```
+
+I have example scripts with code for accepting and processing command line arguments.
+
+Using Bash.
+
+```{bash}
+cat code/unix/get_option.sh
+```
+
+Using R.
+
+```{bash}
+cat code/r/optparse.R
+```
+
+Using Perl.
+
+```{bash}
+cat code/perl/getopts.pl
+```

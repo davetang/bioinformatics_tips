@@ -8,4 +8,4 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+* Write scripts that accept [Command line arguments](get_option.html)

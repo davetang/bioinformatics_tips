@@ -7,4 +7,4 @@ editor_options:
   chunk_output_type: console
 ---
 
-Describe your project.
+A collection of bioinformatics tips that I have learned (and often forgotten) throughout my career.
