@@ -1,7 +1,7 @@
 name: "bioinformatics_tips"
 output_dir: ../docs
 navbar:
-  title: "bioinformatics_tips"
+  title: "Bioinformatics tips"
   left:
   - text: Home
     href: index.html
@@ -13,5 +13,5 @@ output:
   workflowr::wflow_html:
     toc: yes
     toc_float: yes
-    theme: cosmo
+    theme: darkly
     highlight: textmate
