@@ -19,3 +19,4 @@ output:
     toc_float: yes
     theme: darkly
     highlight: textmate
+    css: my.css

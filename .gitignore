@@ -40,3 +40,7 @@ code/r/*.html
 
 # R Environment Variables
 .Renviron
+
+# macOS files
+.DS_Store
+
