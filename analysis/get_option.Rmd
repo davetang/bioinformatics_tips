@@ -5,34 +5,39 @@ date: "`r Sys.Date()`"
 output:
   workflowr::wflow_html:
     toc: false
+    include:
+      before_body: head.html
 editor_options:
   chunk_output_type: console
 ---
 
-Each script you write will serve a certain purpose; for example, a script to convert one file format to another (if such a script doesn't already exist). Since you will invest your time into writing this script, you should ensure that it can be reused, at the very least, by yourself. You may have another file that you need to convert or you want to convert the file in a slightly different manner (BED3 instead of BED6).
+Each script you write should serve a certain purpose; for example, you might need a script to convert one file format to another and you can't find one that's available online. Since you will invest your time into developing this script, you should ensure that it can be easily reused in the future. You or your colleague may have another file that needs to be converted or you need the conversion to be slightly modified (BED3 instead of BED6).
 
-One simple way of achieving this flexibility is to write a script that accepts [command line arguments](https://en.wikipedia.org/wiki/Command-line_interface#Arguments). Using the format converter example, our script may accept two arguments.
+One simple way of achieving this flexibility is to write a script that is more generalised and one that accepts [command line arguments](https://en.wikipedia.org/wiki/Command-line_interface#Arguments). Using the format converter example, our script may accept two arguments and using these arguments we can easily reuse our script on a different file or output a slightly different output.
 
 ```
 psl_to_bed.pl -i input.psl -f bed6 > output.bed
 ```
 
-I have example scripts with code for accepting and processing command line arguments.
+I have example scripts with code for accepting and processing command line arguments. Each script will also output its usage if no arguments are supplied.
 
 Using Bash.
 
-```{bash}
+<button class="copy-button" id="copy-button">Copy</button>
+```{bash, echo=FALSE}
 cat code/unix/get_option.sh
 ```
 
 Using R.
 
-```{bash}
+<button class="copy-button" id="copy-button">Copy</button>
+```{bash, echo=FALSE}
 cat code/r/optparse.R
 ```
 
 Using Perl.
 
-```{bash}
+<button class="copy-button" id="copy-button">Copy</button>
+```{bash, echo=FALSE}
 cat code/perl/getopts.pl
 ```
