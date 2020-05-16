@@ -9,9 +9,11 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
+<meta name="author" content="Dave Tang" />
 
+<meta name="date" content="2020-05-16" />
 
-<title>Home</title>
+<title>RESTful APIs</title>
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -313,7 +315,9 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Home</h1>
+<h1 class="title toc-ignore">RESTful APIs</h1>
+<h4 class="author">Dave Tang</h4>
+<h4 class="date">2020-05-16</h4>
 
 </div>
 
@@ -341,7 +345,7 @@ $(document).ready(function () {
 <strong>Last updated:</strong> 2020-05-16
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
 </p>
 <p>
 <strong>Knit directory:</strong> <code>bioinformatics_tips/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -363,6 +367,66 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
 <div class="panel-body">
 <p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200503code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20200503)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20200503code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20200503)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
@@ -408,7 +472,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/index.Rmd</code>) and HTML (<code>docs/index.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/restful.Rmd</code>) and HTML (<code>docs/restful.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -437,7 +501,7 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/davetang/bioinformatics_tips/blob/5e7606d1231b3f0888d51e9e10761db1591383be/analysis/index.Rmd" target="_blank">5e7606d</a>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/5e7606d1231b3f0888d51e9e10761db1591383be/analysis/restful.Rmd" target="_blank">5e7606d</a>
 </td>
 <td>
 davetang
@@ -449,142 +513,6 @@ davetang
 Use APIs
 </td>
 </tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/04be0ae32e4c6a46629b23415c147bc329cfbccc/docs/index.html" target="_blank">04be0ae</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-05-09
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/davetang/bioinformatics_tips/blob/f8b797fc10e7a630e34bc2b6075d727b4a87e0e3/analysis/index.Rmd" target="_blank">f8b797f</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-05-09
-</td>
-<td>
-No TOC
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/60d127f73d49f655ec7d156497440c522b140792/docs/index.html" target="_blank">60d127f</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-05-09
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/169cfdf7c16ea66483e6a4095e9f061916a63e0e/docs/index.html" target="_blank">169cfdf</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-05-09
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/davetang/bioinformatics_tips/blob/83ae7f7d167f18aa71ff15a5a07f60f9d063cce7/analysis/index.Rmd" target="_blank">83ae7f7</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-05-09
-</td>
-<td>
-Command line arguments
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/93e2a641c2e5df565342ad60821ebefd25e8ba10/docs/index.html" target="_blank">93e2a64</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-05-09
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/7225a508e159590c208d7c3851ff3a5f1453342c/docs/index.html" target="_blank">7225a50</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-05-03
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/davetang/bioinformatics_tips/blob/7d290c093434ee23a74509aabf5791c17403795e/analysis/index.Rmd" target="_blank">7d290c0</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-05-03
-</td>
-<td>
-Start workflowr project.
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -592,10 +520,97 @@ Start workflowr project.
 </div>
 </div>
 </div>
-<ul>
-<li>Write scripts that accept <a href="get_option.html">command line arguments</a></li>
-<li>Use <a href="restful.html">APIs</a></li>
-</ul>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Representational_state_transfer">Representational state transfer</a> (REST) is a software architectural style that defines a set of constraints to be used for creating Web services. Web services that conform to the REST architectural style, called RESTful Web services, provide interoperability between computer systems on the Internet. RESTful Web services allow the requesting systems to access and manipulate textual representations of Web resources by using a uniform and predefined set of stateless operations. Other kinds of Web services, such as SOAP Web services, expose their own arbitrary sets of operations.</p>
+</blockquote>
+<p>A client will receive a representation of the state of the requested resource from a server when a RESTful API is called. The representation of the state is typically returned in JSON.</p>
+<p>A server requires an identifier for the resource, which is typically the URL of the resource and is also known as the endpoint, and the operation to perform on the resource in the form of an HTTP method:</p>
+<ol style="list-style-type: decimal">
+<li>GET − Provides a read only access to a resource.</li>
+<li>POST − Used to create a new resource.</li>
+<li>DELETE − Used to remove a resource.</li>
+<li>PUT − Used to update a existing resource or create a new resource.</li>
+</ol>
+<p>Stateless operations means that each request contains all the information the server requires to perform the operation and does not require information from a previous query.</p>
+<p>There are six contraints that must be adhered to in order for an API to be RESTful:</p>
+<ol style="list-style-type: decimal">
+<li>Uniform interface</li>
+<li>Client — server separation</li>
+<li>Stateless</li>
+<li>Layered system</li>
+<li>Cacheable</li>
+<li>Code-on-demand</li>
+</ol>
+<p>See <a href="https://www.tutorialspoint.com/restful/restful_introduction.htm" class="uri">https://www.tutorialspoint.com/restful/restful_introduction.htm</a> for more information.</p>
+</div>
+<div id="purpose" class="section level2">
+<h2>Purpose</h2>
+<p>RESTful APIs allow you to programmatically interact with various resources; this ultimately saves you time and promotes reproducibility.</p>
+</div>
+<div id="json" class="section level2">
+<h2>JSON</h2>
+<p>JSON stands for JavaScript Object Notation and is a syntax for storing and exchanging data. Use the <code>rjson</code> package to parse JSON output.</p>
+<pre class="r"><code>install.packages(&quot;rjson&quot;)</code></pre>
+<p>Load into <code>data/example.json</code> into R and convert to data frame.</p>
+<pre class="r"><code>library(&quot;rjson&quot;)
+read_json &lt;- fromJSON(file = &quot;data/example.json&quot;)
+as.data.frame(read_json)[, 1:5]</code></pre>
+<pre><code>        input strand transcript_consequences.gene_id
+1 rs116035550      1                 ENSG00000177963
+2 rs116035550      1                 ENSG00000177963
+  transcript_consequences.sift_score transcript_consequences.cds_end
+1                                  0                            1018
+2                                  0                            1018</code></pre>
+</div>
+<div id="application" class="section level2">
+<h2>Application</h2>
+<p><code>data/example.json</code> was generated by running the following query:</p>
+<pre class="bash"><code>curl -H &#39;Accept: application/json&#39; \
+-H &#39;Content-type: application/json&#39; -X POST \
+-d &#39;{ &quot;ids&quot; : [&quot;rs116035550&quot;, &quot;COSM476&quot; ] }&#39; \
+https://rest.ensembl.org/vep/human/id/ &gt; example.json</code></pre>
+<p>If you wanted to get information for another SNP, e.g. <a href="https://www.snpedia.com/index.php/Rs17822931">rs17822931</a>, you can just modify the <code>ids</code> field.</p>
+<pre class="bash"><code>curl -H &#39;Accept: application/json&#39; \
+-H &#39;Content-type: application/json&#39; -X POST \
+-d &#39;{ &quot;ids&quot; : [&quot;rs17822931&quot;] }&#39; \
+https://rest.ensembl.org/vep/human/id/ &gt; rs17822931.json</code></pre>
+<p>If you write a script that can generate the queries, you can easily obtain information on SNP IDs of interest.</p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 4.0.0 (2020-04-24)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.4
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+
+locale:
+[1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] rjson_0.2.20    workflowr_1.6.2
+
+loaded via a namespace (and not attached):
+ [1] Rcpp_1.0.4.6    rprojroot_1.3-2 digest_0.6.25   later_1.0.0    
+ [5] R6_2.4.1        backports_1.1.6 git2r_0.26.1    magrittr_1.5   
+ [9] evaluate_0.14   stringi_1.4.6   rlang_0.4.6     fs_1.4.1       
+[13] promises_1.1.0  whisker_0.4     rmarkdown_2.1   tools_4.0.0    
+[17] stringr_1.4.0   glue_1.4.1      httpuv_1.5.2    xfun_0.13      
+[21] yaml_2.2.1      compiler_4.0.0  htmltools_0.4.0 knitr_1.28     </code></pre>
+</div>
+</div>
 
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
