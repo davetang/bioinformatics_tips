@@ -11,6 +11,10 @@ navbar:
     menu:
     - text: Command line arguments
       href: get_option.html
+    - text: APIs
+      href: restful.html
+    - text: Workflow Management System
+      href: pipelining.html
   - text: License
     href: license.html
 output:
