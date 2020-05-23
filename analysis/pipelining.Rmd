@@ -1,0 +1,34 @@
+---
+title: "Workflow management system"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+A bioinformatics analysis typically requires multiple sequential steps, where the output of one analysis becomes the input of the next; this is typically called a "bioinformatics pipeline". There are various ways to implement bioinformatics pipelines; you can simply set up various scripts and have them run one after the another. There is nothing wrong with this approach but using a workflow management system will make your life much easier.
+
+Workflow management systems will typically handle logging, resource management, and execution of your pipeline. A very popular option is [Snakemake](https://snakemake.readthedocs.io/en/stable/index.html) and are made up of **rules**.
+
+```
+rule sort:
+    input:
+        "test.txt"
+    output:
+        "test.sorted.txt"
+    shell:
+        "sort -n {input} > {output}"
+```
+
+If we run the example above using Snakemake, the input file `test.txt` will get sorted numerically and the output is stored in `test.sorted.txt`. Typically, you would write a pipeline (a `Snakefile`) that takes input from a config file (e.g. `config.yaml`). If you wanted to run the pipeline for a new dataset, you will just need to create a new config file.
+
+Other workflow management systems include [Bpipe](https://github.com/ssadedin/bpipe/) and [Nextflow](https://sciwiki.fredhutch.org/compdemos/nextflow/), which both are based on [Groovy](https://www.groovy-lang.org/). A survey conducted on Twitter has a list of other systems and [showed that Snakemake is the most popular](https://docs.google.com/forms/d/e/1FAIpQLScoj8Po4P3Qrh7rbJrq2R35c3PQsNCynEeEVUAdcGyly7TT_Q/viewanalytics). Personally I use the [Workflow Description Language](https://github.com/openwdl/wdl) because that's what the Broad Institute uses and I wanted to use some of their pipelines. There is a [nice discussion on Reddit](https://www.reddit.com/r/bioinformatics/comments/a4fq4i/given_the_experience_of_others_writing/) on the strengths and weakness of different workflow management systems.
+
+Bottom line is that you should write your bioinformatics pipelines using a workflow management system. Chances are that somebody has already implemented a similar pipeline using a workflow management system.
+
+* Snakemake - https://github.com/snakemake-workflows
+* Nextflow - https://github.com/nextflow-io/awesome-nextflow
+* WDL - https://github.com/biowdl
