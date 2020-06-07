@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2020-05-10" />
+<meta name="date" content="2020-06-07" />
 
 <title>Command line arguments</title>
 
@@ -298,6 +298,15 @@ $(document).ready(function () {
     <li>
       <a href="get_option.html">Command line arguments</a>
     </li>
+    <li>
+      <a href="restful.html">APIs</a>
+    </li>
+    <li>
+      <a href="pipelining.html">Workflow Management System</a>
+    </li>
+    <li>
+      <a href="security.html">Security basics</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -334,7 +343,7 @@ copyCode.on('success', function(event) {
 
 <h1 class="title toc-ignore">Command line arguments</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2020-05-10</h4>
+<h4 class="date">2020-06-07</h4>
 
 </div>
 
@@ -359,7 +368,7 @@ copyCode.on('success', function(event) {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-05-10
+<strong>Last updated:</strong> 2020-06-07
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -450,32 +459,32 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree778bf20fc922ff17649422c55ccd99b8f6fef00etargetblank778bf20a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/778bf20fc922ff17649422c55ccd99b8f6fef00e" target="_blank">778bf20</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreecbfdeb7c8473dbae8a6273b87bb7b201d602dc2ftargetblankcbfdeb7a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/cbfdeb7c8473dbae8a6273b87bb7b201d602dc2f" target="_blank">cbfdeb7</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree778bf20fc922ff17649422c55ccd99b8f6fef00etargetblank778bf20a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreecbfdeb7c8473dbae8a6273b87bb7b201d602dc2ftargetblankcbfdeb7a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/778bf20fc922ff17649422c55ccd99b8f6fef00e" target="_blank">778bf20</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/cbfdeb7c8473dbae8a6273b87bb7b201d602dc2f" target="_blank">cbfdeb7</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
 
 Untracked files:
-    Untracked:  .DS_Store
-    Untracked:  analysis/head.html
-    Untracked:  analysis/my.css
+    Untracked:  analysis/security.Rmd
 
 Unstaged changes:
     Modified:   analysis/_site.yml
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -514,6 +523,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/56b7e19ab81b7ded788c7f3ffe1173f764d0a8f0/docs/get_option.html" target="_blank">56b7e19</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-05-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -747,7 +773,7 @@ __END__</code></pre>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.0.0 (2020-04-24)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.4
+Running under: macOS Catalina 10.15.5
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
@@ -759,16 +785,14 @@ locale:
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
-other attached packages:
-[1] workflowr_1.6.2
-
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.4.6    rprojroot_1.3-2 digest_0.6.25   later_1.0.0    
- [5] R6_2.4.1        backports_1.1.6 git2r_0.26.1    magrittr_1.5   
- [9] evaluate_0.14   stringi_1.4.6   rlang_0.4.5     fs_1.4.1       
-[13] promises_1.1.0  whisker_0.4     rmarkdown_2.1   tools_4.0.0    
-[17] stringr_1.4.0   glue_1.4.0      httpuv_1.5.2    xfun_0.13      
-[21] yaml_2.2.1      compiler_4.0.0  htmltools_0.4.0 knitr_1.28     </code></pre>
+ [1] workflowr_1.6.2 Rcpp_1.0.4.6    rprojroot_1.3-2 digest_0.6.25  
+ [5] later_1.0.0     R6_2.4.1        backports_1.1.7 git2r_0.27.1   
+ [9] magrittr_1.5    evaluate_0.14   stringi_1.4.6   rlang_0.4.6    
+[13] fs_1.4.1        promises_1.1.0  whisker_0.4     rmarkdown_2.1  
+[17] tools_4.0.0     stringr_1.4.0   glue_1.4.1      httpuv_1.5.3.1 
+[21] xfun_0.14       yaml_2.2.1      compiler_4.0.0  htmltools_0.4.0
+[25] knitr_1.28     </code></pre>
 </div>
 
 
