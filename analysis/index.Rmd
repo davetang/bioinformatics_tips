@@ -11,3 +11,4 @@ editor_options:
 * Write scripts that accept [command line arguments](get_option.html)
 * Use [APIs](restful.html)
 * Use a [Workflow Management System](pipelining.html)
+* Learn some [security basics](security.html)

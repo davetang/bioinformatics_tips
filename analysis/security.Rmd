@@ -1,0 +1,81 @@
+---
+title: "Security basics"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+The Internet has become an integral part of our lives. When exchanging data over the internet, the data passes through various networks and devices. There are four problems that can occur when data is transferred from one party to another:
+
+1. Interception
+2. Spoofing
+3. Falsification
+4. Repudication
+
+These four problems are countered by:
+
+1. Encryption
+2. Message authenitcation codes (MACs) or digital signatures
+3. MACs or digital signatures
+4. Digital signatures and certificates
+
+## Encryption
+
+Encryption means performing an operation on data such that a computer cannot decipher into something meaningful, i.e. turn data into ciphertext. A key is typically used to perform the encryption's numeric calculation and the same key is used to decrypt the encrypted data. One way of achieving this is by using a [XOR cipher](https://en.wikipedia.org/wiki/XOR_cipher); XOR (exclusive or) is an operation that works like OR but returns zero when both conditions are true.
+
+```
+0 XOR 0 = 0
+1 XOR 1 = 0
+1 XOR 0 = 1
+0 XOR 1 = 1
+```
+
+If our data (in binary) is 00110011 and our key is 11110000 then:
+
+```
+data       = 00110011
+key        = 11110000
+ciphertext = 11000011
+```
+
+If we use the same key on the ciphertext, we obtain the original data:
+
+```
+ciphertext = 11000011
+key        = 11110000
+data       = 00110011
+```
+
+## Hash functions
+
+A hash function converts data into a random string of fixed length. The [MD5 message-digest algorithm](https://en.wikipedia.org/wiki/MD5) is a widely used (but outdated) hash function that produces a 128-bit hash value.
+
+```{bash}
+echo hello world | md5
+```
+
+The output is in hexadecimal (0-9 then A-F), which requires 4 bits to represent because F in hexadecimal is 1111 in binary. Therefore the 32 long hexadecimal number is 32*4 bits. Any data used as input into the MD5 hash function will return a 128-bit hash value or a length 32 hexadecimal number.
+
+```{bash}
+echo abc | md5
+```
+
+When given the same input, a hash function will invariably produce the same output.
+
+```{bash}
+echo hello world | md5
+```
+
+However, if the input data only differs by a single bit, the output is very different.
+
+```{bash}
+echo hell world | md5
+```
+
+Sometimes, completely different data can produce identical hash values but this has a very low probability and is known as a hash collision. Finally, it is impossible to convert hash values back into their original data.
+
+To be continued...
