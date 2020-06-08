@@ -78,4 +78,13 @@ echo hell world | md5
 
 Sometimes, completely different data can produce identical hash values but this has a very low probability and is known as a hash collision. Finally, it is impossible to convert hash values back into their original data.
 
+## Shared-key cryptosystem
+
+Shared-key or [symmetric-key](https://en.wikipedia.org/wiki/Symmetric-key_algorithm) cryptosystems use the same key for encryption and decryption. The [Advanced Encryption Standard](https://en.wikipedia.org/wiki/Advanced_Encryption_Standard) is the first (and only) publicly accessible cipher approved by the National Security Agency (NSA).
+
+The problem with shared-key systems is that in order for the receiving party to decrypt the encrypted file, the key needs to be transferred as well. A secure method is necessary for transmitting keys, i.e. performing a key-exchange. There are two types of methods:
+
+1. Methods using key-exchange protocols
+2. Methods using the public-key cryptosystem
+
 To be continued...
