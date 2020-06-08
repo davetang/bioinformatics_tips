@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2020-06-07" />
+<meta name="date" content="2020-06-08" />
 
 <title>Security basics</title>
 
@@ -326,7 +326,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Security basics</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2020-06-07</h4>
+<h4 class="date">2020-06-08</h4>
 
 </div>
 
@@ -351,7 +351,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-06-07
+<strong>Last updated:</strong> 2020-06-08
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -442,16 +442,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreea36c1e8b0efd57d2774d2bb17751a581aff95098targetblanka36c1e8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/a36c1e8b0efd57d2774d2bb17751a581aff95098" target="_blank">a36c1e8</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree9019e42036ce678a9bc9de0b1c12a0ae18f3b0cftargetblank9019e42a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/9019e42036ce678a9bc9de0b1c12a0ae18f3b0cf" target="_blank">9019e42</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreea36c1e8b0efd57d2774d2bb17751a581aff95098targetblanka36c1e8a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree9019e42036ce678a9bc9de0b1c12a0ae18f3b0cftargetblank9019e42a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/a36c1e8b0efd57d2774d2bb17751a581aff95098" target="_blank">a36c1e8</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/9019e42036ce678a9bc9de0b1c12a0ae18f3b0cf" target="_blank">9019e42</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -461,9 +461,6 @@ Ignored files:
     Ignored:    .DS_Store
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-
-Unstaged changes:
-    Modified:   analysis/_site.yml
 
 </code></pre>
 <p>
@@ -502,6 +499,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/9019e42036ce678a9bc9de0b1c12a0ae18f3b0cf/analysis/security.Rmd" target="_blank">9019e42</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-06-08
+</td>
+<td>
+Shared-key cryptosystem
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/f851e188a3c4587da12786204d3f0037e0f9b22c/docs/security.html" target="_blank">f851e18</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-06-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -571,6 +602,15 @@ data       = 00110011</code></pre>
 <pre class="bash"><code>echo hell world | md5</code></pre>
 <pre><code>a3723e12600ef5c0456c201f5e8c7a37</code></pre>
 <p>Sometimes, completely different data can produce identical hash values but this has a very low probability and is known as a hash collision. Finally, it is impossible to convert hash values back into their original data.</p>
+</div>
+<div id="shared-key-cryptosystem" class="section level2">
+<h2>Shared-key cryptosystem</h2>
+<p>Shared-key or <a href="https://en.wikipedia.org/wiki/Symmetric-key_algorithm">symmetric-key</a> cryptosystems use the same key for encryption and decryption. The <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">Advanced Encryption Standard</a> is the first (and only) publicly accessible cipher approved by the National Security Agency (NSA).</p>
+<p>The problem with shared-key systems is that in order for the receiving party to decrypt the encrypted file, the key needs to be transferred as well. A secure method is necessary for transmitting keys, i.e. performing a key-exchange. There are two types of methods:</p>
+<ol style="list-style-type: decimal">
+<li>Methods using key-exchange protocols</li>
+<li>Methods using the public-key cryptosystem</li>
+</ol>
 <p>To be continued…</p>
 <br>
 <p>
