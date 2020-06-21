@@ -13,17 +13,28 @@
 
 <meta name="date" content="2020-06-21" />
 
-<title>Security basics</title>
+<title>Queuing system</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.13/datatables.js"></script>
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -259,6 +270,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -266,6 +340,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -324,7 +408,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Security basics</h1>
+<h1 class="title toc-ignore">Queuing system</h1>
 <h4 class="author">Dave Tang</h4>
 <h4 class="date">2020-06-21</h4>
 
@@ -474,7 +558,7 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/security.Rmd</code>) and HTML (<code>docs/security.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/queuing.Rmd</code>) and HTML (<code>docs/queuing.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -503,7 +587,7 @@ Message
 Rmd
 </td>
 <td>
-<a href="https://github.com/davetang/bioinformatics_tips/blob/3b81b9648b3239966cefc1d3ed9a11d920489d38/analysis/security.Rmd" target="_blank">3b81b96</a>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/3b81b9648b3239966cefc1d3ed9a11d920489d38/analysis/queuing.Rmd" target="_blank">3b81b96</a>
 </td>
 <td>
 davetang
@@ -515,74 +599,6 @@ davetang
 Queuing systems
 </td>
 </tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/02c559c297938d7ae7f8f18e86df5a50902b5d2c/docs/security.html" target="_blank">02c559c</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-06-08
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/davetang/bioinformatics_tips/blob/9019e42036ce678a9bc9de0b1c12a0ae18f3b0cf/analysis/security.Rmd" target="_blank">9019e42</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-06-08
-</td>
-<td>
-Shared-key cryptosystem
-</td>
-</tr>
-<tr>
-<td>
-html
-</td>
-<td>
-<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/f851e188a3c4587da12786204d3f0037e0f9b22c/docs/security.html" target="_blank">f851e18</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-06-07
-</td>
-<td>
-Build site.
-</td>
-</tr>
-<tr>
-<td>
-Rmd
-</td>
-<td>
-<a href="https://github.com/davetang/bioinformatics_tips/blob/a36c1e8b0efd57d2774d2bb17751a581aff95098/analysis/security.Rmd" target="_blank">a36c1e8</a>
-</td>
-<td>
-davetang
-</td>
-<td>
-2020-06-07
-</td>
-<td>
-Security basics
-</td>
-</tr>
 </tbody>
 </table>
 </div>
@@ -590,65 +606,132 @@ Security basics
 </div>
 </div>
 </div>
-<p>The Internet has become an integral part of our lives. When exchanging data over the internet, the data passes through various networks and devices. There are four problems that can occur when data is transferred from one party to another:</p>
-<ol style="list-style-type: decimal">
-<li>Interception</li>
-<li>Spoofing</li>
-<li>Falsification</li>
-<li>Repudication</li>
-</ol>
-<p>These four problems are countered by:</p>
-<ol style="list-style-type: decimal">
-<li>Encryption</li>
-<li>Message authenitcation codes (MACs) or digital signatures</li>
-<li>MACs or digital signatures</li>
-<li>Digital signatures and certificates</li>
-</ol>
-<div id="encryption" class="section level2">
-<h2>Encryption</h2>
-<p>Encryption means performing an operation on data such that a computer cannot decipher into something meaningful, i.e. turn data into ciphertext. A key is typically used to perform the encryption’s numeric calculation and the same key is used to decrypt the encrypted data. One way of achieving this is by using a <a href="https://en.wikipedia.org/wiki/XOR_cipher">XOR cipher</a>; XOR (exclusive or) is an operation that works like OR but returns zero when both conditions are true.</p>
-<pre><code>0 XOR 0 = 0
-1 XOR 1 = 0
-1 XOR 0 = 1
-0 XOR 1 = 1</code></pre>
-<p>If our data (in binary) is 00110011 and our key is 11110000 then:</p>
-<pre><code>data       = 00110011
-key        = 11110000
-ciphertext = 11000011</code></pre>
-<p>If we use the same key on the ciphertext, we obtain the original data:</p>
-<pre><code>ciphertext = 11000011
-key        = 11110000
-data       = 00110011</code></pre>
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>If you will be using a high-performance computer (HPC) cluster for your work you should learn to use a batch-queuing system. These systems are responsible for scheduling, dispatching, and managing the execution of your jobs as well as managing resource allocation.</p>
 </div>
-<div id="hash-functions" class="section level2">
-<h2>Hash functions</h2>
-<p>A hash function converts data into a random string of fixed length. The <a href="https://en.wikipedia.org/wiki/MD5">MD5 message-digest algorithm</a> is a widely used (but outdated) hash function that produces a 128-bit hash value.</p>
-<pre class="bash"><code>echo hello world | md5</code></pre>
-<pre><code>6f5902ac237024bdd0c176cb93063dc4</code></pre>
-<p>The output is in hexadecimal (0-9 then A-F), which requires 4 bits to represent because F in hexadecimal is 1111 in binary. Therefore the 32 long hexadecimal number is 32*4 bits. Any data used as input into the MD5 hash function will return a 128-bit hash value or a length 32 hexadecimal number.</p>
-<pre class="bash"><code>echo abc | md5</code></pre>
-<pre><code>0bee89b07a248e27c83fc3d5951213c1</code></pre>
-<p>When given the same input, a hash function will invariably produce the same output.</p>
-<pre class="bash"><code>echo hello world | md5</code></pre>
-<pre><code>6f5902ac237024bdd0c176cb93063dc4</code></pre>
-<p>However, if the input data only differs by a single bit, the output is very different.</p>
-<pre class="bash"><code>echo hell world | md5</code></pre>
-<pre><code>a3723e12600ef5c0456c201f5e8c7a37</code></pre>
-<p>Sometimes, completely different data can produce identical hash values but this has a very low probability and is known as a hash collision. Finally, it is impossible to convert hash values back into their original data.</p>
+<div id="queuing-systems" class="section level2">
+<h2>Queuing systems</h2>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Oracle_Grid_Engine">Oracle Grid Engine</a>, previously known as Sun Grid Engine</li>
+<li><a href="https://en.wikipedia.org/wiki/Univa_Grid_Engine">Univa Grid Engine</a> is a batch-queuing system, forked from Sun Grid Engine (SGE)</li>
+<li><a href="https://en.wikipedia.org/wiki/Portable_Batch_System">Portable Batch System</a>
+<ul>
+<li>OpenPBS — original open source version released by MRJ in 1998 (actively developed)</li>
+<li>TORQUE — a fork of OpenPBS that is maintained by Adaptive Computing Enterprises, Inc. (formerly Cluster Resources, Inc.)</li>
+<li>PBS Professional (PBS Pro) — the version of PBS offered by Altair Engineering that is dual licensed under an open source and a commercial license.</li>
+</ul></li>
+<li><a href="https://en.wikipedia.org/wiki/Slurm_Workload_Manager">SLURM</a></li>
+</ul>
+<p>See <a href="https://en.wikipedia.org/wiki/Comparison_of_cluster_software">comparison of cluster software</a>.</p>
+<div id="pbs" class="section level3">
+<h3>PBS</h3>
+<p>PBS.</p>
+<div id="htmlwidget-b85a0ca0e08fa6914506" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b85a0ca0e08fa6914506">{"x":{"filter":"none","data":[["qstat -q","qstat -a","qstat -u userid","qstat -r","qstat -f job_id","qstat -Qf queue","qstat -B","pbsnodes -aS","pbsnodes -a"],["list all queues","list all jobs","list jobs for userid","list running jobs","list full information about job_id","list full information about queue","list summary status of the job server","list status of all compute nodes","Detailed status of all compute nodes"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Command<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+<p>Specific tasks.</p>
+<div id="htmlwidget-8c544e2bca03b6593f89" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-8c544e2bca03b6593f89">{"x":{"filter":"none","data":[["Job submission","Job deletion","Job status (for user)","Extended job status","Hold a job temporarily","Release job hold","List of usable queues"],["qsub [scriptfile]","qdel [job_id]","qstat -u [username]","qstat -f [job_id]","qhold [job_id]","qrls [job_id]","qstat -Q"],["qsub [scriptfile]","qdel [job_id]","qstat [-j job_id]","qstat -f [-j job_id]","qhold [job_id]","qrls [job_id]","qconf -sql"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Description<\/th>\n      <th>PBS<\/th>\n      <th>SGE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+<p>Resources.</p>
+<div id="htmlwidget-6b8fcbf3984c13abc01e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-6b8fcbf3984c13abc01e">{"x":{"filter":"none","data":[["Queue","Nodes","Processors","Wall clock limit","Standard output file","Standard error","Copy environment","Notification event","Email address","Job name","Job restart","Initial directory","Node usage","Memory requirement"],["#PBS -q [queue]","#PBS -l nodes=[#]","#PBS -l ppn=[#]","#PBS -l walltime=[hh:mm:ss]","#PBS -o [file]","#PBS -e [file]","#PBS -V","#PBS -m abe","#PBS -M [email]","#PBS -N [name]","#PBS -r [y|n]","n/a","#PBS -l naccesspolicy=singlejob","#PBS -l mem=XXXXmb"],["#$ -q [queue]","n/a","#$ -pe ompi [#]","#$ -l time=[hh:mm:ss]","#$ -o [path]","#$ -e [path]","#$ -V","#$ -m abe","#$ -M [email]","#$ -N [name]","#$ -r [yes|no]","#$ -wd [directory]","n/a","#$ -mem [#]G"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Description<\/th>\n      <th>PBS<\/th>\n      <th>SGE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
 </div>
-<div id="shared-key-cryptosystem" class="section level2">
-<h2>Shared-key cryptosystem</h2>
-<p>Shared-key or <a href="https://en.wikipedia.org/wiki/Symmetric-key_algorithm">symmetric-key</a> cryptosystems use the same key for encryption and decryption. The <a href="https://en.wikipedia.org/wiki/Advanced_Encryption_Standard">Advanced Encryption Standard</a> is the first (and only) publicly accessible cipher approved by the National Security Agency (NSA).</p>
-<p>The problem with shared-key systems is that in order for the receiving party to decrypt the encrypted file, the key needs to be transferred as well. A secure method is necessary for transmitting keys, i.e. performing a key-exchange. There are two types of methods:</p>
+<div id="slurm" class="section level3">
+<h3>SLURM</h3>
+<ul>
+<li>A SLURM partition is a queue</li>
+<li>A SLURM cluster is all the partitions that are managed by a single SLURM daemon</li>
+</ul>
+<pre class="bash"><code>sbatch job_script.slurm
+squeue
+scancel jobid</code></pre>
+<p>To list partitions type:</p>
+<pre class="bash"><code>sinfo</code></pre>
+<p>It is important to use the correct system and partition for each part of a workflow. To list out the limits of each partition use <code>scontrol</code>.</p>
+<pre class="bash"><code>scontrol show partition</code></pre>
+<p>Use <code>squeue</code> to display the status of jobs in the local cluster; the larger the priority value, the higher the priority.</p>
+<pre class="bash"><code>squeue
+
+# queue for specific user
+squeue -u dtang
+
+# queue for specific partition and sorted by priority
+squeue -p workq -S p</code></pre>
+<p>Individual job information.</p>
+<pre class="bash"><code>scontrol show job jobid</code></pre>
+<p>SLURM needs to know two things from you:</p>
 <ol style="list-style-type: decimal">
-<li>Methods using key-exchange protocols</li>
-<li>Methods using the public-key cryptosystem</li>
+<li>Resource requirement: how many nodes and how long</li>
+<li>What to run</li>
 </ol>
+<p>Try to ask for the right amount of resources because:</p>
+<ol style="list-style-type: decimal">
+<li>Over-estimating the resources will mean it will take longer to find an available slot.</li>
+<li>Under-estimating the time required means the job will get killed.</li>
+<li>Under-estimating memory will mean your job will crash.</li>
+</ol>
+<p>You cannot submit an application directly to SLURM; SLURM executes on your behalf a list of shell commands. In batch mode, SLURM executes a job script which contains the commands as a <code>bash</code> or <code>csh</code> script. In interactive mode, type in the commands just like when you log in.</p>
+<p><code>sbatch</code> interprets directives in the script, which are written as comments and not executed.</p>
+<ul>
+<li>Directive lines start with #SBATCH</li>
+<li>These are equivalent to <code>sbatch</code> command-line arguments</li>
+<li>Directives are usually more convenient and reproducible than command-line arguments</li>
+</ul>
+<p>Below is an example script.</p>
+<pre class="bash"><code>#!/bin/bash -l
+#SBATCH --partition=workq
+#SBATCH --job-name=hostname
+#SBATCH --account=director2120
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:05:00
+#SBATCH --export=NONE
+
+hostname</code></pre>
+<p>Use <code>--export=NONE</code> to start with a clean environment, improving reproducibility and avoids contamination of the environment.</p>
+<p>Use <code>sbatch</code> to submit the job.</p>
+<pre class="bash"><code>sbatch hostname.slurm</code></pre>
+<p>Parallel applications are launched using <code>srun</code>.</p>
+<p>Use <code>salloc</code> instead of <code>sbatch</code> for interactive jobs. Use <code>-p</code> to request a specific partition for the resource allocation. If not specified, the default behavior is to allow the slurm controller to select the default partition as designated by the system administrator.</p>
+<pre class="bash"><code>salloc --tasks=16 --time=00:10:00
+srun make -j 16</code></pre>
+<p>When specifying the number of threads, make sure you know the <a href="https://en.wikipedia.org/wiki/Parallel_programming_model">parallel programming model</a> that is used by your library or software. The manner in which you issue the number of tasks may affect how your program runs. The <a href="https://stackoverflow.com/questions/51139711/hpc-cluster-select-the-number-of-cpus-and-threads-in-slurm-sbatch">arguments</a> to pay attention to are:</p>
+<pre><code>--ntasks=# : Number of &quot;tasks&quot; (use with distributed parallelism).
+--ntasks-per-node=# : Number of &quot;tasks&quot; per node (use with distributed parallelism).
+--cpus-per-task=# : Number of CPUs allocated to each task (use with shared memory parallelism).</code></pre>
+<p>Therefore, using <code>--cpus-per-task</code> will ensure it gets allocated to the same node, while using <code>--ntasks</code> can and may allocate it to multiple nodes. You may get by by simply specifying<code>--ntasks</code> but you should do some testing with a smaller dataset.</p>
+<pre><code>#!/bin/bash -l
+#SBATCH --nodes=1
+#SBATCH --time=04:00:00
+#SBATCH --partition=workq
+#SBATCH --ntasks=16
+#SBATCH --export=NONE</code></pre>
+<p>Use <a href="https://slurm.schedmd.com/job_array.html">job arrays</a> to run embarassingly parallel jobs. In the example below, we are requesting that each array task be allocated 1 CPU (<code>--ntasks=1</code>) and 4 GB of memory (<code>--mem=4G</code>) for up to one hour (<code>--time=01:00:00</code>).</p>
+<pre class="bash"><code>#!/bin/bash -l
+#SBATCH --job-name=array
+#SBATCH --partition=workq
+#SBATCH --account=director2120
+#SBATCH --array=0-3
+#SBATCH --output=array_%A_%a.out
+#SBATCH --error=array_%A_%a.err
+#SBATCH --time=01:00:00
+#SBATCH --ntasks=1
+#SBATCH --mem=4G
+#SBATCH --export=NONE
+
+FILES=(1.bam 2.bam 3.bam 4.bam)
+
+echo ${FILES[$SLURM_ARRAY_TASK_ID]}</code></pre>
+<p>Use <code>bash</code> arrays to store chromosomes, parameters, etc. for job arrays.</p>
 </div>
-<div id="public-key-cryptosystem" class="section level2">
-<h2>Public-key cryptosystem</h2>
-<p>Unlike the shared-key cryptosystem, the public-key cryptosystem uses different keys for encryption and decryption.</p>
-<p>To be continued…</p>
+</div>
+<div id="links" class="section level2">
+<h2>Links</h2>
+<ul>
+<li><a href="https://hpcc.usc.edu/resources/documentation/pbs-to-slurm/" class="uri">https://hpcc.usc.edu/resources/documentation/pbs-to-slurm/</a></li>
+<li><a href="http://www.softpanorama.org/HPC/PBS_and_derivatives/Reference/pbs_command_vs_sge_commands.shtml" class="uri">http://www.softpanorama.org/HPC/PBS_and_derivatives/Reference/pbs_command_vs_sge_commands.shtml</a></li>
+</ul>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -672,15 +755,26 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] workflowr_1.6.2
+ [1] DT_0.13         forcats_0.5.0   stringr_1.4.0   dplyr_1.0.0    
+ [5] purrr_0.3.4     readr_1.3.1     tidyr_1.1.0     tibble_3.0.1   
+ [9] ggplot2_3.3.1   tidyverse_1.3.0 workflowr_1.6.2
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.4.6    rprojroot_1.3-2 digest_0.6.25   later_1.1.0.1  
- [5] R6_2.4.1        backports_1.1.7 git2r_0.27.1    magrittr_1.5   
- [9] evaluate_0.14   stringi_1.4.6   rlang_0.4.6     fs_1.4.1       
-[13] promises_1.1.1  whisker_0.4     rmarkdown_2.2   tools_4.0.0    
-[17] stringr_1.4.0   glue_1.4.1      httpuv_1.5.4    xfun_0.14      
-[21] yaml_2.2.1      compiler_4.0.0  htmltools_0.4.0 knitr_1.28     </code></pre>
+ [1] tidyselect_1.1.0  xfun_0.14         haven_2.3.1       lattice_0.20-41  
+ [5] colorspace_1.4-1  vctrs_0.3.1       generics_0.0.2    htmltools_0.4.0  
+ [9] yaml_2.2.1        blob_1.2.1        rlang_0.4.6       later_1.1.0.1    
+[13] pillar_1.4.4      withr_2.2.0       glue_1.4.1        DBI_1.1.0        
+[17] dbplyr_1.4.4      modelr_0.1.8      readxl_1.3.1      lifecycle_0.2.0  
+[21] munsell_0.5.0     gtable_0.3.0      cellranger_1.1.0  rvest_0.3.5      
+[25] htmlwidgets_1.5.1 evaluate_0.14     knitr_1.28        crosstalk_1.1.0.1
+[29] httpuv_1.5.4      fansi_0.4.1       broom_0.5.6       Rcpp_1.0.4.6     
+[33] promises_1.1.1    backports_1.1.7   scales_1.1.1      jsonlite_1.6.1   
+[37] fs_1.4.1          hms_0.5.3         digest_0.6.25     stringi_1.4.6    
+[41] grid_4.0.0        rprojroot_1.3-2   cli_2.0.2         tools_4.0.0      
+[45] magrittr_1.5      crayon_1.3.4      whisker_0.4       pkgconfig_2.0.3  
+[49] ellipsis_0.3.1    xml2_1.3.2        reprex_0.3.0      lubridate_1.7.9  
+[53] rstudioapi_0.11   assertthat_0.2.1  rmarkdown_2.2     httr_1.4.1       
+[57] R6_2.4.1          nlme_3.1-148      git2r_0.27.1      compiler_4.0.0   </code></pre>
 </div>
 </div>
 
@@ -698,6 +792,8 @@ footer is added to webpages before the MathJax javascript. -->
 </script>
 
 
+</div>
+</div>
 
 </div>
 
@@ -730,6 +826,32 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
