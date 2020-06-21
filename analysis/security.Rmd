@@ -87,4 +87,8 @@ The problem with shared-key systems is that in order for the receiving party to 
 1. Methods using key-exchange protocols
 2. Methods using the public-key cryptosystem
 
+## Public-key cryptosystem
+
+Unlike the shared-key cryptosystem, the public-key cryptosystem uses different keys for encryption and decryption.
+
 To be continued...

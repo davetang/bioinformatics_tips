@@ -1,0 +1,336 @@
+---
+title: "Queuing system"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(DT)
+theme_set(theme_minimal())
+```
+
+## Introduction
+
+If you will be using a high-performance computer (HPC) cluster for your work you should learn to use a batch-queuing system. These systems are responsible for scheduling, dispatching, and managing the execution of your jobs as well as managing resource allocation.
+
+## Queuing systems
+
+* [Oracle Grid Engine](https://en.wikipedia.org/wiki/Oracle_Grid_Engine), previously known as Sun Grid Engine
+* [Univa Grid Engine](https://en.wikipedia.org/wiki/Univa_Grid_Engine) is a batch-queuing system, forked from Sun Grid Engine (SGE)
+* [Portable Batch System](https://en.wikipedia.org/wiki/Portable_Batch_System)
+    * OpenPBS — original open source version released by MRJ in 1998 (actively developed)
+    * TORQUE — a fork of OpenPBS that is maintained by Adaptive Computing Enterprises, Inc. (formerly Cluster Resources, Inc.)
+    * PBS Professional (PBS Pro) — the version of PBS offered by Altair Engineering that is dual licensed under an open source and a commercial license.
+* [SLURM](https://en.wikipedia.org/wiki/Slurm_Workload_Manager)
+ 
+See [comparison of cluster software](https://en.wikipedia.org/wiki/Comparison_of_cluster_software).
+
+### PBS
+
+PBS.
+
+```{r common_command, echo=FALSE}
+my_command <- c(
+  "qstat -q",
+  "qstat -a",
+  "qstat -u userid",
+  "qstat -r",
+  "qstat -f job_id",
+  "qstat -Qf queue",
+  "qstat -B",
+  "pbsnodes -aS",
+  "pbsnodes -a"
+)
+
+my_desc <- c(
+  "list all queues",
+  "list all jobs",
+  "list jobs for userid",
+  "list running jobs",
+  "list full information about job_id",
+  "list full information about queue",
+  "list summary status of the job server",
+  "list status of all compute nodes",
+  "Detailed status of all compute nodes"
+)
+
+DT::datatable(
+  tibble(Command = my_command,
+         Description = my_desc),
+  class = 'cell-border stripe',
+  rownames = FALSE, 
+  options = list(
+    dom = 't',
+    initComplete = JS(
+      "function(settings, json) {",
+      "$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});",
+      "}"
+    )
+  )
+)
+```
+
+Specific tasks.
+
+```{r task, echo=FALSE}
+my_desc <- c(
+  "Job submission",
+  "Job deletion",
+  "Job status (for user)",
+  "Extended job status",
+  "Hold a job temporarily",
+  "Release job hold",
+  "List of usable queues"
+)
+
+my_pbs <- c(
+  "qsub [scriptfile]",
+  "qdel [job_id]",
+  "qstat -u [username]",
+  "qstat -f [job_id]",
+  "qhold [job_id]",
+  "qrls [job_id]",
+  "qstat -Q"
+)
+
+my_sge <- c(
+  "qsub [scriptfile]",
+  "qdel [job_id]",
+  "qstat [-j job_id]",
+  "qstat -f [-j job_id]",
+  "qhold [job_id]",
+  "qrls [job_id]",
+  "qconf -sql"
+)
+
+DT::datatable(
+  tibble(Description = my_desc,
+         PBS = my_pbs,
+         SGE = my_sge),
+  class = 'cell-border stripe',
+  rownames = FALSE, 
+  options = list(
+    dom = 't',
+    initComplete = JS(
+      "function(settings, json) {",
+      "$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});",
+      "}"
+    )
+  )
+)
+```
+
+Resources.
+
+```{r resource, echo=FALSE}
+my_desc <- c(
+  "Queue",
+  "Nodes",
+  "Processors",
+  "Wall clock limit",
+  "Standard output file",
+  "Standard error",
+  "Copy environment",
+  "Notification event",
+  "Email address",
+  "Job name",
+  "Job restart",
+  "Initial directory",
+  "Node usage",
+  "Memory requirement"
+)
+
+my_pbs <- c(
+  "#PBS -q [queue]",
+  "#PBS -l nodes=[#]",
+  "#PBS -l ppn=[#]",
+  "#PBS -l walltime=[hh:mm:ss]",
+  "#PBS -o [file]",
+  "#PBS -e [file]",
+  "#PBS -V",
+  "#PBS -m abe",
+  "#PBS -M [email]",
+  "#PBS -N [name]",
+  "#PBS -r [y|n]",
+  "n/a",
+  "#PBS -l naccesspolicy=singlejob",
+  "#PBS -l mem=XXXXmb"
+)
+
+my_sge <- c(
+  "#$ -q [queue]",
+  "n/a",
+  "#$ -pe ompi [#]",
+  "#$ -l time=[hh:mm:ss]",
+  "#$ -o [path]",
+  "#$ -e [path]",
+  "#$ -V",
+  "#$ -m abe",
+  "#$ -M [email]",
+  "#$ -N [name]",
+  "#$ -r [yes|no]",
+  "#$ -wd [directory]",
+  "n/a",
+  "#$ -mem [#]G"
+)
+
+DT::datatable(
+  tibble(Description = my_desc,
+         PBS = my_pbs,
+         SGE = my_sge),
+  class = 'cell-border stripe',
+  rownames = FALSE, 
+  options = list(
+    dom = 't',
+    initComplete = JS(
+      "function(settings, json) {",
+      "$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});",
+      "}"
+    )
+  )
+)
+```
+
+### SLURM
+
+* A SLURM partition is a queue
+* A SLURM cluster is all the partitions that are managed by a single SLURM daemon
+
+```{bash eval=FALSE}
+sbatch job_script.slurm
+squeue
+scancel jobid
+```
+
+To list partitions type:
+
+```{bash eval=FALSE}
+sinfo
+```
+
+It is important to use the correct system and partition for each part of a workflow. To list out the limits of each partition use `scontrol`.
+
+```{bash eval=FALSE}
+scontrol show partition
+```
+
+Use `squeue` to display the status of jobs in the local cluster; the larger the priority value, the higher the priority.
+
+```{bash eval=FALSE}
+squeue
+
+# queue for specific user
+squeue -u dtang
+
+# queue for specific partition and sorted by priority
+squeue -p workq -S p
+```
+
+Individual job information.
+
+```{bash eval=FALSE}
+scontrol show job jobid
+```
+
+SLURM needs to know two things from you:
+
+1. Resource requirement: how many nodes and how long
+2. What to run
+
+Try to ask for the right amount of resources because:
+
+1. Over-estimating the resources will mean it will take longer to find an available slot.
+2. Under-estimating the time required means the job will get killed.
+3. Under-estimating memory will mean your job will crash.
+
+You cannot submit an application directly to SLURM; SLURM executes on your behalf a list of shell commands. In batch mode, SLURM executes a job script which contains the commands as a `bash` or `csh` script. In interactive mode, type in the commands just like when you log in.
+
+`sbatch` interprets directives in the script, which are written as comments and not executed.
+
+* Directive lines start with #SBATCH
+* These are equivalent to `sbatch` command-line arguments
+* Directives are usually more convenient and reproducible than command-line arguments
+
+Below is an example script.
+
+```{bash eval=FALSE}
+#!/bin/bash -l
+#SBATCH --partition=workq
+#SBATCH --job-name=hostname
+#SBATCH --account=director2120
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:05:00
+#SBATCH --export=NONE
+
+hostname
+```
+
+Use `--export=NONE` to start with a clean environment, improving reproducibility and avoids contamination of the environment.
+
+Use `sbatch` to submit the job.
+
+```{bash eval=FALSE}
+sbatch hostname.slurm
+```
+
+Parallel applications are launched using `srun`.
+
+Use `salloc` instead of `sbatch` for interactive jobs. Use `-p` to request a specific partition for the resource allocation. If not specified, the default behavior is to allow the slurm controller to select the default partition as designated by the system administrator.
+
+```{bash eval=FALSE}
+salloc --tasks=16 --time=00:10:00
+srun make -j 16
+```
+
+When specifying the number of threads, make sure you know the [parallel programming model](https://en.wikipedia.org/wiki/Parallel_programming_model) that is used by your library or software. The manner in which you issue the number of tasks may affect how your program runs. The [arguments](https://stackoverflow.com/questions/51139711/hpc-cluster-select-the-number-of-cpus-and-threads-in-slurm-sbatch) to pay attention to are:
+
+```
+--ntasks=# : Number of "tasks" (use with distributed parallelism).
+--ntasks-per-node=# : Number of "tasks" per node (use with distributed parallelism).
+--cpus-per-task=# : Number of CPUs allocated to each task (use with shared memory parallelism).
+```
+
+Therefore, using `--cpus-per-task` will ensure it gets allocated to the same node, while using `--ntasks` can and may allocate it to multiple nodes. You may get by by simply specifying`--ntasks` but you should do some testing with a smaller dataset.
+
+```
+#!/bin/bash -l
+#SBATCH --nodes=1
+#SBATCH --time=04:00:00
+#SBATCH --partition=workq
+#SBATCH --ntasks=16
+#SBATCH --export=NONE
+```
+
+Use [job arrays](https://slurm.schedmd.com/job_array.html) to run embarassingly parallel jobs. In the example below, we are requesting that each array task be allocated 1 CPU (`--ntasks=1`) and 4 GB of memory (`--mem=4G`) for up to one hour (`--time=01:00:00`).
+
+```{bash eval=FALSE}
+#!/bin/bash -l
+#SBATCH --job-name=array
+#SBATCH --partition=workq
+#SBATCH --account=director2120
+#SBATCH --array=0-3
+#SBATCH --output=array_%A_%a.out
+#SBATCH --error=array_%A_%a.err
+#SBATCH --time=01:00:00
+#SBATCH --ntasks=1
+#SBATCH --mem=4G
+#SBATCH --export=NONE
+
+FILES=(1.bam 2.bam 3.bam 4.bam)
+
+echo ${FILES[$SLURM_ARRAY_TASK_ID]}
+```
+
+Use `bash` arrays to store chromosomes, parameters, etc. for job arrays.
+
+## Links
+
+* https://hpcc.usc.edu/resources/documentation/pbs-to-slurm/
+* http://www.softpanorama.org/HPC/PBS_and_derivatives/Reference/pbs_command_vs_sge_commands.shtml
