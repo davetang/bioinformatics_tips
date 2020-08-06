@@ -1,5 +1,20 @@
 ## README
 
+### Markdown
+
+Use `pandoc` to convert Markdown to PDF.
+
+```bash
+pandoc -V geometry:margin=1in \
+   -s \
+   -S \
+   --table-of-contents \
+   --toc-depth=2 \
+   --highlight-style=tango \
+   my.md \
+   -o my.html
+```
+
 ### Bash tips
 
 Find tools in a script; `-x` is true if file exists and is executable.
