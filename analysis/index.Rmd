@@ -13,3 +13,4 @@ editor_options:
 * Use a [Workflow Management System](pipelining.html)
 * Learn to use a [queuing system](queuing.html)
 * Learn some [security basics](security.html)
+* [Run Monte Carlo simulations](simulation.html) to generate probability distributions
