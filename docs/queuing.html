@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2020-06-21" />
+<meta name="date" content="2020-08-15" />
 
 <title>Queuing system</title>
 
@@ -29,7 +29,7 @@
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <script src="site_libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
 <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="site_libs/datatables-binding-0.13/datatables.js"></script>
+<script src="site_libs/datatables-binding-0.14/datatables.js"></script>
 <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
 <link href="site_libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
 <script src="site_libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
@@ -410,7 +410,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Queuing system</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2020-06-21</h4>
+<h4 class="date">2020-08-15</h4>
 
 </div>
 
@@ -435,7 +435,7 @@ div.tocify {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-06-21
+<strong>Last updated:</strong> 2020-08-15
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -526,16 +526,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree3b81b9648b3239966cefc1d3ed9a11d920489d38targetblank3b81b96a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/3b81b9648b3239966cefc1d3ed9a11d920489d38" target="_blank">3b81b96</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree93ad1d0c947d6ac510542b5d82ab2c06a34d6498targetblank93ad1d0a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/93ad1d0c947d6ac510542b5d82ab2c06a34d6498" target="_blank">93ad1d0</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree3b81b9648b3239966cefc1d3ed9a11d920489d38targetblank3b81b96a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree93ad1d0c947d6ac510542b5d82ab2c06a34d6498targetblank93ad1d0a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/3b81b9648b3239966cefc1d3ed9a11d920489d38" target="_blank">3b81b96</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/93ad1d0c947d6ac510542b5d82ab2c06a34d6498" target="_blank">93ad1d0</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -587,6 +587,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/93ad1d0c947d6ac510542b5d82ab2c06a34d6498/analysis/queuing.Rmd" target="_blank">93ad1d0</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-08-15
+</td>
+<td>
+Update
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/c6a497c3fb6bf164649e89762bb662b3ccc9c76f/docs/queuing.html" target="_blank">c6a497c</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-06-21
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/davetang/bioinformatics_tips/blob/3b81b9648b3239966cefc1d3ed9a11d920489d38/analysis/queuing.Rmd" target="_blank">3b81b96</a>
 </td>
 <td>
@@ -626,6 +660,47 @@ Queuing systems
 <p>See <a href="https://en.wikipedia.org/wiki/Comparison_of_cluster_software">comparison of cluster software</a>.</p>
 <div id="pbs" class="section level3">
 <h3>PBS</h3>
+<p>You can configure the server by setting server attributes via the <code>qmgr</code> command:</p>
+<pre><code>Qmgr: set server &lt;attribute&gt; = &lt;value&gt;</code></pre>
+<p>The default configuration is shown below.</p>
+<pre><code>qmgr
+Qmgr: print server
+#
+# Create queues and set their attributes.
+#
+#
+# Create and define queue workq
+#
+create queue workq
+set queue workq queue_type = Execution
+set queue workq enabled = True
+set queue workq started = True
+#
+# Set server attributes.
+#
+set server scheduling = True
+set server default_queue = workq
+set server log_events = 511
+set server mail_from = adm
+set server query_other_jobs = True
+set server resources_default.ncpus = 1
+set server default_chunk.ncpus = 1
+set server scheduler_iteration = 600
+set server flatuid = True
+set server resv_enable = True
+set server node_fail_requeue = 310
+set server max_array_size = 10000
+set server pbs_license_min = 0
+set server pbs_license_max = 2147483647
+set server pbs_license_linger_time = 31536000
+set server eligible_time_enable = False
+set server max_concurrent_provision = 5
+set server max_job_sequence_id = 9999999</code></pre>
+<ul>
+<li>max_concurrent_provision - the number of vnodes allowed to be in the process of being provisioned</li>
+<li>max_run - the maximum number of jobs allowed to be running in the complex</li>
+<li>max_run_res - the maximum amount of the specified resource allowed to be allocated to jobs running in the complex</li>
+</ul>
 <p>PBS.</p>
 <div id="htmlwidget-b85a0ca0e08fa6914506" style="width:100%;height:auto;" class="datatables html-widget"></div>
 <script type="application/json" data-for="htmlwidget-b85a0ca0e08fa6914506">{"x":{"filter":"none","data":[["qstat -q","qstat -a","qstat -u userid","qstat -r","qstat -f job_id","qstat -Qf queue","qstat -B","pbsnodes -aS","pbsnodes -a"],["list all queues","list all jobs","list jobs for userid","list running jobs","list full information about job_id","list full information about queue","list summary status of the job server","list status of all compute nodes","Detailed status of all compute nodes"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Command<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
@@ -635,6 +710,7 @@ Queuing systems
 <p>Resources.</p>
 <div id="htmlwidget-6b8fcbf3984c13abc01e" style="width:100%;height:auto;" class="datatables html-widget"></div>
 <script type="application/json" data-for="htmlwidget-6b8fcbf3984c13abc01e">{"x":{"filter":"none","data":[["Queue","Nodes","Processors","Wall clock limit","Standard output file","Standard error","Copy environment","Notification event","Email address","Job name","Job restart","Initial directory","Node usage","Memory requirement"],["#PBS -q [queue]","#PBS -l nodes=[#]","#PBS -l ppn=[#]","#PBS -l walltime=[hh:mm:ss]","#PBS -o [file]","#PBS -e [file]","#PBS -V","#PBS -m abe","#PBS -M [email]","#PBS -N [name]","#PBS -r [y|n]","n/a","#PBS -l naccesspolicy=singlejob","#PBS -l mem=XXXXmb"],["#$ -q [queue]","n/a","#$ -pe ompi [#]","#$ -l time=[hh:mm:ss]","#$ -o [path]","#$ -e [path]","#$ -V","#$ -m abe","#$ -M [email]","#$ -N [name]","#$ -r [yes|no]","#$ -wd [directory]","n/a","#$ -mem [#]G"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Description<\/th>\n      <th>PBS<\/th>\n      <th>SGE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+<p>See <a href="https://community.openpbs.org/" class="uri">https://community.openpbs.org/</a>.</p>
 </div>
 <div id="slurm" class="section level3">
 <h3>SLURM</h3>
@@ -742,7 +818,7 @@ echo ${FILES[$SLURM_ARRAY_TASK_ID]}</code></pre>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.0.0 (2020-04-24)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.5
+Running under: macOS Catalina 10.15.6
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
@@ -755,25 +831,25 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] DT_0.13         forcats_0.5.0   stringr_1.4.0   dplyr_1.0.0    
+ [1] DT_0.14         forcats_0.5.0   stringr_1.4.0   dplyr_1.0.0    
  [5] purrr_0.3.4     readr_1.3.1     tidyr_1.1.0     tibble_3.0.1   
- [9] ggplot2_3.3.1   tidyverse_1.3.0 workflowr_1.6.2
+ [9] ggplot2_3.3.2   tidyverse_1.3.0 workflowr_1.6.2
 
 loaded via a namespace (and not attached):
- [1] tidyselect_1.1.0  xfun_0.14         haven_2.3.1       lattice_0.20-41  
- [5] colorspace_1.4-1  vctrs_0.3.1       generics_0.0.2    htmltools_0.4.0  
+ [1] tidyselect_1.1.0  xfun_0.15         haven_2.3.1       lattice_0.20-41  
+ [5] colorspace_1.4-1  vctrs_0.3.1       generics_0.0.2    htmltools_0.5.0  
  [9] yaml_2.2.1        blob_1.2.1        rlang_0.4.6       later_1.1.0.1    
 [13] pillar_1.4.4      withr_2.2.0       glue_1.4.1        DBI_1.1.0        
-[17] dbplyr_1.4.4      modelr_0.1.8      readxl_1.3.1      lifecycle_0.2.0  
-[21] munsell_0.5.0     gtable_0.3.0      cellranger_1.1.0  rvest_0.3.5      
-[25] htmlwidgets_1.5.1 evaluate_0.14     knitr_1.28        crosstalk_1.1.0.1
+[17] dbplyr_1.4.4      readxl_1.3.1      modelr_0.1.8      lifecycle_0.2.0  
+[21] cellranger_1.1.0  munsell_0.5.0     gtable_0.3.0      rvest_0.3.5      
+[25] htmlwidgets_1.5.1 evaluate_0.14     knitr_1.29        crosstalk_1.1.0.1
 [29] httpuv_1.5.4      fansi_0.4.1       broom_0.5.6       Rcpp_1.0.4.6     
-[33] promises_1.1.1    backports_1.1.7   scales_1.1.1      jsonlite_1.6.1   
-[37] fs_1.4.1          hms_0.5.3         digest_0.6.25     stringi_1.4.6    
-[41] grid_4.0.0        rprojroot_1.3-2   cli_2.0.2         tools_4.0.0      
+[33] promises_1.1.1    backports_1.1.8   scales_1.1.1      jsonlite_1.7.0   
+[37] fs_1.4.2          hms_0.5.3         digest_0.6.25     stringi_1.4.6    
+[41] rprojroot_1.3-2   grid_4.0.0        cli_2.0.2         tools_4.0.0      
 [45] magrittr_1.5      crayon_1.3.4      whisker_0.4       pkgconfig_2.0.3  
 [49] ellipsis_0.3.1    xml2_1.3.2        reprex_0.3.0      lubridate_1.7.9  
-[53] rstudioapi_0.11   assertthat_0.2.1  rmarkdown_2.2     httr_1.4.1       
+[53] assertthat_0.2.1  rmarkdown_2.3     httr_1.4.1        rstudioapi_0.11  
 [57] R6_2.4.1          nlme_3.1-148      git2r_0.27.1      compiler_4.0.0   </code></pre>
 </div>
 </div>
