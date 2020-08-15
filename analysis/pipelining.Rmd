@@ -32,3 +32,11 @@ Bottom line is that you should write your bioinformatics pipelines using a workf
 * Snakemake - https://github.com/snakemake-workflows
 * Nextflow - https://github.com/nextflow-io/awesome-nextflow
 * WDL - https://github.com/biowdl
+
+## WDL
+
+https://github.com/openwdl/wdl/blob/master/versions/1.0/SPEC.md
+
+Optional inputs - https://github.com/openwdl/wdl/blob/master/versions/1.0/SPEC.md#optional-inputs
+true and false - https://github.com/openwdl/wdl/blob/master/versions/1.0/SPEC.md#true-and-false
+

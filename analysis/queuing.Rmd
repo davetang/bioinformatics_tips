@@ -32,6 +32,52 @@ See [comparison of cluster software](https://en.wikipedia.org/wiki/Comparison_of
 
 ### PBS
 
+You can configure the server by setting server attributes via the `qmgr` command:
+
+    Qmgr: set server <attribute> = <value>
+
+The default configuration is shown below.
+
+```
+qmgr
+Qmgr: print server
+#
+# Create queues and set their attributes.
+#
+#
+# Create and define queue workq
+#
+create queue workq
+set queue workq queue_type = Execution
+set queue workq enabled = True
+set queue workq started = True
+#
+# Set server attributes.
+#
+set server scheduling = True
+set server default_queue = workq
+set server log_events = 511
+set server mail_from = adm
+set server query_other_jobs = True
+set server resources_default.ncpus = 1
+set server default_chunk.ncpus = 1
+set server scheduler_iteration = 600
+set server flatuid = True
+set server resv_enable = True
+set server node_fail_requeue = 310
+set server max_array_size = 10000
+set server pbs_license_min = 0
+set server pbs_license_max = 2147483647
+set server pbs_license_linger_time = 31536000
+set server eligible_time_enable = False
+set server max_concurrent_provision = 5
+set server max_job_sequence_id = 9999999
+```
+
+* max_concurrent_provision - the number of vnodes allowed to be in the process of being provisioned
+* max_run - the maximum number of jobs allowed to be running in the complex
+* max_run_res - the maximum amount of the specified resource allowed to be allocated to jobs running in the complex
+
 PBS.
 
 ```{r common_command, echo=FALSE}
@@ -195,6 +241,8 @@ DT::datatable(
   )
 )
 ```
+
+See https://community.openpbs.org/.
 
 ### SLURM
 
