@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2020-08-15" />
+<meta name="date" content="2020-08-16" />
 
 <title>Simulation</title>
 
@@ -326,7 +326,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Simulation</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2020-08-15</h4>
+<h4 class="date">2020-08-16</h4>
 
 </div>
 
@@ -351,7 +351,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-08-15
+<strong>Last updated:</strong> 2020-08-16
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -442,16 +442,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree8d17ba82108db59272dfc19173f27ab37fdf4479targetblank8d17ba8a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/8d17ba82108db59272dfc19173f27ab37fdf4479" target="_blank">8d17ba8</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreea3f4d8feb1014b61e2a78b9f5a0f2ceeeb18d946targetblanka3f4d8fa"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/a3f4d8feb1014b61e2a78b9f5a0f2ceeeb18d946" target="_blank">a3f4d8f</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree8d17ba82108db59272dfc19173f27ab37fdf4479targetblank8d17ba8a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreea3f4d8feb1014b61e2a78b9f5a0f2ceeeb18d946targetblanka3f4d8fa" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/8d17ba82108db59272dfc19173f27ab37fdf4479" target="_blank">8d17ba8</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/a3f4d8feb1014b61e2a78b9f5a0f2ceeeb18d946" target="_blank">a3f4d8f</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -460,10 +460,6 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-
-Unstaged changes:
-    Modified:   analysis/pipelining.Rmd
-    Modified:   analysis/queuing.Rmd
 
 </code></pre>
 <p>
@@ -502,6 +498,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/a3f4d8feb1014b61e2a78b9f5a0f2ceeeb18d946/analysis/simulation.Rmd" target="_blank">a3f4d8f</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-08-16
+</td>
+<td>
+Secretary problem
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/bcfc6f4c3c207e0cc8bd98e962f69f7eeb2d7bb4/docs/simulation.html" target="_blank">bcfc6f4</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-08-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -567,6 +597,60 @@ paste0(&quot;If we stick with our original choice, our success rate is &quot;, m
 <pre class="r"><code>paste0(&quot;If we switch from our original choice, our success rate is &quot;, mean(result_switch) * 100, &quot;% in &quot;, num_rep, &quot; tests.&quot;)</code></pre>
 <pre><code>[1] &quot;If we switch from our original choice, our success rate is 66.78% in 50000 tests.&quot;</code></pre>
 <p>From the Monte Carlo simulation, we see that if we don’t switch, we get the door with the prize (car) 33% of the time. This makes sense because if we disregard the switch, there is a 1/3 chance of picking the prize. If we make the switch, we get the door with the prize 66% of the time! This also makes sense because before the switch, there is a 33% chance of getting the prize door. Therefore 66% of the time, the prize door is among the other two doors that you didn’t pick. When the host opens the non-prize door (out of the two you didn’t pick), the remaining door has a 66% chance of being the prize door.</p>
+<p>The <a href="https://en.wikipedia.org/wiki/Secretary_problem">Secretary problem</a> is defined as follows:</p>
+<pre><code>Imagine an administrator who wants to hire the best secretary out of n rankable applicants for a position. The applicants are interviewed one by one in random order. A decision about each particular applicant is to be made immediately after the interview. Once rejected, an applicant cannot be recalled. During the interview, the administrator gains information sufficient to rank the applicant among all applicants interviewed so far, but is unaware of the quality of yet unseen applicants. The question is about the optimal strategy (stopping rule) to maximise the probability of selecting the best applicant. If the decision can be deferred to the end, this can be solved by the simple maximum selection algorithm of tracking the running maximum (and who achieved it), and selecting the overall maximum at the end. The difficulty is that the decision must be made immediately.</code></pre>
+<p>The optimal stopping rule prescribes always rejecting the first <span class="math inline">\(n/e\)</span> (36.7879441%) applicants that are interviewed and then stopping at the first applicant who is better than every applicant interviewed so far (or continuing to the last applicant if this never occurs).</p>
+<pre class="r"><code>optimal_stopping &lt;- function(n = 100, perc = 37){
+  # create pool of randomly arranged numbers
+  # where n is the best applicant, e.g. for n = 100, 100 is the best
+  my_pool &lt;- sample(1:n)
+  # percentage of pool to use for comparison, i.e. reject set
+  my_cutoff &lt;- floor(perc * n / 100)
+  # create comparison set
+  my_comp_set &lt;- my_pool[1:my_cutoff]
+  # best applicant in the comparison set
+  my_comp_best &lt;- max(my_comp_set)
+  # if the best applicant is included in the comparison set
+  # then we have missed hiring the best applicant
+  if(my_comp_best == n){
+    return(FALSE)
+  }
+  # create set to search for best applicant
+  my_hire_set &lt;- my_pool[(my_cutoff+1):n]
+  # applicants that are better than the best applicant in the comparison set
+  my_hire_better &lt;- my_hire_set &gt; my_comp_best
+  # first applicant that is better than the best applicant in the comparison set
+  my_hire_best &lt;- my_hire_set[min(which(my_hire_better))]
+  # is this the best applicant?
+  my_hire_best == n
+}
+
+num_rep &lt;- 50000
+pool_size &lt;- 1000
+
+start_time &lt;- Sys.time()
+perc_to_test &lt;- 10:60
+tests &lt;- lapply(X = perc_to_test, FUN = function(x){
+  replicate(num_rep, optimal_stopping(n = pool_size, perc = x))
+})
+end_time &lt;- Sys.time()
+end_time - start_time</code></pre>
+<pre><code>Time difference of 2.091688 mins</code></pre>
+<pre class="r"><code>test_means &lt;- sapply(tests, mean)
+names(test_means) &lt;- perc_to_test
+
+my_col &lt;- (test_means == max(test_means)) + 1
+barplot(test_means,
+        xlab = &quot;Percent to reject&quot;,
+        ylab = &quot;Percent success&quot;,
+        cex.names = 0.5,
+        cex.axis = 0.5,
+        las = 2, ylim = c(0, .4),
+        col = my_col,
+        main = paste0(&quot;Maximum success percent: &quot;, max(test_means)))
+abline(h = max(test_means), lty = 2, col = &quot;red&quot;)</code></pre>
+<p><img src="figure/simulation.Rmd/secretary_problem-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>We ran simulations with a hiring pool size of 1000 applicants and repeated the optimal stopping strategy 50000 times at a range of percentages: 10, 60. We can see that the optimal solution is to reject around 36.7879441% (<span class="math inline">\(n/e\)</span>) of the total number of applicants and to use them as a comparative set.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
