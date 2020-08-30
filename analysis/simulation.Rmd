@@ -118,3 +118,37 @@ abline(h = max(test_means), lty = 2, col = "red")
 ```
 
 We ran simulations with a hiring pool size of `r pool_size` applicants and repeated the optimal stopping strategy `r num_rep` times at a range of percentages: `r range(perc_to_test)`. We can see that the optimal solution is to reject around `r 100/exp(1)`% ($n/e$) of the total number of applicants and to use them as a comparative set.
+
+The [Birthday problem](https://en.wikipedia.org/wiki/Birthday_problem) concerns the probability that, in a set of n randomly chosen people, some pair of them will have the same birthday. By the pigeonhole principle, the probability reaches 100% when the number of people reaches 367 (since there are only 366 possible birthdays, including February 29). However, 99.9% probability is reached with just 70 people, and 50% probability with 23 people. These conclusions are based on the assumption that each day of the year (excluding February 29) is equally probable for a birthday.
+
+```{r birthday_problem}
+same_birthday <- function(n = 23){
+  my_samp <- sample(x = 1:365, size = n, replace = TRUE)
+  any(duplicated(my_samp))
+}
+
+num_rep <- 10000
+my_sizes <- 2:80
+
+start_time <- Sys.time()
+tests <- lapply(X = my_sizes, FUN = function(x){
+  replicate(num_rep, same_birthday(x))
+})
+end_time <- Sys.time()
+end_time - start_time
+
+test_means <- sapply(tests, mean)
+
+my_df <- data.frame(x = my_sizes,
+                    prob = test_means)
+
+plot(my_df,
+     pch = 16,
+     main = "Birthday probability vs. group size",
+     xlab = "Size",
+     ylab = "Probability")
+abline(h = 0.5, lty = 2, col = "red")
+abline(v = 23, lty = 2, col = "red")
+```
+
+We have a function called `same_birthday` that simply takes a sample of `n` size from all birthdays in a non-leap year and returns TRUE there are two identical birthdays and FALSE when all samples are unique. We repeat the sampling `r num_rep` times using a range of `n`'s: `r range(my_sizes)`. We plot the `test_means` which is the average number of successes in `r num_rep` times. We can see that 50% probability is reached with just 23 people.
