@@ -1,0 +1,50 @@
+---
+title: "Data structures"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+Learn about data structures.
+
+### Lists
+
+### Arrays
+
+### Stacks
+
+The structure of a stack can be imagined as a pile of objects stacked vertically. When extracting these objects, they are extracted from the top to the bottom. When adding data to a stack, the data is put into the lowest available location; this is called a "push". When extracting from a stack, the most recently added data is removed first; this is called a "pop". This method of extracting the most recently added data first is called "Last In First Out" (LIFO).
+
+### Queues
+
+### Hash tables
+
+### Heaps
+
+Heaps are one type of tree data structure and are used when implementing a priority queue, which is another type of data structure. In a priority queue, data can be added in any order. When extracting data, the smallest values are chosen first. This property of being able to freely add data and then extracting the smallest values first defines a priority queue.
+
+As a rule of heaps, a child number is always greater than its parent number. If a number is added to the tree and its number is smaller, then the child and parent swap. This operation repeats until no additional swaps occur. When extracting a number from a heap, the number on the top of the tree is removed. In a heap, the smallest value is held at the top of the tree. When the top value is extracted, the heap's structure needs to be reorganised. The number at the end of the line moves to the top and if one of the child numbers is less than the parent, the lowest of the adjacent child numbers swap with the parent. This repeats until no additional swaps occur.
+
+Heaps can be used to quickly extract the smallest data but extraction of data in the middle of the tree can not be performed.
+
+### Binary search trees
+
+Binary search trees have two properties:
+
+1. All nodes are greater than the nodes in their left sub-tree
+2. All nodes are smaller than the nodes in their right sub-tree
+
+Due to these two properties the following are true:
+
+* A binary search tree's smallest node is located at the end of the leftmost sub-tree line stemming from the top-most node
+* A binary search tree's largest node is located at the end of the rightmost sub-tree line stemming from the top-most node
+
+To add a number to a binary search tree, we start at the top-most node. If the number to be added is smaller, it proceeds to the left. This operation is repeated for all nodes and if it is smaller than all current nodes, it is added as a new node. If the number to be added is larger than the current node, it proceeds to the right and continues traversing down the tree.
+
+Binary search trees are used to efficiently search for numbers. Self-balancing binary search trees are well-balanced to maintain search efficiency.
