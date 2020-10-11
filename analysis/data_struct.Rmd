@@ -11,19 +11,27 @@ editor_options:
 
 ## Introduction
 
-Learn about data structures.
-
-### Lists
+Learn about different data structures to write more efficient programs.
 
 ### Arrays
 
+Arrays are used to store multiple values and each element can be accessed through its index, which is a number that denotes its order within the data. Data is stored sequentially in memory in consecutive locations and because of this, memory addresses can be calculated using their indices, allowing for random access of data. However, adding or deleting data in a specific location carries a high cost compared to lists. If we want to add data to an array, we need to secure additional space at the end of the array and in order to free up the space needed for the addition, data is shifted one element at a time. This is the same when deleting an element; each element is shifted one at a time.
+
+### Linked lists
+
+Lists are used to store multiple values in a linear data structure but they are unique in how they pair data with "pointers", the pointers indicating the next piece of data's memory location unlike arrays. In lists, data is stored in various disjointed locations in memory and because of this, each piece of data can only be accessed through the pointer that precedes it. Addition of data is performed by simply replacing the pointers on either side of the addition.
+
 ### Stacks
 
-The structure of a stack can be imagined as a pile of objects stacked vertically. When extracting these objects, they are extracted from the top to the bottom. When adding data to a stack, the data is put into the lowest available location; this is called a "push". When extracting from a stack, the most recently added data is removed first; this is called a "pop". This method of extracting the most recently added data first is called "Last In First Out" (LIFO).
+The structure of a stack can be imagined as a pile of objects stacked vertically. When extracting these objects, they are extracted from the top to the bottom. When adding data to a stack, the data is put into the lowest available location, like stacking blocks on top of each other; this is called a "push". When extracting from a stack, the most recently added data is removed first; this is called a "pop". This method of extracting the most recently added data first is called "Last In First Out" (LIFO).
 
 ### Queues
 
+Queues are a data structure that mimics a waiting line; the sooner a person lines up, the higher their priority. When adding data to a queue, the data is placed at the end and this is known as "enqueuing". When extracting data from a queue, the data that's been in the queue the longest is removed first and this is known as "dequeuing". This method of extracting the initially added data first is called "First In First Out" (FIFO).
+
 ### Hash tables
+
+Hash tables, which are also known as associative arrays, are useful for storing data in sets made up of keys and values. When storing a key, a hash value is calculated using the key and a hash function and this converts the key into a value of fixed length. To store data, an array of *n* size is first initialised. The hash value that is calculated for a key is divided by *n* to determine where in the array the value should be stored, for example by using a `mod` operation. If another key's hash value produces the same array index, it is stored as a linked list at that particular index (known as the chain method). There are several other types of hash table structures. When looking up a key, its hash value is calculated along with a `mod` operation to find its index in the array. If the array element is a list, a linear search is performed on the list to find the value of the key.
 
 ### Heaps
 
