@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2020-10-10" />
+<meta name="date" content="2020-10-11" />
 
 <title>Data structures</title>
 
@@ -326,7 +326,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Data structures</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2020-10-10</h4>
+<h4 class="date">2020-10-11</h4>
 
 </div>
 
@@ -351,7 +351,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-10-10
+<strong>Last updated:</strong> 2020-10-11
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -442,30 +442,27 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree852029261b84ab6da79b4e813cc32fe016246059targetblank8520292a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/852029261b84ab6da79b4e813cc32fe016246059" target="_blank">8520292</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree048aa89bc7d7b1566c54a086c0c1561e1ad02f48targetblank048aa89a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/048aa89bc7d7b1566c54a086c0c1561e1ad02f48" target="_blank">048aa89</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree852029261b84ab6da79b4e813cc32fe016246059targetblank8520292a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree048aa89bc7d7b1566c54a086c0c1561e1ad02f48targetblank048aa89a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/852029261b84ab6da79b4e813cc32fe016246059" target="_blank">8520292</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/048aa89bc7d7b1566c54a086c0c1561e1ad02f48" target="_blank">048aa89</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
 
-Unstaged changes:
-    Modified:   bioinformatics_tips.Rproj
-    Modified:   code/perl/getopts.pl
-    Modified:   code/r/optparse.R
-    Modified:   code/r/run_param.sh
-    Modified:   code/unix/get_option.sh
+Untracked files:
+    Untracked:  analysis/probability.Rmd
 
 </code></pre>
 <p>
@@ -509,6 +506,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/048aa89bc7d7b1566c54a086c0c1561e1ad02f48/analysis/data_struct.Rmd" target="_blank">048aa89</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-10-11
+</td>
+<td>
+More data structures
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/407b0132405dbcdac6fed14367fd4f0281357bf6/docs/data_struct.html" target="_blank">407b013</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2020-10-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/davetang/bioinformatics_tips/blob/852029261b84ab6da79b4e813cc32fe016246059/analysis/data_struct.Rmd" target="_blank">8520292</a>
 </td>
 <td>
@@ -530,22 +561,26 @@ Start page on data structures
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>Learn about data structures.</p>
-<div id="lists" class="section level3">
-<h3>Lists</h3>
-</div>
+<p>Learn about different data structures to write more efficient programs.</p>
 <div id="arrays" class="section level3">
 <h3>Arrays</h3>
+<p>Arrays are used to store multiple values and each element can be accessed through its index, which is a number that denotes its order within the data. Data is stored sequentially in memory in consecutive locations and because of this, memory addresses can be calculated using their indices, allowing for random access of data. However, adding or deleting data in a specific location carries a high cost compared to lists. If we want to add data to an array, we need to secure additional space at the end of the array and in order to free up the space needed for the addition, data is shifted one element at a time. This is the same when deleting an element; each element is shifted one at a time.</p>
+</div>
+<div id="linked-lists" class="section level3">
+<h3>Linked lists</h3>
+<p>Lists are used to store multiple values in a linear data structure but they are unique in how they pair data with “pointers”, the pointers indicating the next piece of data’s memory location unlike arrays. In lists, data is stored in various disjointed locations in memory and because of this, each piece of data can only be accessed through the pointer that precedes it. Addition of data is performed by simply replacing the pointers on either side of the addition.</p>
 </div>
 <div id="stacks" class="section level3">
 <h3>Stacks</h3>
-<p>The structure of a stack can be imagined as a pile of objects stacked vertically. When extracting these objects, they are extracted from the top to the bottom. When adding data to a stack, the data is put into the lowest available location; this is called a “push”. When extracting from a stack, the most recently added data is removed first; this is called a “pop”. This method of extracting the most recently added data first is called “Last In First Out” (LIFO).</p>
+<p>The structure of a stack can be imagined as a pile of objects stacked vertically. When extracting these objects, they are extracted from the top to the bottom. When adding data to a stack, the data is put into the lowest available location, like stacking blocks on top of each other; this is called a “push”. When extracting from a stack, the most recently added data is removed first; this is called a “pop”. This method of extracting the most recently added data first is called “Last In First Out” (LIFO).</p>
 </div>
 <div id="queues" class="section level3">
 <h3>Queues</h3>
+<p>Queues are a data structure that mimics a waiting line; the sooner a person lines up, the higher their priority. When adding data to a queue, the data is placed at the end and this is known as “enqueuing”. When extracting data from a queue, the data that’s been in the queue the longest is removed first and this is known as “dequeuing”. This method of extracting the initially added data first is called “First In First Out” (FIFO).</p>
 </div>
 <div id="hash-tables" class="section level3">
 <h3>Hash tables</h3>
+<p>Hash tables, which are also known as associative arrays, are useful for storing data in sets made up of keys and values. When storing a key, a hash value is calculated using the key and a hash function and this converts the key into a value of fixed length. To store data, an array of <em>n</em> size is first initialised. The hash value that is calculated for a key is divided by <em>n</em> to determine where in the array the value should be stored, for example by using a <code>mod</code> operation. If another key’s hash value produces the same array index, it is stored as a linked list at that particular index (known as the chain method). There are several other types of hash table structures. When looking up a key, its hash value is calculated along with a <code>mod</code> operation to find its index in the array. If the array element is a list, a linear search is performed on the list to find the value of the key.</p>
 </div>
 <div id="heaps" class="section level3">
 <h3>Heaps</h3>
@@ -576,16 +611,15 @@ Start page on data structures
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>R version 4.0.2 (2020-06-22)
-Platform: x86_64-w64-mingw32/x64 (64-bit)
-Running under: Windows 10 x64 (build 18363)
+Platform: x86_64-apple-darwin17.0 (64-bit)
+Running under: macOS Catalina 10.15.7
 
 Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
 
 locale:
-[1] LC_COLLATE=English_Australia.1252  LC_CTYPE=English_Australia.1252   
-[3] LC_MONETARY=English_Australia.1252 LC_NUMERIC=C                      
-[5] LC_TIME=English_Australia.1252    
-system code page: 932
+[1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -594,12 +628,14 @@ other attached packages:
 [1] workflowr_1.6.2
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.4.6    rprojroot_1.3-2 digest_0.6.25   later_1.1.0.1  
- [5] R6_2.4.1        backports_1.1.7 git2r_0.27.1    magrittr_1.5   
- [9] evaluate_0.14   stringi_1.4.6   rlang_0.4.6     fs_1.4.1       
-[13] promises_1.1.1  whisker_0.4     rmarkdown_2.3   tools_4.0.2    
-[17] stringr_1.4.0   glue_1.4.1      httpuv_1.5.4    xfun_0.15      
-[21] yaml_2.2.1      compiler_4.0.2  htmltools_0.5.0 knitr_1.29     </code></pre>
+ [1] Rcpp_1.0.5      rstudioapi_0.11 whisker_0.4     knitr_1.29     
+ [5] magrittr_1.5    R6_2.4.1        rlang_0.4.7     stringr_1.4.0  
+ [9] tools_4.0.2     xfun_0.16       git2r_0.27.1    htmltools_0.5.0
+[13] ellipsis_0.3.1  rprojroot_1.3-2 yaml_2.2.1      digest_0.6.25  
+[17] tibble_3.0.3    lifecycle_0.2.0 crayon_1.3.4    later_1.1.0.1  
+[21] vctrs_0.3.4     promises_1.1.1  fs_1.5.0        glue_1.4.2     
+[25] evaluate_0.14   rmarkdown_2.3   stringi_1.4.6   compiler_4.0.2 
+[29] pillar_1.4.6    backports_1.1.9 httpuv_1.5.4    pkgconfig_2.0.3</code></pre>
 </div>
 </div>
 </div>
