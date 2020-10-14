@@ -1,0 +1,71 @@
+---
+title: "Probability"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+A lot of bioinformatics tools employ probabilistic models so it's important to understand the basics of probability. Usually, if you can figure out all the possible events, you can calculate the probability of a subset of events by dividing the subset by all possible events. Another way to think about the probability of an event is that it is the proportion of times that the event occurs when we repeat the experiment an infinite number of times, independently, and under the same conditions. Because of this, we can get a estimate of the probability of an event by running Monte Carlo simulations. The following are some basics of probability.
+
+$Pr(A)$ is the probability of event $A$ happening; the general term _event_ is used to refer to things that can happen by chance.
+
+A probability distribution is simply the probabilities of all possible events. For continuous variables, the probability distribution is calculated using the cumulative distribution function (CDF).
+
+Two events are independent if the outcome of one does not affect the other. The classic example is coin tosses; every time we toss a fair coin, the probability of seeing heads is 1/2 regardless of what previous events were.
+
+When events are not independent, conditional probabilities are used.
+
+$$ Pr(Card\ 2\ is\ a\ king\ |\ Card\ 1\ is\ a\ king) = \frac{3}{51} $$
+
+The $|$ means "given that" or "conditional on". The mathematical definition of independence is:
+
+$$ Pr(A\ |\ B) = Pr(A) $$
+
+The fact that event $B$ has occurred does not affect the probability of $A$.
+
+We use the multiplication rule for calculating the probability of two events occurring:
+
+$$ Pr(A\ and\ B) = Pr(A) \cdot pr(B\ |\ A) $$
+
+When there are three events:
+
+$$ Pr(A\ and\ B\ and\ C) = Pr(A) \cdot Pr(B\ |\ A) \cdot Pr(C\ |\ A\ and\ B) $$
+
+If the events are independent, then:
+
+$$ Pr(A\ and\ B\ and\ C) = Pr(A) \cdot Pr(B) \cdot Pr(C) $$
+
+General formula for computing conditional probabilities:
+
+$$ Pr(B\ |\ A) = \frac{Pr(A\ and\ B)}{Pr(A)} $$
+
+If event $A$ and $B$ are independent, then the probability just becomes $Pr(B)$:
+
+$$ Pr(B\ |\ A) = \frac{Pr(A) \cdot Pr(B)}{Pr(A)} = Pr(B) $$
+
+Addition rule for calculating the probability of either event happening (but not both, which is why we subtract):
+
+$$ Pr(A\ or\ B) = Pr(A) + Pr(B) - Pr(A\ and\ B) $$
+
+Bayes' theorem:
+
+$$ Pr(A\ |\ B) = \frac{Pr(B\ |\ A) \cdot Pr(A)}{Pr(B)} $$
+
+Again, if event $A$ and $B$ are independent, then the probability just becomes $Pr(B)$:
+
+$$ Pr(A) = \frac{Pr(B) \cdot Pr(A)}{Pr(B)} $$
+
+One application of Bayes' Theorem is for spam filtering where:
+
+* Event A: the message is spam
+* Text: the message contains certain words
+
+$$ Pr(spam\ |\ words) = \frac{Pr(words\ |\ spam) \cdot Pr(spam)}{Pr(words)} $$
