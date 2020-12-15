@@ -9,15 +9,62 @@ editor_options:
   chunk_output_type: console
 ---
 
-A workflow management system (WMS) is software that makes it easier to implement, execute, and manage workflows. The analysis of high-throughput sequencing (HTS) data benefits greatly from WMSs because the processing of raw HTS data requires many sequential steps. Typically in a bioinformatics workflow or pipeline, HTS data is analysed by quality control (QC) tools, preprocessed accordingly, aligned to a reference sequence, and summarised in a manner that is relevant to the biological question.
+A workflow management system (WMS) is software that makes it easier to implement, execute, and manage workflows. If you work with high-throughput sequencing (HTS) data, chances are that you will benefit from using a WMS. A typical HTS workflow involves various processing steps that run sequentially, for example in RNA sequencing (RNA-seq) the raw data is first analysed using quality control (QC) tools and filtered to remove data that is "bad" quality. This filtered dataset is then aligned to a reference sequence and the gene/transcript abundance is calculated. Once you have set up the workflow using a WMS, you can simply run the workflow for new data saving you time and also reducing the potential for human error and increasing reproducibility.
 
-However, you may be wondering whether it is necessary to use a WMS if you can implement your bioinformatics pipeline using various shell (or similar scripting language) scripts in a relatively short amount of time. Is it worth investing your time learning yet another tool, especially if your interest is in the biology that the data holds? I think so because knowing at least one WMS is a core bioinformatic skill that everyone should possess.
+Initially, it may take a bit more time to implement your workflow under a WMS and you may be familiar with the following comic, where in practice automating a task is much more difficult than in theory.
 
-If you're convinced that you should at least try to use a WMS you may be wondering how hard it is to learn to use one and how long it will take to implement your bioinformatics workflow with a WMS. I am more familiar with the [Workflow Description Language](https://github.com/openwdl/wdl) (WDL), which is a language that you can use to implement your workflow, so my comments are based on WDL. I don't think it is hard to learn and to use WDL; I wrote a short [blog post](https://davetang.org/muse/2020/01/09/learning-wdl/) on learning WDL, so you can be the judge.
+![Automation](docs/assets/automation.png)
 
-With WDL, you set up each component of your pipeline as individual **tasks** and each task follows a defined structure; you can also set up specify resource usage per task, i.e. how much resource should be used for this task. You then create a workflow by calling your tasks; you can specify that the output of one task is used as input for the next task. A JSON file is used as a config file for your workflow and will specify parameters and the location of files, such as your input files. Finally, a separate tool called [Cromwell](https://cromwell.readthedocs.io/en/develop/) can be used to execute your pipeline and it is Cromwell that will handle all the logging, resource management, and pipeline execution. One of the benefits of WDL/Cromwell is that you can execute the same pipeline on different computational infrastructures making your pipeline very portable!
+However in my experience, once you learn the basics of a WMS it becomes easier and easier to implement your workflows under such a system and I do end up freeing up my time to do other tasks as per this [tweet](https://twitter.com/dsquintana/status/1331979334245097477).
 
-Another WMS is [Snakemake](https://snakemake.readthedocs.io/en/stable/index.html), which uses **rules** to set up each part of your bioinformatics pipeline, akin to **tasks** in WDL.
+![Reproducibility](docs/assets/reproducibiity_relocates_time.png)
+
+While it is entirely possible to implement workflows using simply scripts written in shell (or some other scripting language) WMSs offer many additional features besides running your workflow. For example, workflows implemented in [Workflow Description Language](https://github.com/openwdl/wdl) (WDL) can be easily executed across different platforms, such as locally or on a High Performance Computing (HPC) cluster, by using [Cromwell](https://github.com/broadinstitute/cromwell). A really useful of Cromwell is called "Call Caching" and can be used to resume a job if it failed halfway through execution and use previously computed data. For example, if you wanted to test a new gene quantification tool for your RNA-seq workflow but use the same approach for the QC and read mapping, call caching will copy (or link) your previously mapped data and only run the new gene quantification tool. WDL has always been advertised as a Domain-Specific Language (DSL) that is easy to read and write regardless of your computational background. If I have piqued your interest, you can check out my [blog post](https://davetang.org/muse/2020/01/09/learning-wdl/) on learning WDL.
+
+## Workflow management systems
+
+Besides WDL, there are other workflow management systems that include [Snakemake](https://snakemake.readthedocs.io/en/stable/index.html), [Bpipe](https://github.com/ssadedin/bpipe/) and [Nextflow](https://sciwiki.fredhutch.org/compdemos/nextflow/), which both are based on [Groovy](https://www.groovy-lang.org/). A survey conducted on Twitter has a list of other systems and [showed that Snakemake is the most popular](https://docs.google.com/forms/d/e/1FAIpQLScoj8Po4P3Qrh7rbJrq2R35c3PQsNCynEeEVUAdcGyly7TT_Q/viewanalytics). There is a [nice discussion on Reddit](https://www.reddit.com/r/bioinformatics/comments/a4fq4i/given_the_experience_of_others_writing/) on the strengths and weaknesses of different WMSs.
+
+Another advantage of using a WMS is that it is very likely that your workflow of interest has already been implemented. Below are some repositories that contain various workflows implemented in their respective WMS:
+
+* Snakemake - https://github.com/snakemake-workflows
+* Nextflow - https://github.com/nextflow-io/awesome-nextflow
+* WDL - https://github.com/biowdl and https://github.com/gatk-workflows
+
+Even if the available workflows do not exactly match your specifications, you can find a similar pipeline and modify it as you wish.
+
+### Example
+
+In the WDL, you set up each component of your workflow as individual **tasks**, which follows a defined structure:
+
+```
+task hello {
+   input {
+      String pattern
+      File in
+   }
+ 
+   command {
+      egrep '${pattern}' '${in}'
+   }
+ 
+   runtime {
+      docker: "ubuntu:latest"
+      memory: "4G"
+      cpu: "3"
+   }
+ 
+   output {
+      Array[String] matches = read_lines(stdout())
+   }
+}
+```
+
+A task is like a function and takes an input or inputs and processes the input according to the command block and generates an output or outputs. In addition, you can also set up specify resource usage per task, such as how much memory and CPU can be used. While the Broad team recommend the use of Docker, it is not strictly necessary and tools can be executed via other means. After defining all your tasks, the workflow is created by calling all your tasks and specifying the inputs of each task; task dependencies are created by specifying the output of one task as the input for another task or tasks.
+
+A JSON file is used as a configuration file for your workflow and will specify parameters and the location of files, such as your raw input and reference files. Finally, the execution engine called Cromwell is used to execute the workflow and handle all the logging, resource management, and pipeline execution.
+
+[Snakemake](https://snakemake.readthedocs.io/en/stable/index.html) on the other hand uses **rules** to set up each part of your workflow and they are similar to **tasks** in WDL.
 
 ```
 rule sort:
@@ -29,26 +76,22 @@ rule sort:
         "sort -n {input} > {output}"
 ```
 
-If we run the example above using Snakemake, the input file `test.txt` will get sorted numerically and the output is stored in `test.sorted.txt`. Typically, you would write a pipeline (a `Snakefile`) that takes input from a config file (e.g. `config.yaml`). If you wanted to run the pipeline for a new dataset, you will just need to create a new config file.
+If we run the example above using Snakemake, the input file `test.txt` will get sorted numerically and the output is stored in `test.sorted.txt`. Typically, you would write a pipeline (a `Snakefile`) that takes input from a config file (e.g. `config.yaml`). If you wanted to run the pipeline for a new dataset, you will just need to create a new config file. I have a [short blog post](https://davetang.org/muse/2017/07/06/learning-about-snakemake/) on Snakemake too.
 
-Other workflow management systems include [Bpipe](https://github.com/ssadedin/bpipe/) and [Nextflow](https://sciwiki.fredhutch.org/compdemos/nextflow/), which both are based on [Groovy](https://www.groovy-lang.org/). A survey conducted on Twitter has a list of other systems and [showed that Snakemake is the most popular](https://docs.google.com/forms/d/e/1FAIpQLScoj8Po4P3Qrh7rbJrq2R35c3PQsNCynEeEVUAdcGyly7TT_Q/viewanalytics). There is a [nice discussion on Reddit](https://www.reddit.com/r/bioinformatics/comments/a4fq4i/given_the_experience_of_others_writing/) on the strengths and weakness of different workflow management systems.
+### WDL
 
-Personally I use WDL because that's what the Broad Institute uses and I wanted to use some of their pipelines. This is another advantage of learning a WMS because it is very likely that somebody has already implemented a similar pipeline. Check out these pipelines in using different WMSs:
+For a nice introduction to WDL and Cromwell, listen to [Getting started with WDL and Cromwell](https://www.youtube.com/watch?v=mFzfeDTnDSk) presented by Ruchi Munshi. A quick summary of the talk:
 
-* Snakemake - https://github.com/snakemake-workflows
-* Nextflow - https://github.com/nextflow-io/awesome-nextflow
-* WDL - https://github.com/biowdl
+* WDL and Cromwell spun out from the need of a new tool and platform that can be easily scaled to process a lot of data
+* WDL is aimed at being a DSL that is easy for humans to read and write, in particular for biomedical scientists
+* Workflows implemented in WDL can be executed using Cromwell at any scale across different platforms, such as your local computer, on HPC clusters, and on various cloud platforms.
+* The use of Docker containers is recommended for portability and reproducibility
+* WDL and Cromwell have been used to process a lot of data at the Broad Institute, which goes to show that it is a well supported tool that is under constant development
 
-Even if your exact pipeline hasn't been previously implemented, you probably can still find a similar pipeline that you could modify for your needs. 
+Some links to check out:
 
-Lastly, WMSs make it much easier to reproducible your work. TBC.
-
-## WDL
-
+* https://github.com/FredHutch/reproducible-workflows
+* https://sciwiki.fredhutch.org/compdemos/Cromwell/
 * Specification - https://github.com/openwdl/wdl/tree/main/versions
 * Optional inputs - https://github.com/openwdl/wdl/blob/master/versions/1.0/SPEC.md#optional-inputs
 * true and false - https://github.com/openwdl/wdl/blob/master/versions/1.0/SPEC.md#true-and-false
-
-## Other links
-
-* https://github.com/FredHutch/reproducible-workflows
