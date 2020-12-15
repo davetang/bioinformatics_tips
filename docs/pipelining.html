@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2020-08-23" />
+<meta name="date" content="2020-12-15" />
 
 <title>Workflow management system</title>
 
@@ -24,6 +24,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -32,6 +34,15 @@ div.section {
   padding-top: 12px;
 }
 </style>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -326,7 +337,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Workflow management system</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2020-08-23</h4>
+<h4 class="date">2020-12-15</h4>
 
 </div>
 
@@ -351,7 +362,7 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-08-23
+<strong>Last updated:</strong> 2020-12-15
 </p>
 <p>
 <strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
@@ -399,7 +410,7 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 </div>
 <div id="strongSeedstrongcodesetseed20200503code" class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20200503)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20200503)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
 </div>
 </div>
 </div>
@@ -442,16 +453,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreef52afb54efb74807ff321480672d936a0fbd084etargetblankf52afb5a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/f52afb54efb74807ff321480672d936a0fbd084e" target="_blank">f52afb5</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree957ab5e46c7ecf5d3aa8e726862f35269654fed8targetblank957ab5ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/957ab5e46c7ecf5d3aa8e726862f35269654fed8" target="_blank">957ab5e</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreef52afb54efb74807ff321480672d936a0fbd084etargetblankf52afb5a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree957ab5e46c7ecf5d3aa8e726862f35269654fed8targetblank957ab5ea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/f52afb54efb74807ff321480672d936a0fbd084e" target="_blank">f52afb5</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/957ab5e46c7ecf5d3aa8e726862f35269654fed8" target="_blank">957ab5e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -460,9 +471,10 @@ Note that you need to be careful to ensure that all relevant files for the analy
 Ignored files:
     Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+    Ignored:    analysis/.Rhistory
 
-Unstaged changes:
-    Modified:   analysis/simulation.Rmd
+Untracked files:
+    Untracked:  ref/
 
 </code></pre>
 <p>
@@ -501,6 +513,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/957ab5e46c7ecf5d3aa8e726862f35269654fed8/analysis/pipelining.Rmd" target="_blank">957ab5e</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-12-15
+</td>
+<td>
+Elaborate on WDL and Cromwell
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/0be4b55a038ce9c7aafe4c34e86d23fde7b0ee56/docs/pipelining.html" target="_blank">0be4b55</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-08-23
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -610,11 +656,54 @@ Workflow management system
 </div>
 </div>
 </div>
-<p>A workflow management system (WMS) is software that makes it easier to implement, execute, and manage workflows. The analysis of high-throughput sequencing (HTS) data benefits greatly from WMSs because the processing of raw HTS data requires many sequential steps. Typically in a bioinformatics workflow or pipeline, HTS data is analysed by quality control (QC) tools, preprocessed accordingly, aligned to a reference sequence, and summarised in a manner that is relevant to the biological question.</p>
-<p>However, you may be wondering whether it is necessary to use a WMS if you can implement your bioinformatics pipeline using various shell (or similar scripting language) scripts in a relatively short amount of time. Is it worth investing your time learning yet another tool, especially if your interest is in the biology that the data holds? I think so because knowing at least one WMS is a core bioinformatic skill that everyone should possess.</p>
-<p>If you’re convinced that you should at least try to use a WMS you may be wondering how hard it is to learn to use one and how long it will take to implement your bioinformatics workflow with a WMS. I am more familiar with the <a href="https://github.com/openwdl/wdl">Workflow Description Language</a> (WDL), which is a language that you can use to implement your workflow, so my comments are based on WDL. I don’t think it is hard to learn and to use WDL; I wrote a short <a href="https://davetang.org/muse/2020/01/09/learning-wdl/">blog post</a> on learning WDL, so you can be the judge.</p>
-<p>With WDL, you set up each component of your pipeline as individual <strong>tasks</strong> and each task follows a defined structure; you can also set up specify resource usage per task, i.e. how much resource should be used for this task. You then create a workflow by calling your tasks; you can specify that the output of one task is used as input for the next task. A JSON file is used as a config file for your workflow and will specify parameters and the location of files, such as your input files. Finally, a separate tool called <a href="https://cromwell.readthedocs.io/en/develop/">Cromwell</a> can be used to execute your pipeline and it is Cromwell that will handle all the logging, resource management, and pipeline execution. One of the benefits of WDL/Cromwell is that you can execute the same pipeline on different computational infrastructures making your pipeline very portable!</p>
-<p>Another WMS is <a href="https://snakemake.readthedocs.io/en/stable/index.html">Snakemake</a>, which uses <strong>rules</strong> to set up each part of your bioinformatics pipeline, akin to <strong>tasks</strong> in WDL.</p>
+<p>A workflow management system (WMS) is software that makes it easier to implement, execute, and manage workflows. If you work with high-throughput sequencing (HTS) data, chances are that you will benefit from using a WMS. A typical HTS workflow involves various processing steps that run sequentially, for example in RNA sequencing (RNA-seq) the raw data is first analysed using quality control (QC) tools and filtered to remove data that is “bad” quality. This filtered dataset is then aligned to a reference sequence and the gene/transcript abundance is calculated. Once you have set up the workflow using a WMS, you can simply run the workflow for new data saving you time and also reducing the potential for human error and increasing reproducibility.</p>
+<p>Initially, it may take a bit more time to implement your workflow under a WMS and you may be familiar with the following comic, where in practice automating a task is much more difficult than in theory.</p>
+<div class="figure">
+<img src="docs/assets/automation.png" alt="" />
+<p class="caption">Automation</p>
+</div>
+<p>However in my experience, once you learn the basics of a WMS it becomes easier and easier to implement your workflows under such a system and I do end up freeing up my time to do other tasks as per this <a href="https://twitter.com/dsquintana/status/1331979334245097477">tweet</a>.</p>
+<div class="figure">
+<img src="docs/assets/reproducibiity_relocates_time.png" alt="" />
+<p class="caption">Reproducibility</p>
+</div>
+<p>While it is entirely possible to implement workflows using simply scripts written in shell (or some other scripting language) WMSs offer many additional features besides running your workflow. For example, workflows implemented in <a href="https://github.com/openwdl/wdl">Workflow Description Language</a> (WDL) can be easily executed across different platforms, such as locally or on a High Performance Computing (HPC) cluster, by using <a href="https://github.com/broadinstitute/cromwell">Cromwell</a>. A really useful of Cromwell is called “Call Caching” and can be used to resume a job if it failed halfway through execution and use previously computed data. For example, if you wanted to test a new gene quantification tool for your RNA-seq workflow but use the same approach for the QC and read mapping, call caching will copy (or link) your previously mapped data and only run the new gene quantification tool. WDL has always been advertised as a Domain-Specific Language (DSL) that is easy to read and write regardless of your computational background. If I have piqued your interest, you can check out my <a href="https://davetang.org/muse/2020/01/09/learning-wdl/">blog post</a> on learning WDL.</p>
+<div id="workflow-management-systems" class="section level2">
+<h2>Workflow management systems</h2>
+<p>Besides WDL, there are other workflow management systems that include <a href="https://snakemake.readthedocs.io/en/stable/index.html">Snakemake</a>, <a href="https://github.com/ssadedin/bpipe/">Bpipe</a> and <a href="https://sciwiki.fredhutch.org/compdemos/nextflow/">Nextflow</a>, which both are based on <a href="https://www.groovy-lang.org/">Groovy</a>. A survey conducted on Twitter has a list of other systems and <a href="https://docs.google.com/forms/d/e/1FAIpQLScoj8Po4P3Qrh7rbJrq2R35c3PQsNCynEeEVUAdcGyly7TT_Q/viewanalytics">showed that Snakemake is the most popular</a>. There is a <a href="https://www.reddit.com/r/bioinformatics/comments/a4fq4i/given_the_experience_of_others_writing/">nice discussion on Reddit</a> on the strengths and weaknesses of different WMSs.</p>
+<p>Another advantage of using a WMS is that it is very likely that your workflow of interest has already been implemented. Below are some repositories that contain various workflows implemented in their respective WMS:</p>
+<ul>
+<li>Snakemake - <a href="https://github.com/snakemake-workflows" class="uri">https://github.com/snakemake-workflows</a></li>
+<li>Nextflow - <a href="https://github.com/nextflow-io/awesome-nextflow" class="uri">https://github.com/nextflow-io/awesome-nextflow</a></li>
+<li>WDL - <a href="https://github.com/biowdl" class="uri">https://github.com/biowdl</a> and <a href="https://github.com/gatk-workflows" class="uri">https://github.com/gatk-workflows</a></li>
+</ul>
+<p>Even if the available workflows do not exactly match your specifications, you can find a similar pipeline and modify it as you wish.</p>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>In the WDL, you set up each component of your workflow as individual <strong>tasks</strong>, which follows a defined structure:</p>
+<pre><code>task hello {
+   input {
+      String pattern
+      File in
+   }
+ 
+   command {
+      egrep &#39;${pattern}&#39; &#39;${in}&#39;
+   }
+ 
+   runtime {
+      docker: &quot;ubuntu:latest&quot;
+      memory: &quot;4G&quot;
+      cpu: &quot;3&quot;
+   }
+ 
+   output {
+      Array[String] matches = read_lines(stdout())
+   }
+}</code></pre>
+<p>A task is like a function and takes an input or inputs and processes the input according to the command block and generates an output or outputs. In addition, you can also set up specify resource usage per task, such as how much memory and CPU can be used. While the Broad team recommend the use of Docker, it is not strictly necessary and tools can be executed via other means. After defining all your tasks, the workflow is created by calling all your tasks and specifying the inputs of each task; task dependencies are created by specifying the output of one task as the input for another task or tasks.</p>
+<p>A JSON file is used as a configuration file for your workflow and will specify parameters and the location of files, such as your raw input and reference files. Finally, the execution engine called Cromwell is used to execute the workflow and handle all the logging, resource management, and pipeline execution.</p>
+<p><a href="https://snakemake.readthedocs.io/en/stable/index.html">Snakemake</a> on the other hand uses <strong>rules</strong> to set up each part of your workflow and they are similar to <strong>tasks</strong> in WDL.</p>
 <pre><code>rule sort:
     input:
         &quot;test.txt&quot;
@@ -622,28 +711,25 @@ Workflow management system
         &quot;test.sorted.txt&quot;
     shell:
         &quot;sort -n {input} &gt; {output}&quot;</code></pre>
-<p>If we run the example above using Snakemake, the input file <code>test.txt</code> will get sorted numerically and the output is stored in <code>test.sorted.txt</code>. Typically, you would write a pipeline (a <code>Snakefile</code>) that takes input from a config file (e.g. <code>config.yaml</code>). If you wanted to run the pipeline for a new dataset, you will just need to create a new config file.</p>
-<p>Other workflow management systems include <a href="https://github.com/ssadedin/bpipe/">Bpipe</a> and <a href="https://sciwiki.fredhutch.org/compdemos/nextflow/">Nextflow</a>, which both are based on <a href="https://www.groovy-lang.org/">Groovy</a>. A survey conducted on Twitter has a list of other systems and <a href="https://docs.google.com/forms/d/e/1FAIpQLScoj8Po4P3Qrh7rbJrq2R35c3PQsNCynEeEVUAdcGyly7TT_Q/viewanalytics">showed that Snakemake is the most popular</a>. There is a <a href="https://www.reddit.com/r/bioinformatics/comments/a4fq4i/given_the_experience_of_others_writing/">nice discussion on Reddit</a> on the strengths and weakness of different workflow management systems.</p>
-<p>Personally I use WDL because that’s what the Broad Institute uses and I wanted to use some of their pipelines. This is another advantage of learning a WMS because it is very likely that somebody has already implemented a similar pipeline. Check out these pipelines in using different WMSs:</p>
+<p>If we run the example above using Snakemake, the input file <code>test.txt</code> will get sorted numerically and the output is stored in <code>test.sorted.txt</code>. Typically, you would write a pipeline (a <code>Snakefile</code>) that takes input from a config file (e.g. <code>config.yaml</code>). If you wanted to run the pipeline for a new dataset, you will just need to create a new config file. I have a <a href="https://davetang.org/muse/2017/07/06/learning-about-snakemake/">short blog post</a> on Snakemake too.</p>
+</div>
+<div id="wdl" class="section level3">
+<h3>WDL</h3>
+<p>For a nice introduction to WDL and Cromwell, listen to <a href="https://www.youtube.com/watch?v=mFzfeDTnDSk">Getting started with WDL and Cromwell</a> presented by Ruchi Munshi. A quick summary of the talk:</p>
 <ul>
-<li>Snakemake - <a href="https://github.com/snakemake-workflows" class="uri">https://github.com/snakemake-workflows</a></li>
-<li>Nextflow - <a href="https://github.com/nextflow-io/awesome-nextflow" class="uri">https://github.com/nextflow-io/awesome-nextflow</a></li>
-<li>WDL - <a href="https://github.com/biowdl" class="uri">https://github.com/biowdl</a></li>
+<li>WDL and Cromwell spun out from the need of a new tool and platform that can be easily scaled to process a lot of data</li>
+<li>WDL is aimed at being a DSL that is easy for humans to read and write, in particular for biomedical scientists</li>
+<li>Workflows implemented in WDL can be executed using Cromwell at any scale across different platforms, such as your local computer, on HPC clusters, and on various cloud platforms.</li>
+<li>The use of Docker containers is recommended for portability and reproducibility</li>
+<li>WDL and Cromwell have been used to process a lot of data at the Broad Institute, which goes to show that it is a well supported tool that is under constant development</li>
 </ul>
-<p>Even if your exact pipeline hasn’t been previously implemented, you probably can still find a similar pipeline that you could modify for your needs.</p>
-<p>Lastly, WMSs make it much easier to reproducible your work. TBC.</p>
-<div id="wdl" class="section level2">
-<h2>WDL</h2>
+<p>Some links to check out:</p>
 <ul>
+<li><a href="https://github.com/FredHutch/reproducible-workflows" class="uri">https://github.com/FredHutch/reproducible-workflows</a></li>
+<li><a href="https://sciwiki.fredhutch.org/compdemos/Cromwell/" class="uri">https://sciwiki.fredhutch.org/compdemos/Cromwell/</a></li>
 <li>Specification - <a href="https://github.com/openwdl/wdl/tree/main/versions" class="uri">https://github.com/openwdl/wdl/tree/main/versions</a></li>
 <li>Optional inputs - <a href="https://github.com/openwdl/wdl/blob/master/versions/1.0/SPEC.md#optional-inputs" class="uri">https://github.com/openwdl/wdl/blob/master/versions/1.0/SPEC.md#optional-inputs</a></li>
 <li>true and false - <a href="https://github.com/openwdl/wdl/blob/master/versions/1.0/SPEC.md#true-and-false" class="uri">https://github.com/openwdl/wdl/blob/master/versions/1.0/SPEC.md#true-and-false</a></li>
-</ul>
-</div>
-<div id="other-links" class="section level2">
-<h2>Other links</h2>
-<ul>
-<li><a href="https://github.com/FredHutch/reproducible-workflows" class="uri">https://github.com/FredHutch/reproducible-workflows</a></li>
 </ul>
 <br>
 <p>
@@ -653,9 +739,9 @@ Workflow management system
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.0 (2020-04-24)
+<pre><code>R version 4.0.2 (2020-06-22)
 Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.6
+Running under: macOS  10.16
 
 Matrix products: default
 BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
@@ -671,14 +757,15 @@ other attached packages:
 [1] workflowr_1.6.2
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.4.6    rstudioapi_0.11 whisker_0.4     knitr_1.29     
- [5] magrittr_1.5    R6_2.4.1        rlang_0.4.6     stringr_1.4.0  
- [9] tools_4.0.0     xfun_0.15       git2r_0.27.1    htmltools_0.5.0
-[13] ellipsis_0.3.1  rprojroot_1.3-2 yaml_2.2.1      digest_0.6.25  
-[17] tibble_3.0.1    lifecycle_0.2.0 crayon_1.3.4    later_1.1.0.1  
-[21] vctrs_0.3.1     promises_1.1.1  fs_1.4.2        glue_1.4.1     
-[25] evaluate_0.14   rmarkdown_2.3   stringi_1.4.6   compiler_4.0.0 
-[29] pillar_1.4.4    backports_1.1.8 httpuv_1.5.4    pkgconfig_2.0.3</code></pre>
+ [1] Rcpp_1.0.5      rstudioapi_0.13 whisker_0.4     knitr_1.30     
+ [5] magrittr_2.0.1  R6_2.5.0        rlang_0.4.9     stringr_1.4.0  
+ [9] tools_4.0.2     xfun_0.19       git2r_0.27.1    htmltools_0.5.0
+[13] ellipsis_0.3.1  rprojroot_2.0.2 yaml_2.2.1      digest_0.6.27  
+[17] tibble_3.0.4    lifecycle_0.2.0 crayon_1.3.4    later_1.1.0.1  
+[21] vctrs_0.3.5     promises_1.1.1  fs_1.5.0        glue_1.4.2     
+[25] evaluate_0.14   rmarkdown_2.5   stringi_1.5.3   compiler_4.0.2 
+[29] pillar_1.4.7    httpuv_1.5.4    pkgconfig_2.0.3</code></pre>
+</div>
 </div>
 </div>
 
@@ -703,7 +790,7 @@ footer is added to webpages before the MathJax javascript. -->
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
