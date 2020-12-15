@@ -13,11 +13,11 @@ A workflow management system (WMS) is software that makes it easier to implement
 
 Initially, it may take a bit more time to implement your workflow under a WMS and you may be familiar with the following comic, where in practice automating a task is much more difficult than in theory.
 
-![Automation](docs/assets/automation.png)
+![](assets/automation.png)
 
 However in my experience, once you learn the basics of a WMS it becomes easier and easier to implement your workflows under such a system and I do end up freeing up my time to do other tasks as per this [tweet](https://twitter.com/dsquintana/status/1331979334245097477).
 
-![Reproducibility](docs/assets/reproducibiity_relocates_time.png)
+![](assets/reproducibiity_relocates_time.jpeg)
 
 While it is entirely possible to implement workflows using simply scripts written in shell (or some other scripting language) WMSs offer many additional features besides running your workflow. For example, workflows implemented in [Workflow Description Language](https://github.com/openwdl/wdl) (WDL) can be easily executed across different platforms, such as locally or on a High Performance Computing (HPC) cluster, by using [Cromwell](https://github.com/broadinstitute/cromwell). A really useful of Cromwell is called "Call Caching" and can be used to resume a job if it failed halfway through execution and use previously computed data. For example, if you wanted to test a new gene quantification tool for your RNA-seq workflow but use the same approach for the QC and read mapping, call caching will copy (or link) your previously mapped data and only run the new gene quantification tool. WDL has always been advertised as a Domain-Specific Language (DSL) that is easy to read and write regardless of your computational background. If I have piqued your interest, you can check out my [blog post](https://davetang.org/muse/2020/01/09/learning-wdl/) on learning WDL.
 
