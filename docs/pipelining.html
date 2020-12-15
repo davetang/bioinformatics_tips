@@ -453,16 +453,16 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree957ab5e46c7ecf5d3aa8e726862f35269654fed8targetblank957ab5ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/957ab5e46c7ecf5d3aa8e726862f35269654fed8" target="_blank">957ab5e</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree176d41e9f606278a6870a106abaf89a1d1602bfatargetblank176d41ea"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/176d41e9f606278a6870a106abaf89a1d1602bfa" target="_blank">176d41e</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree957ab5e46c7ecf5d3aa8e726862f35269654fed8targetblank957ab5ea" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree176d41e9f606278a6870a106abaf89a1d1602bfatargetblank176d41ea" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/957ab5e46c7ecf5d3aa8e726862f35269654fed8" target="_blank">957ab5e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/176d41e9f606278a6870a106abaf89a1d1602bfa" target="_blank">176d41e</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
 </p>
 <p>
 Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
@@ -513,6 +513,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/176d41e9f606278a6870a106abaf89a1d1602bfa/analysis/pipelining.Rmd" target="_blank">176d41e</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-12-15
+</td>
+<td>
+Include figures
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/75339f4af6daa0a63dce174d6d7c4a7846558f5f/docs/pipelining.html" target="_blank">75339f4</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-12-15
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -658,15 +692,9 @@ Workflow management system
 </div>
 <p>A workflow management system (WMS) is software that makes it easier to implement, execute, and manage workflows. If you work with high-throughput sequencing (HTS) data, chances are that you will benefit from using a WMS. A typical HTS workflow involves various processing steps that run sequentially, for example in RNA sequencing (RNA-seq) the raw data is first analysed using quality control (QC) tools and filtered to remove data that is “bad” quality. This filtered dataset is then aligned to a reference sequence and the gene/transcript abundance is calculated. Once you have set up the workflow using a WMS, you can simply run the workflow for new data saving you time and also reducing the potential for human error and increasing reproducibility.</p>
 <p>Initially, it may take a bit more time to implement your workflow under a WMS and you may be familiar with the following comic, where in practice automating a task is much more difficult than in theory.</p>
-<div class="figure">
-<img src="docs/assets/automation.png" alt="" />
-<p class="caption">Automation</p>
-</div>
+<p><img src="assets/automation.png" /></p>
 <p>However in my experience, once you learn the basics of a WMS it becomes easier and easier to implement your workflows under such a system and I do end up freeing up my time to do other tasks as per this <a href="https://twitter.com/dsquintana/status/1331979334245097477">tweet</a>.</p>
-<div class="figure">
-<img src="docs/assets/reproducibiity_relocates_time.png" alt="" />
-<p class="caption">Reproducibility</p>
-</div>
+<p><img src="assets/reproducibiity_relocates_time.jpeg" /></p>
 <p>While it is entirely possible to implement workflows using simply scripts written in shell (or some other scripting language) WMSs offer many additional features besides running your workflow. For example, workflows implemented in <a href="https://github.com/openwdl/wdl">Workflow Description Language</a> (WDL) can be easily executed across different platforms, such as locally or on a High Performance Computing (HPC) cluster, by using <a href="https://github.com/broadinstitute/cromwell">Cromwell</a>. A really useful of Cromwell is called “Call Caching” and can be used to resume a job if it failed halfway through execution and use previously computed data. For example, if you wanted to test a new gene quantification tool for your RNA-seq workflow but use the same approach for the QC and read mapping, call caching will copy (or link) your previously mapped data and only run the new gene quantification tool. WDL has always been advertised as a Domain-Specific Language (DSL) that is easy to read and write regardless of your computational background. If I have piqued your interest, you can check out my <a href="https://davetang.org/muse/2020/01/09/learning-wdl/">blog post</a> on learning WDL.</p>
 <div id="workflow-management-systems" class="section level2">
 <h2>Workflow management systems</h2>
