@@ -1,0 +1,42 @@
+---
+title: "Habits"
+author: "John Doe"
+date: "March 22, 2005"
+output:
+  powerpoint_presentation: default
+---
+
+# In the morning
+
+## More info
+
+- https://support.rstudio.com/hc/en-us/articles/360004672913-Rendering-PowerPoint-Presentations-with-the-RStudio-IDE
+
+## Getting up
+
+- Turn off alarm
+- Get out of bed
+
+## Breakfast
+
+- Eat eggs
+- Drink coffee
+
+# In the evening
+
+## Dinner
+
+- Eat spaghetti
+- Drink wine
+
+---
+
+```{r, cars, fig.cap="A scatterplot.", echo=FALSE, include = TRUE}
+plot(1:10)
+```
+
+## Going to sleep
+
+- Get in bed
+- Count sheep
+
