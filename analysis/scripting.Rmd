@@ -1,0 +1,13 @@
+---
+title: "Script as much as possible"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+
+---
+
+Do not do things manually (if possible) and write a script to automate the process.

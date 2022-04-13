@@ -16,3 +16,4 @@ editor_options:
 * [Run Monte Carlo simulations](simulation.html) to generate probability distributions
 * Learn about [data structures](data_struct.html)
 * Recall the [basics of probability](probability.html)
+* Write a [script](scripting.html) to automate your tasks
