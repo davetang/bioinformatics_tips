@@ -1,7 +1,7 @@
-name: "bioinformatics_tips"
+name: bioinformatics_tips
 output_dir: ../docs
 navbar:
-  title: "Bioinformatics tips"
+  title: Bioinformatics tips
   left:
   - text: Home
     href: index.html
@@ -19,6 +19,10 @@ navbar:
       href: security.html
   - text: License
     href: license.html
+  right:
+  - icon: fab fa-github
+    text: Source code
+    href: https://github.com/davetang/bioinformatics_tips
 output:
   workflowr::wflow_html:
     toc: yes
