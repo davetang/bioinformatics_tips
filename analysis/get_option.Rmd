@@ -4,40 +4,103 @@ author: "Dave Tang"
 date: "`r Sys.Date()`"
 output:
   workflowr::wflow_html:
-    toc: false
+    toc: true
     include:
       before_body: head.html
 editor_options:
   chunk_output_type: console
 ---
 
-Each script you write should serve a certain purpose; for example, you might need a script to convert one file format to another and you can't find one that's available online. Since you will invest your time into developing this script, you should ensure that it can be easily reused in the future. You or your colleague may have another file that needs to be converted or you need the conversion to be slightly modified (BED3 instead of BED6).
+If you have used Unix tools on the command line, you may have noticed that you can provide different arguments/options to the tool to modify its behaviour. For example using the `ls` command by itself will simply return files and directories (without a `.` prefix) that exist in your current working directory.
 
-One simple way of achieving this flexibility is to write a script that is more generalised and one that accepts [command line arguments](https://en.wikipedia.org/wiki/Command-line_interface#Arguments). Using the format converter example, our script may accept two arguments and using these arguments we can easily reuse our script on a different file or output a slightly different output.
-
-```
-psl_to_bed.pl -i input.psl -f bed6 > output.bed
+```{bash}
+ls
 ```
 
-I have example scripts with code for accepting and processing command line arguments. Each script will also output its usage if no arguments are supplied.
+If you want to show all files, use the `-a` (short) or `--all` (long) option.
 
-Using Bash.
+```{bash}
+ls -a
+```
+
+You can write scripts in different languages that mimic this behaviour. It is preferable to write scripts that accept [command line arguments](https://en.wikipedia.org/wiki/Command-line_interface#Arguments) because it makes it easy to reuse the script on a different dataset or rerun the script using different parameters. In addition, this makes it easy to incorporate the script into a bioinformatics pipeline.
+
+Some concepts to understand are usage, short and long options, and positional and optional arguments.
+
+* The usage explains the details of your script and it is good practice to display a script's usage when no arguments are provided.
+* Short and long options are simply a preference but I prefer long options as they are readable and informative. Most modern day command line tools provide both options.
+* Positional arguments are mandatory arguments that need to be specified in a specific order. For example the `cp` command will copy the first positional argument to the last positional argument. Optional arguments are non-mandatory and can be specified using short and long options; their order does not matter.
+
+Below are examples of writing scripts that accept command line arguments in Python, Bash, R, and Perl.
+
+## Python
+
+In Python use the [argparse](https://docs.python.org/3/library/argparse.html) module.
+
+<button class="copy-button" id="copy-button">Copy</button>
+```{bash, echo=FALSE}
+cat code/python/parse_arg.py
+```
+
+If you run the Python script by itself, a simple usage will be displayed. (Ignore the `|| true` command, which is only needed because this document is generated programmatically.)
+
+```{bash}
+code/python/parse_arg.py || true
+```
+
+You can get a more detailed usage by using the help argument.
+
+```{bash}
+code/python/parse_arg.py -h
+```
+
+Run the script with positional and optional arguments.
+
+```{bash}
+code/python/parse_arg.py foobar 1984 -v
+```
+
+## Bash
+
+In Bash you can use the [getopts](https://en.wikipedia.org/wiki/Getopts) command.
 
 <button class="copy-button" id="copy-button">Copy</button>
 ```{bash, echo=FALSE}
 cat code/unix/get_option.sh
 ```
 
-Using R.
+Usage.
+
+```{bash}
+code/unix/get_option.sh || true
+```
+
+## R
+
+In R use the [optparse](https://cran.r-project.org/web/packages/optparse/index.html) library.
 
 <button class="copy-button" id="copy-button">Copy</button>
 ```{bash, echo=FALSE}
 cat code/r/optparse.R
 ```
 
-Using Perl.
+Usage.
+
+```{bash}
+code/r/optparse.R || true
+```
+
+## Perl
+
+In Perl use the `Getopt::Long` package (or `Getopt::Std`).
 
 <button class="copy-button" id="copy-button">Copy</button>
 ```{bash, echo=FALSE}
 cat code/perl/getopts.pl
+```
+
+Usage.
+
+```{bash}
+code/perl/getopts.pl
 ```
