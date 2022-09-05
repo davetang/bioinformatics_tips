@@ -81,7 +81,7 @@ In R use the [optparse](https://cran.r-project.org/web/packages/optparse/index.h
 
 <button class="copy-button" id="copy-button">Copy</button>
 ```{bash, echo=FALSE}
-cat code/r/optparse.R
+cat code/r/opt_and_pos.R
 ```
 
 Usage.
