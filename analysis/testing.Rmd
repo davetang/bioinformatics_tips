@@ -1,0 +1,36 @@
+---
+title: "Implement tests into scripts, programs, and workflows"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+You should always include tests in your scripts, programs, and workflows. Carefully implemented tests can help identify problems before they propagate downstream into other analyses.
+
+Two types of tests include:
+
+1. Inside-out or unit testing – include tests inside your script/program
+2. Outside-in or integration testing – write tests that run your script/program (this can be automated using CI/CD)
+
+In essence, tests verify whether something returns an expected value or result and that's it. In Python we can add assertions (in Ruby there is the `Test::Unit::Assertions` module), which is a simply an expression that is supposed to be true at a particular point in a program.
+
+Broadly speaking, assertions fall into three categories:
+
+1. A pre-condition is something that must be true at the start of a function in order for it to work correctly.
+2. A post-condition is something that the function guarantees is true when it finishes.
+3. An invariant is something that is always true at a particular point inside a piece of code.
+
+Assertions are not just about catching errors but they also help people understand programs. Each assertion gives the person reading the program a change to check that their understanding matches what the code is doing.
+
+Two general rules to follow when adding assertions include:
+
+1. Fail early, fail often - the greater the distance between when and where an error occurred and when it is noticed, the harder the error will be to debug, so good code catches mistakes as early as possible.
+2. Turn bugs into assertions or tests - whenever you fix a bug, write an assertion that catches the mistake should you make it again. If you made a mistake in a piece of code, the odds are good that you have made other mistakes nearby, or will make the same mistake (or a related one) the next time you change it.
+
+In summary, program defensively, i.e. assume that errors are going to arise, and write code to detect them when they do. Put assertions in programs to check their state as they run, and to help readers understand how those programs are supposed to work. Use pre-conditions to check that the inputs to a function are safe to use and use post-conditions to check that the output from a function is safe to use.
+
+An interesting idea is to write tests before writing code in order to help determine exactly what that code is supposed to do. This is known as [Test-Driven Development](https://en.wikipedia.org/wiki/Test-driven_development) and advocates writing tests before writing the code.
