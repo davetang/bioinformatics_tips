@@ -1,5 +1,5 @@
 ---
-title: "Script as much as possible"
+title: "Write a script to easily redo a task"
 author: "Dave Tang"
 date: "`r Sys.Date()`"
 output:
@@ -7,7 +7,54 @@ output:
     toc: false
 editor_options:
   chunk_output_type: console
-
 ---
 
-Do not do things manually (if possible) and write a script to automate the process.
+It may already be obvious that writing a script, i.e. a file that runs a series
+of commands, is much more preferable than having to type those commands
+manually. For example, instead of manually typing the commands of various tools
+that process your data, you saved all those commands into a single file and can
+simply execute that file, which is called a script, to run all the steps. Now
+you can easily re-run your analysis.
+
+Having all your commands saved into a script makes it easier to re-run your
+analysis with new data or new settings too. You could edit your script manually
+to specify the location of the new data or what you should do is write a script
+that accepts [command line arguments](get_option.html). What this means is that
+instead of hardcoding some value in your script like `/data/gene_exp.csv`, you
+assign it as arguments/parameters to your script. If your script is called
+`summarise.sh`, you could write your script so that data is passed via the
+command line.
+
+    ./summarise.sh /data/gene_exp.csv
+
+You could also include settings/parameters that can be passed to your script, so
+you can easily re-run your analysis with different settings.
+
+    ./summarise.sh /data/gene_exp.csv --alpha 0.5 --beta 3
+
+After you have nicely scripted up this analysis, you start working on scripting
+up another analysis. However, you realise that some steps in your previous
+analysis are also needed in this analysis. You could use your previous script as
+a template and modify it for this analysis. But what you should do is include
+each step in its own separate command line argument accepting script. This way
+you don't have to modify two analysis scripts when you need to make changes to
+an individual step. It may seem annoying to have to write ten separate scripts
+for an analysis pipeline that has ten steps. But this makes it much easier to
+maintain in the future, especially when you start building more and more
+analysis pipelines.
+
+If you have gone this far to set up your work, you can go a bit further to tie
+everything together using a [workflow management system](pipelining.html). The
+benefits of such systems is that it makes it easier to manage your workflows.
+For example, you could execute your workflow via a [queuing
+system](queuing.html) or Google Cloud. You could set up limits for computational
+resources, restart jobs, cache results, and more.
+
+Now that everything is nicely automated, it is time to include
+[tests](testing.html), which makes sure your analysis pipeline generates
+expected results. This should also be automated by using CI/CD, which means that
+each time you make a change to your pipeline, another pipeline is automatically
+run to see if your pipeline is running as expected.
+
+Since everything is so nicely set up, you have more time to do what needs to be
+done! And it wouldn't have been possible if you didn't script everything up.
