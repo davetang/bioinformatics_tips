@@ -75,6 +75,18 @@ Usage.
 code/unix/get_option.sh || true
 ```
 
+However, the [GNU getopt](https://www.gnu.org/software/libc/manual/html_node/Getopt.html) tool allows you to mix short and long options with positional arguments too.
+
+```{bash}
+cat code/unix/getopt.sh
+```
+
+Usage.
+
+```{bash}
+code/unix/getopt.sh || true
+```
+
 ## R
 
 In R use the [optparse](https://cran.r-project.org/web/packages/optparse/index.html) library.
