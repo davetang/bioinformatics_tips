@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+#
+# Generate a PowerPoint file from R Markdown; this script makes it easier to
+# specify the output file name.
+#
 
 set -euo pipefail
 
@@ -26,7 +30,8 @@ for tool in ${dependencies[@]}; do
    check_depend ${tool}
 done
 
-
+# note that the PowerPoint file will not render plots if the file extension is
+# not Rmd!
 infile=$(realpath $1)
 if [[ ! ${infile} =~ \.Rmd$ ]]; then
    >&2 echo Input file [${infile}] does not end with .Rmd
@@ -49,18 +54,12 @@ now(){
 }
 
 SECONDS=0
-
 >&2 printf "[ %s %s ] Start job\n\n" $(now)
 
 # go to script directory
 cd $(dirname $0)
 
-# copy file to make it accessible to container
-# note that the PowerPoint file will not render plots if the file extension is not Rmd!
-# the the temporary file will have two .Rmd suffixes
-cp ${infile} ${infile}.Rmd
-
-r_version=4.1.3
+r_version=4.2.2
 docker_image=davetang/r_build:${r_version}
 package_dir=${HOME}/r_packages_${r_version}
 
@@ -77,9 +76,7 @@ docker run \
    -v $(pwd):$(pwd) \
    -w $(pwd) \
    ${docker_image} \
-   /usr/bin/env bash -c "Rscript -e \"rmarkdown::render('${infile}.Rmd', output_file = '${outfile}')\" && chown ${USERID}:${GROUPID} ${outfile}"
-
-rm ${infile}.Rmd
+   /usr/bin/env bash -c "Rscript -e \"rmarkdown::render('${infile}', output_file = '${outfile}')\" && chown ${USERID}:${GROUPID} ${outfile}"
 
 >&2 printf "\n[ %s %s ] Work complete\n" $(now)
 
@@ -87,4 +84,3 @@ duration=$SECONDS
 >&2 echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
 
 exit 0
-
