@@ -21,10 +21,14 @@ EOF
 exit 1
 }
 
+>&2 echo [$@] passed to script
+
 args=$(getopt -a -o abhc:d: --long alpha,beta,help,gamma:,delta: -- "$@")
 if [[ $? -gt 0 ]]; then
   usage
 fi
+
+>&2 echo getopt creates [${args}]
 
 eval set -- ${args}
 while :
@@ -50,5 +54,12 @@ fi
 >&2 echo "beta    : ${beta} "
 >&2 echo "gamma   : ${gamma}"
 >&2 echo "delta   : ${delta}"
->&2 echo "Parameters remaining are: $@"
+>&2 echo "$# parameter/s remaining: $@"
+>&2 echo "Looping through remaining parameter/s:"
+# set input field separator to keep quoted parameters together
+# for example, "my input" will remain as one input
+IFS=$'\n'
+for param in $@; do
+   >&2 echo -e "\t${param}"
+done
 exit 0
