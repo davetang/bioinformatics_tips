@@ -58,3 +58,8 @@ run to see if your pipeline is running as expected.
 
 Since everything is so nicely set up, you have more time to do what needs to be
 done! And it wouldn't have been possible if you didn't script everything up.
+
+## Further reading
+
+* [Ten recommendations for creating usable bioinformatics command line software](https://academic.oup.com/gigascience/article/2/1/2047-217X-2-15/2656133)
+* [A few suggestions for creating command line interfaces](https://lh3.github.io/2022/09/28/additional-recommendations-for-creating-command-line-interfaces)
