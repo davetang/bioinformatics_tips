@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-version=4.2.0
+version=4.3.0
 rstudio_image=davetang/rstudio:${version}
 container_name=rstudio_dtang_bioinfo
 port=8989
@@ -26,4 +26,3 @@ docker run -d \
 
 >&2 echo ${container_name} listening on port ${port}
 exit 0
-
