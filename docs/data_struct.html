@@ -11,21 +11,33 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2020-10-11" />
+<meta name="date" content="2023-06-27" />
 
 <title>Data structures</title>
 
-<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
-<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/master/img/reproducible.png">
+<link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
 <style type="text/css">
 div.section {
@@ -33,12 +45,18 @@ div.section {
 }
 </style>
 
-<style type="text/css">code{white-space: pre;}</style>
+
+
 <style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+<style type="text/css">code{white-space: pre;}</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -51,32 +69,8 @@ if (window.hljs) {
 
 
 
-<style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
-</style>
+
+
 
 <link rel="stylesheet" href="my.css" type="text/css" />
 
@@ -87,10 +81,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -107,40 +97,16 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 51px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h2 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h3 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h4 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h5 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
-.section h6 {
-  padding-top: 56px;
-  margin-top: -56px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -168,7 +134,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -180,7 +146,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -190,11 +156,28 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.parent().addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -206,13 +189,12 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -220,16 +202,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -273,7 +248,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -289,7 +264,7 @@ $(document).ready(function () {
   <a href="about.html">About</a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Tips
      
     <span class="caret"></span>
@@ -314,26 +289,34 @@ $(document).ready(function () {
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
-        
+        <li>
+  <a href="https://github.com/davetang/bioinformatics_tips">
+    <span class="fab fa-github"></span>
+     
+    Source code
+  </a>
+</li>
       </ul>
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
 
 
 <h1 class="title toc-ignore">Data structures</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2020-10-11</h4>
+<h4 class="date">2023-06-27</h4>
 
 </div>
 
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span>
+workflowr <span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -342,7 +325,9 @@ $(document).ready(function () {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -351,17 +336,27 @@ $(document).ready(function () {
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2020-10-11
+<strong>Last updated:</strong> 2023-06-27
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span
+class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7
+<span class="glyphicon glyphicon-exclamation-sign text-danger"
+aria-hidden="true"></span> 0
 </p>
 <p>
-<strong>Knit directory:</strong> <code>bioinformatics_tips/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+<strong>Knit directory:</strong> <code>bioinformatics_tips/</code> <span
+class="glyphicon glyphicon-question-sign" aria-hidden="true"
+title="This is the local directory in which the code in this file was executed.">
+</span>
 </p>
 <p>
-This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
-  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.2). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
+analysis was created with <a
+  href="https://github.com/workflowr/workflowr">workflowr</a> (version
+1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+that were applied when the results were created. The <em>Past
+versions</em> tab lists the development history.
 </p>
 <hr>
 </div>
@@ -370,91 +365,138 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date
+</a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguptodate"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>Great! Since the R Markdown file has been committed to the Git
+repository, you know the exact version of the code that produced these
+results.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
 <div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+<p>Great job! The global environment was empty. Objects defined in the
+global environment can affect the analysis in your R Markdown file in
+unknown ways. For reproduciblity it’s best to always run the code in an
+empty environment.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200503code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20200503)</code> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200503code">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Seed:</strong>
+<code>set.seed(20200503)</code> </a>
 </p>
 </div>
-<div id="strongSeedstrongcodesetseed20200503code" class="panel-collapse collapse">
+<div id="strongSeedstrongcodesetseed20200503code"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>The command <code>set.seed(20200503)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+<p>The command <code>set.seed(20200503)</code> was run prior to running
+the code in the R Markdown file. Setting a seed ensures that any results
+that rely on randomness, e.g. subsampling or permutations, are
+reproducible.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Session information:</strong>
+recorded </a>
 </p>
 </div>
-<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div id="strongSessioninformationstrongrecorded"
+class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+<p>Great job! Recording the operating system, R version, and package
+versions is critical for reproducibility.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Cache:</strong> none </a>
 </p>
 </div>
 <div id="strongCachestrongnone" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+<p>Nice! There were no cached chunks for this analysis, so you can be
+confident that you successfully produced the results during this
+run.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
 </p>
 </div>
 <div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+<p>Great job! Using relative paths to the files within your workflowr
+project makes it easier to run your code on other machines.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree048aa89bc7d7b1566c54a086c0c1561e1ad02f48targetblank048aa89a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/davetang/bioinformatics_tips/tree/048aa89bc7d7b1566c54a086c0c1561e1ad02f48" target="_blank">048aa89</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreee7069bf8193aa6fcb92f3e9b319c014ad68bd318targetblanke7069bfa">
+<span class="glyphicon glyphicon-ok text-success"
+aria-hidden="true"></span> <strong>Repository version:</strong>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/e7069bf8193aa6fcb92f3e9b319c014ad68bd318" target="_blank">e7069bf</a>
+</a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree048aa89bc7d7b1566c54a086c0c1561e1ad02f48targetblank048aa89a" class="panel-collapse collapse">
+<div
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreee7069bf8193aa6fcb92f3e9b319c014ad68bd318targetblanke7069bfa"
+class="panel-collapse collapse">
 <div class="panel-body">
 <p>
-Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility.
+Great! You are using Git for version control. Tracking code development
+and connecting the code version to the results is critical for
+reproducibility.
 </p>
 <p>
-The results in this page were generated with repository version <a href="https://github.com/davetang/bioinformatics_tips/tree/048aa89bc7d7b1566c54a086c0c1561e1ad02f48" target="_blank">048aa89</a>. See the <em>Past versions</em> tab to see a history of the changes made to the R Markdown and HTML files.
+The results in this page were generated with repository version
+<a href="https://github.com/davetang/bioinformatics_tips/tree/e7069bf8193aa6fcb92f3e9b319c014ad68bd318" target="_blank">e7069bf</a>.
+See the <em>Past versions</em> tab to see a history of the changes made
+to the R Markdown and HTML files.
 </p>
 <p>
-Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+Note that you need to be careful to ensure that all relevant files for
+the analysis have been committed to Git prior to generating the results
+(you can use <code>wflow_publish</code> or
+<code>wflow_git_commit</code>). workflowr only checks the R Markdown
+file, but you know if there are other scripts or data files that it
+depends on. Below is the status of the Git repository when the results
+were generated:
 </p>
 <pre><code>
 Ignored files:
@@ -462,11 +504,17 @@ Ignored files:
     Ignored:    .Rproj.user/
 
 Untracked files:
-    Untracked:  analysis/probability.Rmd
+    Untracked:  analysis/compsci.Rmd
+    Untracked:  analysis/framework.Rmd
+
+Unstaged changes:
+    Modified:   script/run_rstudio.sh
 
 </code></pre>
 <p>
-Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+Note that any generated files, e.g. HTML, png, CSS, etc., are not
+included in this status report because it is ok for generated content to
+have uncommitted changes.
 </p>
 </div>
 </div>
@@ -477,7 +525,12 @@ Note that any generated files, e.g. HTML, png, CSS, etc., are not included in t
 <div id="versions" class="tab-pane fade">
 
 <p>
-These are the previous versions of the repository in which changes were made to the R Markdown (<code>analysis/data_struct.Rmd</code>) and HTML (<code>docs/data_struct.html</code>) files. If you’ve configured a remote Git repository (see <code>?wflow_git_remote</code>), click on the hyperlinks in the table below to view the files as they were in that past version.
+These are the previous versions of the repository in which changes were
+made to the R Markdown (<code>analysis/data_struct.Rmd</code>) and HTML
+(<code>docs/data_struct.html</code>) files. If you’ve configured a
+remote Git repository (see <code>?wflow_git_remote</code>), click on the
+hyperlinks in the table below to view the files as they were in that
+past version.
 </p>
 <div class="table-responsive">
 <table class="table table-condensed table-hover">
@@ -501,6 +554,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/555aa5502d86e7c57fb8b41b5d506c1e552bcd10/docs/data_struct.html" target="_blank">555aa55</a>
+</td>
+<td>
+davetang
+</td>
+<td>
+2020-10-11
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -561,32 +631,90 @@ Start page on data structures
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>Learn about different data structures to write more efficient programs.</p>
+<p>Learn about different data structures to write more efficient
+programs.</p>
 <div id="arrays" class="section level3">
 <h3>Arrays</h3>
-<p>Arrays are used to store multiple values and each element can be accessed through its index, which is a number that denotes its order within the data. Data is stored sequentially in memory in consecutive locations and because of this, memory addresses can be calculated using their indices, allowing for random access of data. However, adding or deleting data in a specific location carries a high cost compared to lists. If we want to add data to an array, we need to secure additional space at the end of the array and in order to free up the space needed for the addition, data is shifted one element at a time. This is the same when deleting an element; each element is shifted one at a time.</p>
+<p>Arrays are used to store multiple values and each element can be
+accessed through its index, which is a number that denotes its order
+within the data. Data is stored sequentially in memory in consecutive
+locations and because of this, memory addresses can be calculated using
+their indices, allowing for random access of data. However, adding or
+deleting data in a specific location carries a high cost compared to
+lists. If we want to add data to an array, we need to secure additional
+space at the end of the array and in order to free up the space needed
+for the addition, data is shifted one element at a time. This is the
+same when deleting an element; each element is shifted one at a
+time.</p>
 </div>
 <div id="linked-lists" class="section level3">
 <h3>Linked lists</h3>
-<p>Lists are used to store multiple values in a linear data structure but they are unique in how they pair data with “pointers”, the pointers indicating the next piece of data’s memory location unlike arrays. In lists, data is stored in various disjointed locations in memory and because of this, each piece of data can only be accessed through the pointer that precedes it. Addition of data is performed by simply replacing the pointers on either side of the addition.</p>
+<p>Lists are used to store multiple values in a linear data structure
+but they are unique in how they pair data with “pointers”, the pointers
+indicating the next piece of data’s memory location unlike arrays. In
+lists, data is stored in various disjointed locations in memory and
+because of this, each piece of data can only be accessed through the
+pointer that precedes it. Addition of data is performed by simply
+replacing the pointers on either side of the addition.</p>
 </div>
 <div id="stacks" class="section level3">
 <h3>Stacks</h3>
-<p>The structure of a stack can be imagined as a pile of objects stacked vertically. When extracting these objects, they are extracted from the top to the bottom. When adding data to a stack, the data is put into the lowest available location, like stacking blocks on top of each other; this is called a “push”. When extracting from a stack, the most recently added data is removed first; this is called a “pop”. This method of extracting the most recently added data first is called “Last In First Out” (LIFO).</p>
+<p>The structure of a stack can be imagined as a pile of objects stacked
+vertically. When extracting these objects, they are extracted from the
+top to the bottom. When adding data to a stack, the data is put into the
+lowest available location, like stacking blocks on top of each other;
+this is called a “push”. When extracting from a stack, the most recently
+added data is removed first; this is called a “pop”. This method of
+extracting the most recently added data first is called “Last In First
+Out” (LIFO).</p>
 </div>
 <div id="queues" class="section level3">
 <h3>Queues</h3>
-<p>Queues are a data structure that mimics a waiting line; the sooner a person lines up, the higher their priority. When adding data to a queue, the data is placed at the end and this is known as “enqueuing”. When extracting data from a queue, the data that’s been in the queue the longest is removed first and this is known as “dequeuing”. This method of extracting the initially added data first is called “First In First Out” (FIFO).</p>
+<p>Queues are a data structure that mimics a waiting line; the sooner a
+person lines up, the higher their priority. When adding data to a queue,
+the data is placed at the end and this is known as “enqueuing”. When
+extracting data from a queue, the data that’s been in the queue the
+longest is removed first and this is known as “dequeuing”. This method
+of extracting the initially added data first is called “First In First
+Out” (FIFO).</p>
 </div>
 <div id="hash-tables" class="section level3">
 <h3>Hash tables</h3>
-<p>Hash tables, which are also known as associative arrays, are useful for storing data in sets made up of keys and values. When storing a key, a hash value is calculated using the key and a hash function and this converts the key into a value of fixed length. To store data, an array of <em>n</em> size is first initialised. The hash value that is calculated for a key is divided by <em>n</em> to determine where in the array the value should be stored, for example by using a <code>mod</code> operation. If another key’s hash value produces the same array index, it is stored as a linked list at that particular index (known as the chain method). There are several other types of hash table structures. When looking up a key, its hash value is calculated along with a <code>mod</code> operation to find its index in the array. If the array element is a list, a linear search is performed on the list to find the value of the key.</p>
+<p>Hash tables, which are also known as associative arrays, are useful
+for storing data in sets made up of keys and values. When storing a key,
+a hash value is calculated using the key and a hash function and this
+converts the key into a value of fixed length. To store data, an array
+of <em>n</em> size is first initialised. The hash value that is
+calculated for a key is divided by <em>n</em> to determine where in the
+array the value should be stored, for example by using a
+<code>mod</code> operation. If another key’s hash value produces the
+same array index, it is stored as a linked list at that particular index
+(known as the chain method). There are several other types of hash table
+structures. When looking up a key, its hash value is calculated along
+with a <code>mod</code> operation to find its index in the array. If the
+array element is a list, a linear search is performed on the list to
+find the value of the key.</p>
 </div>
 <div id="heaps" class="section level3">
 <h3>Heaps</h3>
-<p>Heaps are one type of tree data structure and are used when implementing a priority queue, which is another type of data structure. In a priority queue, data can be added in any order. When extracting data, the smallest values are chosen first. This property of being able to freely add data and then extracting the smallest values first defines a priority queue.</p>
-<p>As a rule of heaps, a child number is always greater than its parent number. If a number is added to the tree and its number is smaller, then the child and parent swap. This operation repeats until no additional swaps occur. When extracting a number from a heap, the number on the top of the tree is removed. In a heap, the smallest value is held at the top of the tree. When the top value is extracted, the heap’s structure needs to be reorganised. The number at the end of the line moves to the top and if one of the child numbers is less than the parent, the lowest of the adjacent child numbers swap with the parent. This repeats until no additional swaps occur.</p>
-<p>Heaps can be used to quickly extract the smallest data but extraction of data in the middle of the tree can not be performed.</p>
+<p>Heaps are one type of tree data structure and are used when
+implementing a priority queue, which is another type of data structure.
+In a priority queue, data can be added in any order. When extracting
+data, the smallest values are chosen first. This property of being able
+to freely add data and then extracting the smallest values first defines
+a priority queue.</p>
+<p>As a rule of heaps, a child number is always greater than its parent
+number. If a number is added to the tree and its number is smaller, then
+the child and parent swap. This operation repeats until no additional
+swaps occur. When extracting a number from a heap, the number on the top
+of the tree is removed. In a heap, the smallest value is held at the top
+of the tree. When the top value is extracted, the heap’s structure needs
+to be reorganised. The number at the end of the line moves to the top
+and if one of the child numbers is less than the parent, the lowest of
+the adjacent child numbers swap with the parent. This repeats until no
+additional swaps occur.</p>
+<p>Heaps can be used to quickly extract the smallest data but extraction
+of data in the middle of the tree can not be performed.</p>
 </div>
 <div id="binary-search-trees" class="section level3">
 <h3>Binary search trees</h3>
@@ -597,45 +725,66 @@ Start page on data structures
 </ol>
 <p>Due to these two properties the following are true:</p>
 <ul>
-<li>A binary search tree’s smallest node is located at the end of the leftmost sub-tree line stemming from the top-most node</li>
-<li>A binary search tree’s largest node is located at the end of the rightmost sub-tree line stemming from the top-most node</li>
+<li>A binary search tree’s smallest node is located at the end of the
+leftmost sub-tree line stemming from the top-most node</li>
+<li>A binary search tree’s largest node is located at the end of the
+rightmost sub-tree line stemming from the top-most node</li>
 </ul>
-<p>To add a number to a binary search tree, we start at the top-most node. If the number to be added is smaller, it proceeds to the left. This operation is repeated for all nodes and if it is smaller than all current nodes, it is added as a new node. If the number to be added is larger than the current node, it proceeds to the right and continues traversing down the tree.</p>
-<p>Binary search trees are used to efficiently search for numbers. Self-balancing binary search trees are well-balanced to maintain search efficiency.</p>
+<p>To add a number to a binary search tree, we start at the top-most
+node. If the number to be added is smaller, it proceeds to the left.
+This operation is repeated for all nodes and if it is smaller than all
+current nodes, it is added as a new node. If the number to be added is
+larger than the current node, it proceeds to the right and continues
+traversing down the tree.</p>
+<p>Binary search trees are used to efficiently search for numbers.
+Self-balancing binary search trees are well-balanced to maintain search
+efficiency.</p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
-<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span>
+Session information
 </button>
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.0.2 (2020-06-22)
-Platform: x86_64-apple-darwin17.0 (64-bit)
-Running under: macOS Catalina 10.15.7
+<pre><code>R version 4.3.0 (2023-04-21)
+Platform: x86_64-pc-linux-gnu (64-bit)
+Running under: Ubuntu 22.04.2 LTS
 
 Matrix products: default
-BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
-LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
 
 locale:
-[1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8
+ [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+ [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+ [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+ [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+ [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+[11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+
+time zone: Etc/UTC
+tzcode source: system (glibc)
 
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] workflowr_1.6.2
+[1] workflowr_1.7.0
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.5      rstudioapi_0.11 whisker_0.4     knitr_1.29     
- [5] magrittr_1.5    R6_2.4.1        rlang_0.4.7     stringr_1.4.0  
- [9] tools_4.0.2     xfun_0.16       git2r_0.27.1    htmltools_0.5.0
-[13] ellipsis_0.3.1  rprojroot_1.3-2 yaml_2.2.1      digest_0.6.25  
-[17] tibble_3.0.3    lifecycle_0.2.0 crayon_1.3.4    later_1.1.0.1  
-[21] vctrs_0.3.4     promises_1.1.1  fs_1.5.0        glue_1.4.2     
-[25] evaluate_0.14   rmarkdown_2.3   stringi_1.4.6   compiler_4.0.2 
-[29] pillar_1.4.6    backports_1.1.9 httpuv_1.5.4    pkgconfig_2.0.3</code></pre>
+ [1] vctrs_0.6.3      httr_1.4.5       cli_3.6.1        knitr_1.42      
+ [5] rlang_1.1.1      xfun_0.39        stringi_1.7.12   processx_3.8.1  
+ [9] promises_1.2.0.1 jsonlite_1.8.4   glue_1.6.2       rprojroot_2.0.3 
+[13] git2r_0.32.0     htmltools_0.5.5  httpuv_1.6.9     ps_1.7.5        
+[17] sass_0.4.5       fansi_1.0.4      rmarkdown_2.21   jquerylib_0.1.4 
+[21] tibble_3.2.1     evaluate_0.20    fastmap_1.1.1    yaml_2.3.7      
+[25] lifecycle_1.0.3  whisker_0.4.1    stringr_1.5.0    compiler_4.3.0  
+[29] fs_1.6.2         pkgconfig_2.0.3  Rcpp_1.0.10      rstudioapi_0.14 
+[33] later_1.3.0      digest_0.6.31    R6_2.5.1         utf8_1.2.3      
+[37] pillar_1.9.0     callr_3.7.3      magrittr_2.0.3   bslib_0.4.2     
+[41] tools_4.3.0      cachem_1.0.7     getPass_0.2-2   </code></pre>
 </div>
 </div>
 </div>
@@ -643,7 +792,7 @@ loaded via a namespace (and not attached):
 
 <!-- Adjust MathJax settings so that all math formulae are shown using
 TeX fonts only; see
-http://docs.mathjax.org/en/latest/configuration.html.  This will make
+https://docs.mathjax.org/en/latest/web/configuration.html. This will make
 the presentation more consistent at the cost of the webpage sometimes
 taking slightly longer to load. Note that this only works because the
 footer is added to webpages before the MathJax javascript. -->
@@ -655,13 +804,15 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+
+
 </div>
 
 <script>
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();
@@ -679,7 +830,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
