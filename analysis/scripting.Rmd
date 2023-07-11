@@ -63,3 +63,4 @@ done! And it wouldn't have been possible if you didn't script everything up.
 
 * [Ten recommendations for creating usable bioinformatics command line software](https://academic.oup.com/gigascience/article/2/1/2047-217X-2-15/2656133)
 * [A few suggestions for creating command line interfaces](https://lh3.github.io/2022/09/28/additional-recommendations-for-creating-command-line-interfaces)
+* [Seven quick tips for analysis scripts in neuroimaging](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1007358)
