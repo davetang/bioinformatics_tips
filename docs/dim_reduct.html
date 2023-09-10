@@ -543,15 +543,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreeb6d9d008ddb3efbc994e2916b7dd7d0fbc865e94targetblankb6d9d00a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreeec130da67a7af9e77a8e480f841254cf8239f424targetblankec130daa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/b6d9d008ddb3efbc994e2916b7dd7d0fbc865e94" target="_blank">b6d9d00</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/ec130da67a7af9e77a8e480f841254cf8239f424" target="_blank">ec130da</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreeb6d9d008ddb3efbc994e2916b7dd7d0fbc865e94targetblankb6d9d00a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreeec130da67a7af9e77a8e480f841254cf8239f424targetblankec130daa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -561,7 +561,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/b6d9d008ddb3efbc994e2916b7dd7d0fbc865e94" target="_blank">b6d9d00</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/ec130da67a7af9e77a8e480f841254cf8239f424" target="_blank">ec130da</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -622,6 +622,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/ec130da67a7af9e77a8e480f841254cf8239f424/analysis/dim_reduct.Rmd" target="_blank">ec130da</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+<td>
+Boxplots
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/9ae8e5132357a1ca20a89c0d78cc0128d973b20d/docs/dim_reduct.html" target="_blank">9ae8e51</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -714,22 +748,19 @@ Median      5.800000    3.000000        4.350    1.300000
 Mean        5.843333    3.057333        3.758    1.199333
 3rd Qu.     6.400000    3.300000        5.100    1.800000
 Max.        7.900000    4.400000        6.900    2.500000</code></pre>
+<pre class="r"><code>boxplot(dat)</code></pre>
+<p><img src="figure/dim_reduct.Rmd/before_scale-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>After normalising.</p>
-<pre class="r"><code>apply(dat_norm, 2, summary)</code></pre>
-<pre><code>                     Sepal.Length               Sepal.Width
-Min.    -1.8637802962695177999564 -2.4258204175780471167911
-1st Qu. -0.8976738791967662223215 -0.5903951331558174864256
-Median  -0.0523307642581080645350 -0.1315388120502595792338
-Mean    -0.0000000000000004484318  0.0000000000000002034094
-3rd Qu.  0.6722490485464565068696  0.5567456696080762545975
-Max.     2.4836985805578661867798  3.0804554356886435506624
-                      Petal.Length                Petal.Width
-Min.    -1.56234224225534856778097 -1.44224482481004634415456
-1st Qu. -1.22245633023460542609939 -1.17985947160021398261165
-Median   0.33535409986046643693314  0.13206729444894910185937
-Mean    -0.00000000000000002895326 -0.00000000000000003663049
-3rd Qu.  0.76021148988639486443475  0.78803067747353061633930
-Max.     1.77986922594862417845718  1.70637941370794465889560</code></pre>
+<pre class="r"><code>round(apply(dat_norm, 2, summary), digits = 6)</code></pre>
+<pre><code>        Sepal.Length Sepal.Width Petal.Length Petal.Width
+Min.       -1.863780   -2.425820    -1.562342   -1.442245
+1st Qu.    -0.897674   -0.590395    -1.222456   -1.179859
+Median     -0.052331   -0.131539     0.335354    0.132067
+Mean        0.000000    0.000000     0.000000    0.000000
+3rd Qu.     0.672249    0.556746     0.760211    0.788031
+Max.        2.483699    3.080455     1.779869    1.706379</code></pre>
+<pre class="r"><code>boxplot(dat_norm)</code></pre>
+<p><img src="figure/dim_reduct.Rmd/after_scale-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="pca" class="section level2">
 <h2>PCA</h2>
@@ -765,6 +796,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/9ae8e5132357a1ca20a89c0d78cc0128d973b20d/docs/figure/dim_reduct.Rmd/pca-1.png" target="_blank">9ae8e51</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/pca-1.png" target="_blank">ca74424</a>
@@ -817,6 +859,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/9ae8e5132357a1ca20a89c0d78cc0128d973b20d/docs/figure/dim_reduct.Rmd/tsne-1.png" target="_blank">9ae8e51</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/tsne-1.png" target="_blank">ca74424</a>
 </td>
 <td>
@@ -857,6 +910,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/9ae8e5132357a1ca20a89c0d78cc0128d973b20d/docs/figure/dim_reduct.Rmd/tsne_p20-1.png" target="_blank">9ae8e51</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/tsne_p20-1.png" target="_blank">ca74424</a>
@@ -901,6 +965,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/9ae8e5132357a1ca20a89c0d78cc0128d973b20d/docs/figure/dim_reduct.Rmd/tsne_p40-1.png" target="_blank">9ae8e51</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/tsne_p40-1.png" target="_blank">ca74424</a>
 </td>
 <td>
@@ -941,6 +1016,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/9ae8e5132357a1ca20a89c0d78cc0128d973b20d/docs/figure/dim_reduct.Rmd/tsne_p50-1.png" target="_blank">9ae8e51</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/tsne_p50-1.png" target="_blank">ca74424</a>
@@ -1018,6 +1104,17 @@ Date
 <tbody>
 <tr>
 <td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/9ae8e5132357a1ca20a89c0d78cc0128d973b20d/docs/figure/dim_reduct.Rmd/umap-1.png" target="_blank">9ae8e51</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+</tr>
+<tr>
+<td>
 <a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/umap-1.png" target="_blank">ca74424</a>
 </td>
 <td>
@@ -1060,6 +1157,17 @@ Date
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/9ae8e5132357a1ca20a89c0d78cc0128d973b20d/docs/figure/dim_reduct.Rmd/umap_custom-1.png" target="_blank">9ae8e51</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+</tr>
 <tr>
 <td>
 <a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/umap_custom-1.png" target="_blank">ca74424</a>
