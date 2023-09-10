@@ -36,12 +36,14 @@ Before normalising.
 
 ```{r before_scale}
 apply(dat, 2, summary)
+boxplot(dat)
 ```
 
 After normalising.
 
 ```{r after_scale}
-apply(dat_norm, 2, summary)
+round(apply(dat_norm, 2, summary), digits = 6)
+boxplot(dat_norm)
 ```
 
 ## PCA
