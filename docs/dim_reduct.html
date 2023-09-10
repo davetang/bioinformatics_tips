@@ -11,11 +11,11 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2022-10-27" />
+<meta name="date" content="2023-09-10" />
 
 <title>Dimension reduction</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
@@ -31,11 +31,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -156,11 +159,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -189,8 +196,8 @@ $(document).ready(function () {
   border-radius: 4px;
 }
 
-.tabset-dropdown > .nav-tabs > li.active:before {
-  content: "";
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
   font-family: 'Glyphicons Halflings';
   display: inline-block;
   padding: 10px;
@@ -198,16 +205,9 @@ $(document).ready(function () {
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
-  content: "&#xe258;";
-  border: none;
-}
-
-.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
-  content: "";
+  content: "\e258";
   font-family: 'Glyphicons Halflings';
-  display: inline-block;
-  padding: 10px;
-  border-right: 1px solid #ddd;
+  border: none;
 }
 
 .tabset-dropdown > .nav-tabs > li.active {
@@ -237,6 +237,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -244,6 +307,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -310,7 +383,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Dimension reduction</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2022-10-27</h4>
+<h4 class="date">2023-09-10</h4>
 
 </div>
 
@@ -339,7 +412,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-10-27
+<strong>Last updated:</strong> 2023-09-10
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -470,15 +543,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreecfb532a31eced51c3805563d31d4e55e48b0cb55targetblankcfb532aa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreeb6d9d008ddb3efbc994e2916b7dd7d0fbc865e94targetblankb6d9d00a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/cfb532a31eced51c3805563d31d4e55e48b0cb55" target="_blank">cfb532a</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/b6d9d008ddb3efbc994e2916b7dd7d0fbc865e94" target="_blank">b6d9d00</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreecfb532a31eced51c3805563d31d4e55e48b0cb55targetblankcfb532aa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreeb6d9d008ddb3efbc994e2916b7dd7d0fbc865e94targetblankb6d9d00a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -488,7 +561,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/cfb532a31eced51c3805563d31d4e55e48b0cb55" target="_blank">cfb532a</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/b6d9d008ddb3efbc994e2916b7dd7d0fbc865e94" target="_blank">b6d9d00</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -503,12 +576,7 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-
-Unstaged changes:
-    Modified:   .Rprofile
-    Modified:   analysis/scripting.Rmd
 
 </code></pre>
 <p>
@@ -559,6 +627,40 @@ Message
 Rmd
 </td>
 <td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/b6d9d008ddb3efbc994e2916b7dd7d0fbc865e94/analysis/dim_reduct.Rmd" target="_blank">b6d9d00</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+<td>
+Normalise data
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/dim_reduct.html" target="_blank">ca74424</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2022-10-27
+</td>
+<td>
+Build site.
+</td>
+</tr>
+<tr>
+<td>
+Rmd
+</td>
+<td>
 <a href="https://github.com/davetang/bioinformatics_tips/blob/cfb532a31eced51c3805563d31d4e55e48b0cb55/analysis/dim_reduct.Rmd" target="_blank">cfb532a</a>
 </td>
 <td>
@@ -581,85 +683,289 @@ Dimension reduction
 <p>Dimension reduction is useful for identifying correlated features and
 reducing the data size, which is very useful for visualising large
 datasets.</p>
-<p>PCA.</p>
-<pre class="r"><code>pca &lt;- prcomp(iris[, 1:4])
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>Use <code>iris</code>.</p>
+<pre class="r"><code>dat &lt;- as.matrix(iris[, 1:4])
+dat[1:6, 1:4]</code></pre>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width
+[1,]          5.1         3.5          1.4         0.2
+[2,]          4.9         3.0          1.4         0.2
+[3,]          4.7         3.2          1.3         0.2
+[4,]          4.6         3.1          1.5         0.2
+[5,]          5.0         3.6          1.4         0.2
+[6,]          5.4         3.9          1.7         0.4</code></pre>
+<p>Normalise data using <code>scale</code>.</p>
+<pre class="r"><code>dat_norm &lt;- scale(dat)
+dat_norm[1:6, 1:4]</code></pre>
+<pre><code>     Sepal.Length Sepal.Width Petal.Length Petal.Width
+[1,]   -0.8976739  1.01560199    -1.335752   -1.311052
+[2,]   -1.1392005 -0.13153881    -1.335752   -1.311052
+[3,]   -1.3807271  0.32731751    -1.392399   -1.311052
+[4,]   -1.5014904  0.09788935    -1.279104   -1.311052
+[5,]   -1.0184372  1.24503015    -1.335752   -1.311052
+[6,]   -0.5353840  1.93331463    -1.165809   -1.048667</code></pre>
+<p>Before normalising.</p>
+<pre class="r"><code>apply(dat, 2, summary)</code></pre>
+<pre><code>        Sepal.Length Sepal.Width Petal.Length Petal.Width
+Min.        4.300000    2.000000        1.000    0.100000
+1st Qu.     5.100000    2.800000        1.600    0.300000
+Median      5.800000    3.000000        4.350    1.300000
+Mean        5.843333    3.057333        3.758    1.199333
+3rd Qu.     6.400000    3.300000        5.100    1.800000
+Max.        7.900000    4.400000        6.900    2.500000</code></pre>
+<p>After normalising.</p>
+<pre class="r"><code>apply(dat_norm, 2, summary)</code></pre>
+<pre><code>                     Sepal.Length               Sepal.Width
+Min.    -1.8637802962695177999564 -2.4258204175780471167911
+1st Qu. -0.8976738791967662223215 -0.5903951331558174864256
+Median  -0.0523307642581080645350 -0.1315388120502595792338
+Mean    -0.0000000000000004484318  0.0000000000000002034094
+3rd Qu.  0.6722490485464565068696  0.5567456696080762545975
+Max.     2.4836985805578661867798  3.0804554356886435506624
+                      Petal.Length                Petal.Width
+Min.    -1.56234224225534856778097 -1.44224482481004634415456
+1st Qu. -1.22245633023460542609939 -1.17985947160021398261165
+Median   0.33535409986046643693314  0.13206729444894910185937
+Mean    -0.00000000000000002895326 -0.00000000000000003663049
+3rd Qu.  0.76021148988639486443475  0.78803067747353061633930
+Max.     1.77986922594862417845718  1.70637941370794465889560</code></pre>
+</div>
+<div id="pca" class="section level2">
+<h2>PCA</h2>
+<p>The <code>prcomp()</code> function:</p>
+<blockquote>
+<p>Performs a principal components analysis on the given data matrix and
+returns the results as an object of class prcomp.</p>
+</blockquote>
+<pre class="r"><code>pca &lt;- prcomp(dat_norm)
 my_col &lt;- as.integer(iris$Species)
 
 plot(pca$x, col = my_col, pch = 16)</code></pre>
 <p><img src="figure/dim_reduct.Rmd/pca-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>t-SNE default perplexity of 30.</p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-pca-1">
+Past versions of pca-1.png
+</button>
+</p>
+<div id="fig-pca-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/pca-1.png" target="_blank">ca74424</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2022-10-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="t-sne" class="section level2">
+<h2>t-SNE</h2>
+<p>Install (if necessary) and load.</p>
 <pre class="r"><code>if(!require(tsne)){
   install.packages(&quot;tsne&quot;)
-}</code></pre>
-<pre><code>Loading required package: tsne</code></pre>
-<pre class="r"><code>library(tsne)
+}
+library(tsne)</code></pre>
+<p>t-SNE default perplexity of 30.</p>
+<pre class="r"><code>tsne_ &lt;- tsne(dat_norm)
 
-tsne_ &lt;- tsne(iris[, 1:4])</code></pre>
-<pre><code>sigma summary: Min. : 0.486505661043274 |1st Qu. : 0.587913800179832 |Median : 0.614872437640536 |Mean : 0.623051089344394 |3rd Qu. : 0.654914112723525 |Max. : 0.796707932771489 |</code></pre>
-<pre><code>Epoch: Iteration #100 error is: 13.1171061837296</code></pre>
-<pre><code>Epoch: Iteration #200 error is: 0.238938736285296</code></pre>
-<pre><code>Epoch: Iteration #300 error is: 0.237580495588205</code></pre>
-<pre><code>Epoch: Iteration #400 error is: 0.2374547569615</code></pre>
-<pre><code>Epoch: Iteration #500 error is: 0.237448878840098</code></pre>
-<pre><code>Epoch: Iteration #600 error is: 0.237448500418977</code></pre>
-<pre><code>Epoch: Iteration #700 error is: 0.237448477241058</code></pre>
-<pre><code>Epoch: Iteration #800 error is: 0.237448475805662</code></pre>
-<pre><code>Epoch: Iteration #900 error is: 0.23744847571858</code></pre>
-<pre><code>Epoch: Iteration #1000 error is: 0.237448475713213</code></pre>
-<pre class="r"><code>plot(tsne_, col = my_col, pch = 16)</code></pre>
+plot(tsne_, col = my_col, pch = 16)</code></pre>
 <p><img src="figure/dim_reduct.Rmd/tsne-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tsne-1">
+Past versions of tsne-1.png
+</button>
+</p>
+<div id="fig-tsne-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/tsne-1.png" target="_blank">ca74424</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2022-10-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Perplexity of 20.</p>
-<pre class="r"><code>tsne_p20 &lt;- tsne(iris[, 1:4], perplexity = 20)</code></pre>
-<pre><code>sigma summary: Min. : 0.42864778740551 |1st Qu. : 0.523593962475894 |Median : 0.553545139847788 |Mean : 0.563823813379956 |3rd Qu. : 0.596877396756174 |Max. : 0.752227354673175 |</code></pre>
-<pre><code>Epoch: Iteration #100 error is: 13.5073150056192</code></pre>
-<pre><code>Epoch: Iteration #200 error is: 0.268228858442339</code></pre>
-<pre><code>Epoch: Iteration #300 error is: 0.262336620485244</code></pre>
-<pre><code>Epoch: Iteration #400 error is: 0.261018858034014</code></pre>
-<pre><code>Epoch: Iteration #500 error is: 0.260588711691426</code></pre>
-<pre><code>Epoch: Iteration #600 error is: 0.260399044375287</code></pre>
-<pre><code>Epoch: Iteration #700 error is: 0.260293870035397</code></pre>
-<pre><code>Epoch: Iteration #800 error is: 0.260228227596464</code></pre>
-<pre><code>Epoch: Iteration #900 error is: 0.260186737975538</code></pre>
-<pre><code>Epoch: Iteration #1000 error is: 0.260157652086673</code></pre>
-<pre class="r"><code>plot(tsne_p20, col = my_col, pch = 16)</code></pre>
+<pre class="r"><code>tsne_p20 &lt;- tsne(dat_norm, perplexity = 20)
+
+plot(tsne_p20, col = my_col, pch = 16)</code></pre>
 <p><img src="figure/dim_reduct.Rmd/tsne_p20-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tsne_p20-1">
+Past versions of tsne_p20-1.png
+</button>
+</p>
+<div id="fig-tsne_p20-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/tsne_p20-1.png" target="_blank">ca74424</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2022-10-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Perplexity of 40.</p>
-<pre class="r"><code>tsne_p40 &lt;- tsne(iris[, 1:4], perplexity = 40)</code></pre>
-<pre><code>sigma summary: Min. : 0.527309628938834 |1st Qu. : 0.636786401601399 |Median : 0.667089986073136 |Mean : 0.671796474888864 |3rd Qu. : 0.70053875222358 |Max. : 0.836996944234283 |</code></pre>
-<pre><code>Epoch: Iteration #100 error is: 12.620846895381</code></pre>
-<pre><code>Epoch: Iteration #200 error is: 0.258452741303131</code></pre>
-<pre><code>Epoch: Iteration #300 error is: 0.257015837325158</code></pre>
-<pre><code>Epoch: Iteration #400 error is: 0.256962711285107</code></pre>
-<pre><code>Epoch: Iteration #500 error is: 0.256962707558697</code></pre>
-<pre><code>Epoch: Iteration #600 error is: 0.256962707553156</code></pre>
-<pre><code>Epoch: Iteration #700 error is: 0.256962707553153</code></pre>
-<pre><code>Epoch: Iteration #800 error is: 0.256962707553153</code></pre>
-<pre><code>Epoch: Iteration #900 error is: 0.256962707553153</code></pre>
-<pre><code>Epoch: Iteration #1000 error is: 0.256962707553153</code></pre>
-<pre class="r"><code>plot(tsne_p40, col = my_col, pch = 16)</code></pre>
+<pre class="r"><code>tsne_p40 &lt;- tsne(dat_norm, perplexity = 40)
+
+plot(tsne_p40, col = my_col, pch = 16)</code></pre>
 <p><img src="figure/dim_reduct.Rmd/tsne_p40-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tsne_p40-1">
+Past versions of tsne_p40-1.png
+</button>
+</p>
+<div id="fig-tsne_p40-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/tsne_p40-1.png" target="_blank">ca74424</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2022-10-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Perplexity of 50.</p>
-<pre class="r"><code>tsne_p50 &lt;- tsne(iris[, 1:4], perplexity = 50)</code></pre>
-<pre><code>sigma summary: Min. : 0.565012665854053 |1st Qu. : 0.681985646004023 |Median : 0.713004330336136 |Mean : 0.716213420895748 |3rd Qu. : 0.74581655363904 |Max. : 0.874979764925049 |</code></pre>
-<pre><code>Epoch: Iteration #100 error is: 12.0664597536258</code></pre>
-<pre><code>Epoch: Iteration #200 error is: 0.20135560570987</code></pre>
-<pre><code>Epoch: Iteration #300 error is: 0.199907660516558</code></pre>
-<pre><code>Epoch: Iteration #400 error is: 0.199720346311414</code></pre>
-<pre><code>Epoch: Iteration #500 error is: 0.199720055735862</code></pre>
-<pre><code>Epoch: Iteration #600 error is: 0.199720055732102</code></pre>
-<pre><code>Epoch: Iteration #700 error is: 0.199720055732101</code></pre>
-<pre><code>Epoch: Iteration #800 error is: 0.199720055732101</code></pre>
-<pre><code>Epoch: Iteration #900 error is: 0.199720055732101</code></pre>
-<pre><code>Epoch: Iteration #1000 error is: 0.199720055732101</code></pre>
-<pre class="r"><code>plot(tsne_p50, col = my_col, pch = 16)</code></pre>
+<pre class="r"><code>tsne_p50 &lt;- tsne(dat_norm, perplexity = 50)
+
+plot(tsne_p50, col = my_col, pch = 16)</code></pre>
 <p><img src="figure/dim_reduct.Rmd/tsne_p50-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>UMAP default settings.</p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-tsne_p50-1">
+Past versions of tsne_p50-1.png
+</button>
+</p>
+<div id="fig-tsne_p50-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/tsne_p50-1.png" target="_blank">ca74424</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2022-10-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="umap" class="section level2">
+<h2>UMAP</h2>
+<p>Install (if necessary) and load.</p>
 <pre class="r"><code>if(!require(umap)){
   install.packages(&quot;umap&quot;)
-}</code></pre>
-<pre><code>Loading required package: umap</code></pre>
-<pre class="r"><code>library(umap)
-umap.defaults</code></pre>
+}
+library(umap)</code></pre>
+<p>UMAP default settings.</p>
+<pre class="r"><code>umap.defaults</code></pre>
 <pre><code>umap configuration parameters</code></pre>
 <pre><code>           n_neighbors: 15</code></pre>
 <pre><code>          n_components: 2</code></pre>
@@ -684,17 +990,91 @@ umap.defaults</code></pre>
 <pre><code>               verbose: FALSE</code></pre>
 <pre><code>       umap_learn_args: NA</code></pre>
 <p>UMAP with default settings.</p>
-<pre class="r"><code>umap_ &lt;- umap(iris[, 1:4])
+<pre class="r"><code>umap_ &lt;- umap(dat_norm)
 
 plot(umap_$layout, col = my_col, pch = 16)</code></pre>
 <p><img src="figure/dim_reduct.Rmd/umap-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-umap-1">
+Past versions of umap-1.png
+</button>
+</p>
+<div id="fig-umap-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/umap-1.png" target="_blank">ca74424</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2022-10-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Adjust number of neighbours.</p>
 <pre class="r"><code>umap_conf &lt;- umap.defaults
 umap_conf$n_neighbors &lt;- 20
 
-umap_n20 &lt;- umap(iris[, 1:4], config = umap_conf)
+umap_n20 &lt;- umap(dat_norm, config = umap_conf)
 plot(umap_n20$layout, col = my_col, pch = 16)</code></pre>
 <p><img src="figure/dim_reduct.Rmd/umap_custom-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-umap_custom-1">
+Past versions of umap_custom-1.png
+</button>
+</p>
+<div id="fig-umap_custom-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/ca74424e4259f55cd14c6383ad44cd291768ee91/docs/figure/dim_reduct.Rmd/umap_custom-1.png" target="_blank">ca74424</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2022-10-27
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -704,13 +1084,13 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.2.0 (2022-04-22)
+<pre><code>R version 4.3.0 (2023-04-21)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 20.04.4 LTS
+Running under: Ubuntu 22.04.2 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
-LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -720,27 +1100,30 @@ locale:
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] umap_0.2.9.0    tsne_0.1-3.1    workflowr_1.7.0
+[1] umap_0.2.10.0   tsne_0.1-3.1    workflowr_1.7.0
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.8.3     RSpectra_0.16-1  highr_0.9        bslib_0.3.1     
- [5] compiler_4.2.0   pillar_1.7.0     later_1.3.0      git2r_0.30.1    
- [9] jquerylib_0.1.4  tools_4.2.0      getPass_0.2-2    digest_0.6.29   
-[13] lattice_0.20-45  jsonlite_1.8.0   evaluate_0.15    tibble_3.1.7    
-[17] lifecycle_1.0.1  png_0.1-7        pkgconfig_2.0.3  rlang_1.0.2     
-[21] Matrix_1.4-1     cli_3.3.0        rstudioapi_0.13  yaml_2.3.5      
-[25] xfun_0.31        fastmap_1.1.0    httr_1.4.3       stringr_1.4.0   
-[29] knitr_1.39       askpass_1.1      sass_0.4.1       fs_1.5.2        
-[33] vctrs_0.4.1      grid_4.2.0       rprojroot_2.0.3  reticulate_1.25 
-[37] glue_1.6.2       R6_2.5.1         processx_3.5.3   fansi_1.0.3     
-[41] rmarkdown_2.14   callr_3.7.0      magrittr_2.0.3   whisker_0.4     
-[45] ps_1.7.0         promises_1.2.0.1 htmltools_0.5.2  ellipsis_0.3.2  
-[49] httpuv_1.6.5     utf8_1.2.2       stringi_1.7.6    openssl_2.0.1   
-[53] crayon_1.5.1    </code></pre>
+ [1] Matrix_1.5-4     jsonlite_1.8.4   compiler_4.3.0   highr_0.10      
+ [5] promises_1.2.0.1 Rcpp_1.0.10      stringr_1.5.0    git2r_0.32.0    
+ [9] callr_3.7.3      later_1.3.0      jquerylib_0.1.4  png_0.1-8       
+[13] yaml_2.3.7       fastmap_1.1.1    reticulate_1.31  lattice_0.21-8  
+[17] R6_2.5.1         knitr_1.42       tibble_3.2.1     openssl_2.0.6   
+[21] rprojroot_2.0.3  bslib_0.4.2      pillar_1.9.0     rlang_1.1.0     
+[25] utf8_1.2.3       cachem_1.0.7     stringi_1.7.12   httpuv_1.6.9    
+[29] xfun_0.39        getPass_0.2-2    fs_1.6.2         sass_0.4.5      
+[33] cli_3.6.1        magrittr_2.0.3   ps_1.7.5         grid_4.3.0      
+[37] digest_0.6.31    processx_3.8.1   rstudioapi_0.14  askpass_1.1     
+[41] lifecycle_1.0.3  vctrs_0.6.2      RSpectra_0.16-1  evaluate_0.20   
+[45] glue_1.6.2       whisker_0.4.1    fansi_1.0.4      rmarkdown_2.21  
+[49] httr_1.4.5       tools_4.3.0      pkgconfig_2.0.3  htmltools_0.5.5 </code></pre>
+</div>
 </div>
 
 
@@ -759,6 +1142,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -791,6 +1176,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
