@@ -4,78 +4,123 @@ author: "Dave Tang"
 date: "`r Sys.Date()`"
 output:
   workflowr::wflow_html:
-    toc: false
+    toc: true
 editor_options:
   chunk_output_type: console
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
-options(scipen=10000)
+options(scipen=100)
 ```
 
 Dimension reduction is useful for identifying correlated features and reducing the data size, which is very useful for visualising large datasets.
 
-PCA.
+## Data
+
+Use `iris`.
+
+```{r prep_dat}
+dat <- as.matrix(iris[, 1:4])
+dat[1:6, 1:4]
+```
+
+Normalise data using `scale`.
+
+```{r scale}
+dat_norm <- scale(dat)
+dat_norm[1:6, 1:4]
+```
+
+Before normalising.
+
+```{r before_scale}
+apply(dat, 2, summary)
+```
+
+After normalising.
+
+```{r after_scale}
+apply(dat_norm, 2, summary)
+```
+
+## PCA
+
+The `prcomp()` function:
+
+>Performs a principal components analysis on the given data matrix and returns the results as an object of class prcomp.
 
 ```{r pca}
-pca <- prcomp(iris[, 1:4])
+pca <- prcomp(dat_norm)
 my_col <- as.integer(iris$Species)
 
 plot(pca$x, col = my_col, pch = 16)
 ```
 
-t-SNE default perplexity of 30.
+## t-SNE
 
-```{r tsne}
+Install (if necessary) and load.
+
+```{r tsne_load, message=FALSE, warning=FALSE}
 if(!require(tsne)){
   install.packages("tsne")
 }
 library(tsne)
+```
 
-tsne_ <- tsne(iris[, 1:4])
+t-SNE default perplexity of 30.
+
+```{r tsne, message=FALSE, warning=FALSE}
+tsne_ <- tsne(dat_norm)
 
 plot(tsne_, col = my_col, pch = 16)
 ```
 
 Perplexity of 20.
 
-```{r tsne_p20}
-tsne_p20 <- tsne(iris[, 1:4], perplexity = 20)
+```{r tsne_p20, message=FALSE, warning=FALSE}
+tsne_p20 <- tsne(dat_norm, perplexity = 20)
 
 plot(tsne_p20, col = my_col, pch = 16)
 ```
 
 Perplexity of 40.
 
-```{r tsne_p40}
-tsne_p40 <- tsne(iris[, 1:4], perplexity = 40)
+```{r tsne_p40, message=FALSE, warning=FALSE}
+tsne_p40 <- tsne(dat_norm, perplexity = 40)
 
 plot(tsne_p40, col = my_col, pch = 16)
 ```
 
 Perplexity of 50.
 
-```{r tsne_p50}
-tsne_p50 <- tsne(iris[, 1:4], perplexity = 50)
+```{r tsne_p50, message=FALSE, warning=FALSE}
+tsne_p50 <- tsne(dat_norm, perplexity = 50)
 
 plot(tsne_p50, col = my_col, pch = 16)
+```
+
+## UMAP
+
+Install (if necessary) and load.
+
+```{r umap_load, message=FALSE, warning=FALSE}
+if(!require(umap)){
+  install.packages("umap")
+}
+library(umap)
 ```
 
 UMAP default settings.
 
 ```{r umap_defaults}
-if(!require(umap)){
-  install.packages("umap")
-}
-library(umap)
 umap.defaults
 ```
 
 UMAP with default settings.
 
 ```{r umap}
-umap_ <- umap(iris[, 1:4])
+umap_ <- umap(dat_norm)
 
 plot(umap_$layout, col = my_col, pch = 16)
 ```
@@ -86,6 +131,6 @@ Adjust number of neighbours.
 umap_conf <- umap.defaults
 umap_conf$n_neighbors <- 20
 
-umap_n20 <- umap(iris[, 1:4], config = umap_conf)
+umap_n20 <- umap(dat_norm, config = umap_conf)
 plot(umap_n20$layout, col = my_col, pch = 16)
 ```
