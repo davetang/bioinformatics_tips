@@ -1,0 +1,101 @@
+---
+title: "Computer science"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+[Computer science](https://en.wikipedia.org/wiki/Computer_science) concerns the
+study of computation, automation, and information. Knowledge of some theory and
+principles in computer science will help you write better programs and
+pipelines.
+
+## Separation of concerns
+
+[Separation of concerns](https://en.wikipedia.org/wiki/Separation_of_concerns)
+is a design principle for separating a computer program into distinct sections.
+Each section addresses a separate concern, such as pre-processing data or
+training a model, and leads to a [modular
+program](https://en.wikipedia.org/wiki/Modular_programming). This separation
+makes it easier to read and maintain code. While we can keep separating a task
+into finer details, it is useful in bioinformatics to keep code organised in
+specific tasks of a workflow/pipeline.
+
+## Time complexity
+
+> In theoretical computer science, the [time
+> complexity](https://en.wikipedia.org/wiki/Time_complexity) is the
+> computational complexity that describes the amount of computer time it takes
+> to run an algorithm. Time complexity is commonly estimated by counting the
+> number of elementary operations performed by the algorithm, supposing that
+> each elementary operation takes a fixed amount of time to perform.
+
+Most commonly used classifications, sorted from the best (most efficient) to
+worst (least efficient):
+
+* Constant time O(1)
+* Logarithmic time O(log n)
+* Linear time O(n)
+* Log-linear time O(n log n)
+* Quadratic time O(n^2)
+* Cubic time O(n^3)
+* Exponential time O(c^n) where c is a constant
+
+## Refactoring
+
+From The Biostar Handbook:
+
+> Refactoring is an iterative process of improving code to reduce its
+> redundancy and make it more generic and simpler. The reason we need
+> refactoring is that typically a process becomes more well understood as we
+> work and solve it. Periodically, we may need to revisit previous steps and
+> rework them to match the later steps. Refactoring may feel wasteful, as often
+> we modify what may seem to already be working just fine. But in any analysis,
+> complexity can be a hindrance. Refactoring takes on complexity and attempts
+> to simplify our work and will pay dividends in the future. Refactoring takes
+> some practice and typically the returns are diminishing -- that is, every
+> code can be refactored, but after a few rounds of doing so the benefits are
+> typically much smaller.
+
+## Storing states in bits
+
+> A [bit array](https://en.wikipedia.org/wiki/Bit_array) is an array data
+> structure that compactly stores bits. It can be used to implement a simple
+> set data structure. A bit array is effective at exploiting bit-level
+> parallelism in hardware to perform operations quickly. A typical bit array
+> stores kw bits, where w is the number of bits in the unit of storage, such as
+> a byte or word, and k is some nonnegative integer. If w does not divide the
+> number of bits to be stored, some space is wasted due to internal
+> fragmentation.
+
+This is a very compact way of storing data and is used to store properties of
+reads in BAM files.
+
+```console
+samtools flags
+```
+```
+About: Convert between textual and numeric flag representation
+Usage: samtools flags FLAGS...
+
+Each FLAGS argument is either an INT (in decimal/hexadecimal/octal) representing
+a combination of the following numeric flag values, or a comma-separated string
+NAME,...,NAME representing a combination of the following flag names:
+
+   0x1     1  PAIRED         paired-end / multiple-segment sequencing technology
+   0x2     2  PROPER_PAIR    each segment properly aligned according to aligner
+   0x4     4  UNMAP          segment unmapped
+   0x8     8  MUNMAP         next segment in the template unmapped
+  0x10    16  REVERSE        SEQ is reverse complemented
+  0x20    32  MREVERSE       SEQ of next segment in template is rev.complemented
+  0x40    64  READ1          the first segment in the template
+  0x80   128  READ2          the last segment in the template
+ 0x100   256  SECONDARY      secondary alignment
+ 0x200   512  QCFAIL         not passing quality controls or other filters
+ 0x400  1024  DUP            PCR or optical duplicate
+ 0x800  2048  SUPPLEMENTARY  supplementary alignment
+```

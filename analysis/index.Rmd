@@ -19,3 +19,4 @@ editor_options:
 * Write a [script](scripting.html) to automate your tasks
 * Use [dimension reduction](dim_reduct.html) to "compress" your data making it easier to visualise
 * Implement [testing](testing.html) in your scripts, programs, and workflows
+* Learn some basics of [computer science](compsci.html)
