@@ -13,13 +13,39 @@ editor_options:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-A lot of bioinformatics tools employ probabilistic models so it's important to understand the basics of probability. Usually, if you can figure out all the possible events, you can calculate the probability of a subset of events by dividing the subset by all possible events. Another way to think about the probability of an event is that it is the proportion of times that the event occurs when we repeat the experiment an infinite number of times, independently, and under the same conditions. Because of this, we can get a estimate of the probability of an event by running Monte Carlo simulations. The following are some basics of probability.
+A lot of bioinformatics tools use probabilistic models, so it's important to
+have at least a working understanding of probability. In simpler cases, if you
+can figure out **all the possible events**, you can calculate the probability
+of a subset of events by dividing the subset by all possible events. For
+example, in a full deck of cards, there are 52 cards and the probability of
+picking a red card is the subset of red cards (26) divided by all the cards
+(52).
 
-$Pr(A)$ is the probability of event $A$ happening; the general term _event_ is used to refer to things that can happen by chance.
+Another way to think about the probability of an event is that it is the
+proportion of times that the event occurs when we repeat the experiment an
+infinite number of times, independently and under the same conditions. The
+probability is the number of times an event occurred divided by the total
+number of times an experiment was repeated. Because of this, we can get a
+estimate of the probability of an event by running Monte Carlo simulations.
+This is particularly useful when it is difficult to work out the probability
+mathematically.
 
-A probability distribution is simply the probabilities of all possible events. For continuous variables, the probability distribution is calculated using the cumulative distribution function (CDF).
+## Basics
 
-Two events are independent if the outcome of one does not affect the other. The classic example is coin tosses; every time we toss a fair coin, the probability of seeing heads is 1/2 regardless of what previous events were.
+* $Pr(A)$ is the probability of event $A$ happening; the general term _event_
+  is used to refer to things that can happen by chance.
+
+* A probability distribution is the probabilities of all possible events.
+
+* For discrete variables, the probability distribution is calculated using a
+  probability density function (PDF).
+
+* For continuous variables, the probability distribution is calculated using
+  the cumulative distribution function (CDF).
+
+* Two events are independent if the outcome of one does not affect the other.
+  The classic example is coin tosses; every time we toss a fair coin, the
+  probability of seeing heads is 1/2 regardless of what previous events were.
 
 When events are not independent, conditional probabilities are used.
 
