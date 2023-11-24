@@ -1,0 +1,93 @@
+---
+title: "Frameworks and guidelines"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+## Introduction
+
+I learned bioinformatics many years ago with pretty much no background in
+computer science, mathematics, or statistics. I learned some maths and stats in
+high school but that's about it. Back then a lot of bioinformatic analyses were
+glued (or duct taped) together using custom Perl scripts. And many Perl scripts
+were written by people like me, people without any formal training in computer
+science/software engineering. In addition, at that time there was very little
+material for learning bioinformatics and many of the references available were
+technical books written for people with some computing background. What all
+this meant was that a lot of work was performed on shaky foundations.
+
+Bioinformatics has come a long way from those days. Initiatives such as
+[Software Carpentry](https://software-carpentry.org/) have helped many
+researchers develop good foundations. [Bioconda](https://bioconda.github.io/)
+lets you install thousands of software packages related to biomedical research
+using the `conda` package manager. This not only simplifies the install process
+(which sometimes can be a nightmare) but helps reproducibility. Some journals
+such as PLOS Computational Biology have [a
+policy](https://journals.plos.org/ploscompbiol/s/code-availability) that code
+must be publicly shared rather than custom Perl scripts available upon request.
+
+Difference between [framework and
+guideline](https://wikidiff.com/framework/guideline).
+
+Guideline:
+
+>A non-specific rule or principle that provides direction to action or
+behaviour.
+
+Framework:
+
+>(figuratively, especially in, computing) A basic conceptual structure.
+
+The [Cambridge dictionary definition of a
+framework](https://dictionary.cambridge.org/dictionary/english/framework) is:
+
+>a supporting structure around which something can be built.
+
+This is just as relevant to bioinformatics as it is to the construction of a
+building. In the case of bioinformatics, the "supporting structure" is basically
+an organised set of code or guidelines that follows a defined specification.
+
+For example, if you are going to build an analysis pipeline, use a workflow
+management system like [Snakemake](https://snakemake.readthedocs.io/en/stable/)
+or [Nextflow](https://www.nextflow.io/). While these are considered as workflow
+systems, these are frameworks for building analysis pipelines.
+
+If you are going to analyse high-throughput sequencing data, use the
+infrastructure/framework developed by the [Bioconductor
+project](https://www.bioconductor.org/). Many of the Bioconductor packages use
+the same underlying data structure, such as GenomicRanges, so once you have
+pre-processed your data into a common format, you can analyse/visualise your
+data using various Bioconductor packages.
+
+If you are performing machine learning, use the [tidymodels
+framework](https://www.tidymodels.org/) if you use R or
+[scikit-learn](https://scikit-learn.org/stable/) for Python. These packages
+provide all the code for performing typical machine learning analyses, such as
+splitting your data up, performing cross-validation, plotting performance
+measures, etc.
+
+If what you have to do is not available and you have to write the code yourself,
+you can still adapt a best practices framework for developing your code in the
+language of choice. If you use R, you can follow the guidelines in the [R
+Packages book](https://r-pkgs.org/), which you can read for free!
+
+On every level of your analysis, you can follow or use some framework to help
+you develop code that is much easier to maintain and is more likely to be
+reproducible. Even when you are writing a single script, you can follow these
+[Ten recommendations for creating usable bioinformatics command line
+software](https://academic.oup.com/gigascience/article/2/1/2047-217X-2-15/2656133).
+
+[Bionitio: demonstrating and facilitating best practices for bioinformatics
+command-line
+software](https://academic.oup.com/gigascience/article/8/9/giz109/5572530?login=false).
+
+## Why people don't use frameworks
+
+* Learning curve
+* Cost-benefit
+
