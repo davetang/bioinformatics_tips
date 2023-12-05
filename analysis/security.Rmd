@@ -87,3 +87,192 @@ The problem with shared-key systems is that in order for the receiving party to 
 Unlike the shared-key cryptosystem, the public-key cryptosystem uses different keys for encryption and decryption.
 
 To be continued...
+
+## GnuPG concepts
+
+[GnuPG](https://www.gnupg.org/gph/en/manual.html#CONCEPTS) makes use of several
+cryptographic concepts including:
+
+* Symmetric ciphers
+* Public-key ciphers, and
+* One-way hashing
+
+### Symmetric ciphers
+
+A symmetric cipher is a cipher that uses the same key for **both** encryption
+and decryption. Two parties communicating using a symmetric cipher must agree
+on the key beforehand. Once they agree, the sender encrypts a message using the
+key, sends it to the receiver, and the receiver decrypts the message using the
+key.
+
+As an example, the German Enigma is a symmetric cipher, and daily keys were
+distributed as code books. Each day, a sending or receiving radio operator
+would consult his copy of the code book to find the day's key. Radio traffic
+for that day was then encrypted and decrypted using the day's key. Modern
+   examples of symmetric ciphers include 3DES, Blowfish, and IDEA.
+
+A good cipher puts all the security in the key and none in the algorithm. In
+other words, it should be no help to an attacker if he knows which cipher is
+being used. Only if he obtains the key would knowledge of the algorithm be
+needed. The ciphers used in GnuPG have this property.
+
+Since all the security is in the key, then it is important that it be very
+difficult to guess the key. In other words, the set of possible keys, i.e., the
+key space, needs to be large. While at Los Alamos, Richard Feynman was famous
+for his ability to crack safes. To encourage the mystique he even carried
+   around a set of tools including an old stethoscope. In reality, he used a
+   variety of tricks to reduce the number of combinations he had to try to a
+   small number and then simply guessed until he found the right combination.
+   In other words, he reduced the size of the key space.
+
+Britain used machines to guess keys during World War 2. The German Enigma had a
+very large key space, but the British built specialized computing engines, the
+Bombes, to mechanically try keys until the day's key was found. This meant that
+sometimes they found the day's key within hours of the new key's use, but it
+also meant that on some days they never did find the right key. The Bombes were
+not general-purpose computers but were precursors to modern-day computers.
+
+Today, computers can guess keys very quickly, and this is why key size is
+important in modern cryptosystems. The cipher DES uses a 56-bit key, which
+means that there are $2^{56}$ possible keys (72,057,594,037,927,936 keys). This
+is a lot of keys, but a general-purpose computer can check the entire key space
+in a matter of days. A specialized computer can check it in hours. On the other
+hand, more recently designed ciphers such as 3DES, Blowfish, and IDEA all use
+128-bit keys, which means there are $2^{128}$ possible keys. This is many, many
+more keys, and even if all the computers on the planet cooperated, it could
+still take more time than the age of the universe to find the key.
+
+### Public-key ciphers
+
+The primary problem with symmetric ciphers is not their security but with key
+exchange. Once the sender and receiver have exchanged keys, that key can be
+used to securely communicate, but what secure communication channel was used to
+communicate the key itself? In particular, it would probably be much easier for
+an attacker to work to intercept the key than it is to try all the keys in the
+key space. Another problem is the number of keys needed. If there are _n_
+people who need to communicate, then _n(n-1)/2_ keys are needed for each pair
+of people to communicate privately. This may be OK for a small number of people
+but quickly becomes unwieldy for large groups of people.
+
+Public-key ciphers were invented to avoid the key-exchange problem entirely. A
+public-key cipher uses a pair of keys for sending messages. The two keys belong
+to the person receiving the message. One key is a public key and may be given
+to anybody. The other key is a private key and is kept secret by the owner. A
+sender encrypts a message using the public key and once encrypted, only the
+private key may be used to decrypt it.
+
+This protocol solves the key-exchange problem inherent with symmetric ciphers.
+There is no need for the sender and receiver to agree upon a key. All that is
+required is that some time before secret communication the sender gets a copy
+of the receiver's public key. Furthermore, the one public key can be used by
+anybody wishing to communicate with the receiver. So only _n_ keypairs are
+needed for _n_ people to communicate secretly with one another.
+
+Public-key ciphers are based on one-way trapdoor functions. A one-way function
+is a function that is easy to compute, but the inverse is hard to compute. For
+example, it is easy to multiply two prime numbers together to get a composite,
+but it is difficult to factor a composite into its prime components. A one-way
+trapdoor function is similar, but it has a trapdoor. That is, if some piece of
+information is known, it becomes easy to compute the inverse. For example, if
+you have a number made of two prime factors, then knowing one of the factors
+makes it easy to compute the second. Given a public-key cipher based on prime
+factorization, the public key contains a composite number made from two large
+prime factors, and the encryption algorithm uses that composite to encrypt the
+message. The algorithm to decrypt the message requires knowing the prime
+factors, so decryption is easy if you have the private key containing one of
+the factors but extremely difficult if you do not have it.
+
+As with good symmetric ciphers, with a good public-key cipher all of the
+security rests with the key. Therefore, key size is a measure of the system's
+security, but one cannot compare the size of a symmetric cipher key and a
+public-key cipher key as a measure of their relative security. In a brute-force
+attack on a symmetric cipher with a key size of 80 bits, the attacker must
+enumerate up to $2^{80}$ keys to find the right key. In a brute-force attack on
+a public-key cipher with a key size of 512 bits, the attacker must factor a
+composite number encoded in 512 bits (up to 155 decimal digits). The workload
+for the attacker is fundamentally different depending on the cipher he is
+   attacking. While 128 bits is sufficient for symmetric ciphers, given today's
+   factoring technology public keys with 1024 bits are recommended for most
+   purposes.
+
+### Hybrid ciphers
+
+Public-key ciphers are no panacea. Many symmetric ciphers are stronger from a
+security standpoint, and public-key encryption and decryption are more
+expensive than the corresponding operations in symmetric systems. Public-key
+ciphers are nevertheless an effective tool for distributing symmetric cipher
+keys, and that is how they are used in hybrid cipher systems.
+
+A hybrid cipher uses both a symmetric cipher and a public-key cipher. It works
+by using a public-key cipher to share a key for the symmetric cipher. The
+actual message being sent is then encrypted using the key and sent to the
+recipient. Since symmetric key sharing is secure, the symmetric key used is
+different for each message sent. Hence it is sometimes called a session key.
+
+Both PGP and GnuPG use hybrid ciphers. The session key, encrypted using the
+public-key cipher, and the message being sent, encrypted with the symmetric
+cipher, are automatically combined in one package. The recipient uses his
+private-key to decrypt the session key and the session key is then used to
+decrypt the message.
+
+A hybrid cipher is no stronger than the public-key cipher or symmetric cipher
+it uses, whichever is weaker. In PGP and GnuPG, the public-key cipher is
+probably the weaker of the pair. Fortunately, however, if an attacker could
+decrypt a session key it would only be useful for reading the one message
+encrypted with that session key. The attacker would have to start over and
+decrypt another session key in order to read any other message.
+
+### Digital signatures
+
+A hash function is a many-to-one function that maps its input to a value in a
+finite set. Typically this set is a range of natural numbers. A simple hash
+function is $f(x) = 0$ for all integers $x$. A more interesting hash function
+is $f(x) = x mod 37$, which maps $x$ to the remainder of dividing $x$ by 37.
+
+A document's digital signature is the result of applying a hash function to the
+document. To be useful, however, the hash function needs to satisfy two
+important properties. First, it should be hard to find two documents that hash
+to the same value. Second, given a hash value it should be hard to recover the
+document that produced that value.
+
+Some public-key ciphers could be used to sign documents. The signer encrypts
+the document with his private key. Anybody wishing to check the signature and
+see the document simply uses the signer's public key to decrypt the document.
+This algorithm does satisfy the two properties needed from a good hash
+function, but in practice, this algorithm is too slow to be useful.
+
+An alternative is to use hash functions designed to satisfy these two important
+properties. SHA and MD5 are examples of such algorithms. Using such an
+algorithm, a document is signed by hashing it, and the hash value is the
+signature. Another person can check the signature by also hashing their copy of
+the document and comparing the hash value they get with the hash value of the
+original document. If they match, it is almost certain that the documents are
+identical.
+
+Of course, the problem now is using a hash function for digital signatures
+without permitting an attacker to interfere with signature checking. If the
+document and signature are sent unencrypted, an attacker could modify the
+document and generate a corresponding signature without the recipient's
+knowledge. If only the document is encrypted, an attacker could tamper with the
+signature and cause a signature check to fail. A third option is to use a
+hybrid public-key encryption to encrypt both the signature and document. The
+signer uses his private key, and anybody can use his public key to check the
+signature and document. This sounds good but is actually nonsense. If this
+algorithm truly secured the document it would also secure it from tampering and
+there would be no need for the signature. The more serious problem, however, is
+that this does not protect either the signature or document from tampering.
+With this algorithm, only the session key for the symmetric cipher is encrypted
+using the signer's private key. Anybody can use the public key to recover the
+session key. Therefore, it is straightforward for an attacker to recover the
+session key and use it to encrypt substitute documents and signatures to send
+to others in the sender's name.
+
+An algorithm that does work is to use a public key algorithm to encrypt only
+the signature. In particular, the hash value is encrypted using the signer's
+private key, and anybody can check the signature using the public key. The
+signed document can be sent using any other encryption algorithm including none
+if it is a public document. If the document is modified the signature check
+   will fail, but this is precisely what the signature check is supposed to
+   catch. The Digital Signature Standard (DSA) is a public key signature
+   algorithm that works as just described. DSA is the primary signing algorithm
+   used in GnuPG.
