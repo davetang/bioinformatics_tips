@@ -34,3 +34,81 @@ Two general rules to follow when adding assertions include:
 In summary, program defensively, i.e. assume that errors are going to arise, and write code to detect them when they do. Put assertions in programs to check their state as they run, and to help readers understand how those programs are supposed to work. Use pre-conditions to check that the inputs to a function are safe to use and use post-conditions to check that the output from a function is safe to use.
 
 An interesting idea is to write tests before writing code in order to help determine exactly what that code is supposed to do. This is known as [Test-Driven Development](https://en.wikipedia.org/wiki/Test-driven_development) and advocates writing tests before writing the code.
+
+## R
+
+[Three signalling conditions](https://adv-r.hadley.nz/conditions.html) in R:
+
+1. Errors: execution must stop
+2. Warnings: partial recovery
+3. Messages: 
+
+```{r error=TRUE}
+stop("This is what an error looks like")
+
+warning("This is what a warning looks like")
+
+message("This is what a message looks like")
+```
+
+In base R, errors are signalled, or thrown, by `stop()`; `call. = FALSE` is used because it's not typically useful to include the call.
+
+```{r error=TRUE}
+h <- function() stop("This is an error!", call. = FALSE)
+h()
+```
+
+The {rlang} equivalent is `abort`.
+
+```{r error=TRUE}
+library(rlang)
+h <- function() abort("This is an error!")
+h()
+```
+
+The best error messages tell you what is wrong and point you in the right direction to fix the problem. The {tidyverse} [style guide](https://style.tidyverse.org/error-messages.html) discusses a few general principles that may be useful.
+
+Warnings, signalled by `warning()`, are weaker than errors: they signal that something has gone wrong, but the code has been able to recover and continue. Unlike errors, you can have multiple warnings from a single function call:
+
+Warnings occupy a somewhat challenging place between messages ("you should know about this") and errors ("you must fix this!"), and it's hard to give precise advice on when to use them. Generally, be restrained, as warnings are easy to miss if there's a lot of other output, and you don't want your function to recover too easily from clearly invalid input.
+
+Messages, signalled by `message()`, are informational; use them to tell the user that you've done something on their behalf. Good messages are a balancing act: you want to provide just enough information so the user knows what's going on, but not so much that they're overwhelmed.
+
+The purposes of `cat()` and `message()` are different. Use `cat()` when the primary role of the function is to print to the console, like `print()` or `str()` methods. Use `message()` as a side-channel to print to the console when the primary purpose of the function is something else. In other words, `cat()` is for when the user asks for something to be printed and `message()` is for when the developer elects to print something.
+
+The simplest way of handling conditions in R is to simply ignore them:
+
+* Ignore errors with `try()`.
+* Ignore warnings with `suppressWarnings()`.
+* Ignore messages with `suppressMessages()`.
+
+```{r error=TRUE}
+f2 <- function(x) {
+  try(log(x))
+  10
+}
+f2("a")
+```
+
+Two functions, `tryCatch()` and `withCallingHandlers()`, allow us to register handlers, functions that take the signalled condition as their single argument. They differ in the type of handlers that they create:
+
+* `tryCatch()` defines exiting handlers; after the condition is handled, control returns to the context where `tryCatch()` was called. This makes `tryCatch()` most suitable for working with errors and interrupts, as these have to exit anyway.
+* `withCallingHandlers()` defines calling handlers; after the condition is captured control returns to the context where the condition was signalled. This makes it most suitable for working with non-error conditions.
+
+## Python
+
+In Python when an error occurs, an **exception** is automatically triggered and the default way to handle it is to stop the program and output an error message. Exceptions can also be manually triggered using `raise`. You can catch exceptions and handle them as you like using:
+
+* try/except - this will catch and recover from exceptions
+* try/finally - the finally block will execute code regardless of whether an exception occurred or not
+
+Use `assert` to conditionally trigger an exception; check if something is true.
+
+Exceptions are typically used for a variety of purposes.
+
+* Error handling - Python raises exceptions whenever it detects errors in programs at runtime.
+* Event notification - Exceptions can also be used to signal valid conditions without you having to pass
+result flags around a program or test them explicitly.
+* Special-case handling - Sometimes a condition may occur so rarely that it's hard to justify convoluting your code to handle it in multiple places.
+* Unusual control flows - Exceptions are a sort of high-level and structured "go to", you can
+use them as the basis for implementing exotic control flows.
