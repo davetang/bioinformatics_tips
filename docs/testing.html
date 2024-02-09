@@ -468,15 +468,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree245b9f3de1f7f3c4684535e73ed4b28662c2994ftargetblank245b9f3a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreea62ef5d5aee28192d21d171e34326d7b71a2fb3ftargetblanka62ef5da">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/245b9f3de1f7f3c4684535e73ed4b28662c2994f" target="_blank">245b9f3</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/a62ef5d5aee28192d21d171e34326d7b71a2fb3f" target="_blank">a62ef5d</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree245b9f3de1f7f3c4684535e73ed4b28662c2994ftargetblank245b9f3a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreea62ef5d5aee28192d21d171e34326d7b71a2fb3ftargetblanka62ef5da"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -486,7 +486,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/245b9f3de1f7f3c4684535e73ed4b28662c2994f" target="_blank">245b9f3</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/a62ef5d5aee28192d21d171e34326d7b71a2fb3f" target="_blank">a62ef5d</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -547,6 +547,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/a62ef5d5aee28192d21d171e34326d7b71a2fb3f/analysis/testing.Rmd" target="_blank">a62ef5d</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-02-09
+</td>
+<td>
+tryCatch and withCallingHandlers examples
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/674c18c773c365665a94bca45b216863bb0f4fc4/docs/testing.html" target="_blank">674c18c</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-02-09
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -740,6 +774,88 @@ the condition is captured control returns to the context where the
 condition was signalled. This makes it most suitable for working with
 non-error conditions.</li>
 </ul>
+<pre class="r"><code>tryCatch(
+  error = function(cnd) {
+    # code to run when error is thrown
+  },
+  code_to_run_while_handlers_are_active
+)
+
+withCallingHandlers(
+  warning = function(cnd) {
+    # code to run when warning is signalled
+  },
+  message = function(cnd) {
+    # code to run when message is signalled
+  },
+  code_to_run_while_handlers_are_active
+)</code></pre>
+<p><code>tryCatch()</code> registers exiting handlers, and is typically
+used to handle error conditions. It allows you to override the default
+error behaviour. For example, the following code will return NA instead
+of throwing an error:</p>
+<pre class="r"><code>f3 &lt;- function(x) {
+  tryCatch(
+    error = function(cnd) NA,
+    log(x)
+  )
+}
+
+f3(&quot;x&quot;)</code></pre>
+<pre><code>[1] NA</code></pre>
+<pre class="r"><code>f3(7.389056)</code></pre>
+<pre><code>[1] 2</code></pre>
+<p>The <code>stop()</code> function is never run because once a
+condition is caught, it exits.</p>
+<pre class="r"><code>tryCatch(
+  message = function(cnd) &quot;There&quot;,
+  {
+    message(&quot;Here&quot;)
+    stop(&quot;This code is never run!&quot;)
+  }
+)</code></pre>
+<pre><code>[1] &quot;There&quot;</code></pre>
+<p>Add a <code>finally</code> argument to have code that always
+runs.</p>
+<pre class="r"><code>tryCatch(
+  message = function(cnd) &quot;There&quot;,
+  {
+    message(&quot;Here&quot;)
+    stop(&quot;This code is never run!&quot;)
+  },
+  finally = {
+    message(&quot;This always runs!&quot;)
+  }
+)</code></pre>
+<pre><code>This always runs!</code></pre>
+<pre><code>[1] &quot;There&quot;</code></pre>
+<p><code>withCallingHandlers</code> sets up calling handlers: code
+execution continues normally once the handler returns.</p>
+<pre class="r"><code>tryCatch(
+  message = function(cnd) cat(&quot;Caught a message!\n&quot;), 
+  {
+    message(&quot;Someone there?&quot;)
+    message(&quot;Why, yes!&quot;)
+  }
+)</code></pre>
+<pre><code>Caught a message!</code></pre>
+<pre class="r"><code>withCallingHandlers(
+  message = function(cnd) cat(&quot;Caught a message!\n&quot;), 
+  {
+    message(&quot;Someone there?&quot;)
+    message(&quot;Why, yes!&quot;)
+  }
+)</code></pre>
+<pre><code>Caught a message!</code></pre>
+<pre><code>Someone there?</code></pre>
+<pre><code>Caught a message!</code></pre>
+<pre><code>Why, yes!</code></pre>
+<ul>
+<li>An exiting handler handles a signal like you handle a problem; it
+makes the problem go away.</li>
+<li>A calling handler handles a signal like you handle a car; the car
+still exists.</li>
+</ul>
 </div>
 <div id="python" class="section level2">
 <h2>Python</h2>
@@ -749,9 +865,11 @@ program and output an error message. Exceptions can also be manually
 triggered using <code>raise</code>. You can catch exceptions and handle
 them as you like using:</p>
 <ul>
-<li>try/except - this will catch and recover from exceptions</li>
+<li>try/except - this will catch and recover from exceptions, like
+<code>tryCatch()</code> in R.</li>
 <li>try/finally - the finally block will execute code regardless of
-whether an exception occurred or not</li>
+whether an exception occurred or not, like <code>tryCatch()</code> with
+the <code>finally</code> argument in R.</li>
 </ul>
 <p>Use <code>assert</code> to conditionally trigger an exception; check
 if something is true.</p>
