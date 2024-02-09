@@ -11,11 +11,11 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2022-12-07" />
+<meta name="date" content="2024-02-09" />
 
 <title>Implement tests into scripts, programs, and workflows</title>
 
-<script src="site_libs/header-attrs-2.17/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
@@ -34,8 +34,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -308,7 +308,7 @@ $(document).ready(function () {
 <h1 class="title toc-ignore">Implement tests into scripts, programs, and
 workflows</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2022-12-07</h4>
+<h4 class="date">2024-02-09</h4>
 
 </div>
 
@@ -337,7 +337,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2022-12-07
+<strong>Last updated:</strong> 2024-02-09
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -355,7 +355,7 @@ title="This is the local directory in which the code in this file was executed."
 This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
 analysis was created with <a
   href="https://github.com/workflowr/workflowr">workflowr</a> (version
-1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
 that were applied when the results were created. The <em>Past
 versions</em> tab lists the development history.
 </p>
@@ -468,15 +468,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree7ab501198d8e367f0722e61c8080284590ca5b18targetblank7ab5011a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree245b9f3de1f7f3c4684535e73ed4b28662c2994ftargetblank245b9f3a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/7ab501198d8e367f0722e61c8080284590ca5b18" target="_blank">7ab5011</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/245b9f3de1f7f3c4684535e73ed4b28662c2994f" target="_blank">245b9f3</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree7ab501198d8e367f0722e61c8080284590ca5b18targetblank7ab5011a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree245b9f3de1f7f3c4684535e73ed4b28662c2994ftargetblank245b9f3a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -486,7 +486,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/7ab501198d8e367f0722e61c8080284590ca5b18" target="_blank">7ab5011</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/245b9f3de1f7f3c4684535e73ed4b28662c2994f" target="_blank">245b9f3</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -501,11 +501,7 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-
-Unstaged changes:
-    Modified:   analysis/scripting.Rmd
 
 </code></pre>
 <p>
@@ -551,6 +547,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/245b9f3de1f7f3c4684535e73ed4b28662c2994f/analysis/testing.Rmd" target="_blank">245b9f3</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-02-09
+</td>
+<td>
+Error handling in R and Python
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/72336b68303956f854dbee67eb84fcc2b61c5e40/docs/testing.html" target="_blank">72336b6</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2022-12-07
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -627,6 +657,118 @@ help determine exactly what that code is supposed to do. This is known
 as <a
 href="https://en.wikipedia.org/wiki/Test-driven_development">Test-Driven
 Development</a> and advocates writing tests before writing the code.</p>
+<div id="r" class="section level2">
+<h2>R</h2>
+<p><a href="https://adv-r.hadley.nz/conditions.html">Three signalling
+conditions</a> in R:</p>
+<ol style="list-style-type: decimal">
+<li>Errors: execution must stop</li>
+<li>Warnings: partial recovery</li>
+<li>Messages:</li>
+</ol>
+<pre class="r"><code>stop(&quot;This is what an error looks like&quot;)</code></pre>
+<pre><code>Error in eval(expr, envir, enclos): This is what an error looks like</code></pre>
+<pre class="r"><code>warning(&quot;This is what a warning looks like&quot;)</code></pre>
+<pre><code>Warning: This is what a warning looks like</code></pre>
+<pre class="r"><code>message(&quot;This is what a message looks like&quot;)</code></pre>
+<pre><code>This is what a message looks like</code></pre>
+<p>In base R, errors are signalled, or thrown, by <code>stop()</code>;
+<code>call. = FALSE</code> is used because it’s not typically useful to
+include the call.</p>
+<pre class="r"><code>h &lt;- function() stop(&quot;This is an error!&quot;, call. = FALSE)
+h()</code></pre>
+<pre><code>Error: This is an error!</code></pre>
+<p>The {rlang} equivalent is <code>abort</code>.</p>
+<pre class="r"><code>library(rlang)
+h &lt;- function() abort(&quot;This is an error!&quot;)
+h()</code></pre>
+<pre><code>Error in `h()`:
+! This is an error!</code></pre>
+<p>The best error messages tell you what is wrong and point you in the
+right direction to fix the problem. The {tidyverse} <a
+href="https://style.tidyverse.org/error-messages.html">style guide</a>
+discusses a few general principles that may be useful.</p>
+<p>Warnings, signalled by <code>warning()</code>, are weaker than
+errors: they signal that something has gone wrong, but the code has been
+able to recover and continue. Unlike errors, you can have multiple
+warnings from a single function call:</p>
+<p>Warnings occupy a somewhat challenging place between messages (“you
+should know about this”) and errors (“you must fix this!”), and it’s
+hard to give precise advice on when to use them. Generally, be
+restrained, as warnings are easy to miss if there’s a lot of other
+output, and you don’t want your function to recover too easily from
+clearly invalid input.</p>
+<p>Messages, signalled by <code>message()</code>, are informational; use
+them to tell the user that you’ve done something on their behalf. Good
+messages are a balancing act: you want to provide just enough
+information so the user knows what’s going on, but not so much that
+they’re overwhelmed.</p>
+<p>The purposes of <code>cat()</code> and <code>message()</code> are
+different. Use <code>cat()</code> when the primary role of the function
+is to print to the console, like <code>print()</code> or
+<code>str()</code> methods. Use <code>message()</code> as a side-channel
+to print to the console when the primary purpose of the function is
+something else. In other words, <code>cat()</code> is for when the user
+asks for something to be printed and <code>message()</code> is for when
+the developer elects to print something.</p>
+<p>The simplest way of handling conditions in R is to simply ignore
+them:</p>
+<ul>
+<li>Ignore errors with <code>try()</code>.</li>
+<li>Ignore warnings with <code>suppressWarnings()</code>.</li>
+<li>Ignore messages with <code>suppressMessages()</code>.</li>
+</ul>
+<pre class="r"><code>f2 &lt;- function(x) {
+  try(log(x))
+  10
+}
+f2(&quot;a&quot;)</code></pre>
+<pre><code>Error in log(x) : non-numeric argument to mathematical function</code></pre>
+<pre><code>[1] 10</code></pre>
+<p>Two functions, <code>tryCatch()</code> and
+<code>withCallingHandlers()</code>, allow us to register handlers,
+functions that take the signalled condition as their single argument.
+They differ in the type of handlers that they create:</p>
+<ul>
+<li><code>tryCatch()</code> defines exiting handlers; after the
+condition is handled, control returns to the context where
+<code>tryCatch()</code> was called. This makes <code>tryCatch()</code>
+most suitable for working with errors and interrupts, as these have to
+exit anyway.</li>
+<li><code>withCallingHandlers()</code> defines calling handlers; after
+the condition is captured control returns to the context where the
+condition was signalled. This makes it most suitable for working with
+non-error conditions.</li>
+</ul>
+</div>
+<div id="python" class="section level2">
+<h2>Python</h2>
+<p>In Python when an error occurs, an <strong>exception</strong> is
+automatically triggered and the default way to handle it is to stop the
+program and output an error message. Exceptions can also be manually
+triggered using <code>raise</code>. You can catch exceptions and handle
+them as you like using:</p>
+<ul>
+<li>try/except - this will catch and recover from exceptions</li>
+<li>try/finally - the finally block will execute code regardless of
+whether an exception occurred or not</li>
+</ul>
+<p>Use <code>assert</code> to conditionally trigger an exception; check
+if something is true.</p>
+<p>Exceptions are typically used for a variety of purposes.</p>
+<ul>
+<li>Error handling - Python raises exceptions whenever it detects errors
+in programs at runtime.</li>
+<li>Event notification - Exceptions can also be used to signal valid
+conditions without you having to pass result flags around a program or
+test them explicitly.</li>
+<li>Special-case handling - Sometimes a condition may occur so rarely
+that it’s hard to justify convoluting your code to handle it in multiple
+places.</li>
+<li>Unusual control flows - Exceptions are a sort of high-level and
+structured “go to”, you can use them as the basis for implementing
+exotic control flows.</li>
+</ul>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
@@ -636,13 +778,13 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.2.0 (2022-04-22)
+<pre><code>R version 4.3.2 (2023-10-31)
 Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 20.04.4 LTS
+Running under: Ubuntu 22.04.3 LTS
 
 Matrix products: default
-BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
-LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3
+BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -652,25 +794,28 @@ locale:
  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 
+time zone: Etc/UTC
+tzcode source: system (glibc)
+
 attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] workflowr_1.7.0
+[1] rlang_1.1.1     workflowr_1.7.1
 
 loaded via a namespace (and not attached):
- [1] Rcpp_1.0.8.3     bslib_0.4.1      compiler_4.2.0   pillar_1.7.0    
- [5] later_1.3.0      git2r_0.30.1     jquerylib_0.1.4  tools_4.2.0     
- [9] getPass_0.2-2    digest_0.6.30    jsonlite_1.8.3   evaluate_0.17   
-[13] tibble_3.1.7     lifecycle_1.0.3  pkgconfig_2.0.3  rlang_1.0.6     
-[17] cli_3.4.1        rstudioapi_0.13  yaml_2.3.6       xfun_0.34       
-[21] fastmap_1.1.0    httr_1.4.3       stringr_1.4.0    knitr_1.39      
-[25] sass_0.4.1       fs_1.5.2         vctrs_0.5.0      rprojroot_2.0.3 
-[29] glue_1.6.2       R6_2.5.1         processx_3.8.0   fansi_1.0.3     
-[33] rmarkdown_2.17   callr_3.7.3      magrittr_2.0.3   whisker_0.4     
-[37] ps_1.7.2         promises_1.2.0.1 htmltools_0.5.2  ellipsis_0.3.2  
-[41] httpuv_1.6.6     utf8_1.2.2       stringi_1.7.6    cachem_1.0.6    
-[45] crayon_1.5.2    </code></pre>
+ [1] vctrs_0.6.4       httr_1.4.7        cli_3.6.1         knitr_1.44       
+ [5] xfun_0.40         stringi_1.7.12    processx_3.8.2    promises_1.2.1   
+ [9] jsonlite_1.8.7    glue_1.6.2        rprojroot_2.0.3   git2r_0.32.0     
+[13] htmltools_0.5.6.1 httpuv_1.6.12     ps_1.7.5          sass_0.4.7       
+[17] fansi_1.0.5       rmarkdown_2.25    jquerylib_0.1.4   tibble_3.2.1     
+[21] evaluate_0.22     fastmap_1.1.1     yaml_2.3.7        lifecycle_1.0.3  
+[25] whisker_0.4.1     stringr_1.5.0     compiler_4.3.2    fs_1.6.3         
+[29] pkgconfig_2.0.3   Rcpp_1.0.11       rstudioapi_0.15.0 later_1.3.1      
+[33] digest_0.6.33     R6_2.5.1          utf8_1.2.4        pillar_1.9.0     
+[37] callr_3.7.3       magrittr_2.0.3    bslib_0.5.1       tools_4.3.2      
+[41] cachem_1.0.8      getPass_0.2-2    </code></pre>
+</div>
 </div>
 
 
