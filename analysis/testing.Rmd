@@ -95,12 +95,95 @@ Two functions, `tryCatch()` and `withCallingHandlers()`, allow us to register ha
 * `tryCatch()` defines exiting handlers; after the condition is handled, control returns to the context where `tryCatch()` was called. This makes `tryCatch()` most suitable for working with errors and interrupts, as these have to exit anyway.
 * `withCallingHandlers()` defines calling handlers; after the condition is captured control returns to the context where the condition was signalled. This makes it most suitable for working with non-error conditions.
 
+```{r eval=FALSE}
+tryCatch(
+  error = function(cnd) {
+    # code to run when error is thrown
+  },
+  code_to_run_while_handlers_are_active
+)
+
+withCallingHandlers(
+  warning = function(cnd) {
+    # code to run when warning is signalled
+  },
+  message = function(cnd) {
+    # code to run when message is signalled
+  },
+  code_to_run_while_handlers_are_active
+)
+```
+
+`tryCatch()` registers exiting handlers, and is typically used to handle error conditions. It allows you to override the default error behaviour. For example, the following code will return NA instead of throwing an error:
+
+```{r}
+f3 <- function(x) {
+  tryCatch(
+    error = function(cnd) NA,
+    log(x)
+  )
+}
+
+f3("x")
+f3(7.389056)
+```
+
+The `stop()` function is never run because once a condition is caught, it exits.
+
+```{r}
+tryCatch(
+  message = function(cnd) "There",
+  {
+    message("Here")
+    stop("This code is never run!")
+  }
+)
+```
+
+Add a `finally` argument to have code that always runs.
+
+```{r}
+tryCatch(
+  message = function(cnd) "There",
+  {
+    message("Here")
+    stop("This code is never run!")
+  },
+  finally = {
+    message("This always runs!")
+  }
+)
+```
+
+`withCallingHandlers` sets up calling handlers: code execution continues normally once the handler returns.
+
+```{r}
+tryCatch(
+  message = function(cnd) cat("Caught a message!\n"), 
+  {
+    message("Someone there?")
+    message("Why, yes!")
+  }
+)
+
+withCallingHandlers(
+  message = function(cnd) cat("Caught a message!\n"), 
+  {
+    message("Someone there?")
+    message("Why, yes!")
+  }
+)
+```
+
+* An exiting handler handles a signal like you handle a problem; it makes the problem go away.
+* A calling handler handles a signal like you handle a car; the car still exists.
+
 ## Python
 
 In Python when an error occurs, an **exception** is automatically triggered and the default way to handle it is to stop the program and output an error message. Exceptions can also be manually triggered using `raise`. You can catch exceptions and handle them as you like using:
 
-* try/except - this will catch and recover from exceptions
-* try/finally - the finally block will execute code regardless of whether an exception occurred or not
+* try/except - this will catch and recover from exceptions, like `tryCatch()` in R.
+* try/finally - the finally block will execute code regardless of whether an exception occurred or not, like `tryCatch()` with the `finally` argument in R.
 
 Use `assert` to conditionally trigger an exception; check if something is true.
 
