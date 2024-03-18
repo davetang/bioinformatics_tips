@@ -31,6 +31,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -234,6 +237,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -241,6 +307,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -467,15 +543,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree6a40a22b16e3518e25e522ba8ab30768a5d370e4targetblank6a40a22a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree5ed2a80c27836d7252093af17566c345f78ea79ftargetblank5ed2a80a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/6a40a22b16e3518e25e522ba8ab30768a5d370e4" target="_blank">6a40a22</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/5ed2a80c27836d7252093af17566c345f78ea79f" target="_blank">5ed2a80</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree6a40a22b16e3518e25e522ba8ab30768a5d370e4targetblank6a40a22a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree5ed2a80c27836d7252093af17566c345f78ea79ftargetblank5ed2a80a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -485,7 +561,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/6a40a22b16e3518e25e522ba8ab30768a5d370e4" target="_blank">6a40a22</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/5ed2a80c27836d7252093af17566c345f78ea79f" target="_blank">5ed2a80</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -545,6 +621,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/5ed2a80c27836d7252093af17566c345f78ea79f/analysis/stats.Rmd" target="_blank">5ed2a80</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+<td>
+Include ToC
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/02c4da123a55f40107a580c98ab954e50f017828/docs/stats.html" target="_blank">02c4da1</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -905,6 +1015,43 @@ Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
 generated.</code></pre>
 <pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="figure/stats.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
+Past versions of unnamed-chunk-3-1.png
+</button>
+</p>
+<div id="fig-unnamed-chunk-3-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/02c4da123a55f40107a580c98ab954e50f017828/docs/figure/stats.Rmd/unnamed-chunk-3-1.png" target="_blank">02c4da1</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>We can see that the mean height coincides with the most frequent
 height and that the heights are symmetrical about the mean. The
 <code>qqnorm</code> function produces a normal QQ plot and
@@ -912,6 +1059,43 @@ height and that the heights are symmetrical about the mean. The
 <pre class="r"><code>qqnorm(socr$height, pch = 16)
 qqline(socr$height, col = 2, lty = 2)</code></pre>
 <p><img src="figure/stats.Rmd/qqnorm-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-qqnorm-1">
+Past versions of qqnorm-1.png
+</button>
+</p>
+<div id="fig-qqnorm-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/02c4da123a55f40107a580c98ab954e50f017828/docs/figure/stats.Rmd/qqnorm-1.png" target="_blank">02c4da1</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>The mean and standard deviation is <span class="math inline">\(172.70
 \pm 4.83\)</span>.</p>
 <pre class="r"><code>mean(socr$height)</code></pre>
@@ -1017,6 +1201,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -1049,6 +1235,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
