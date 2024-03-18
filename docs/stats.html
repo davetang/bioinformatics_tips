@@ -467,15 +467,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreecfd0f357ae300a16c831e1dd7ab47b1abd9a774ctargetblankcfd0f35a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree2c2f5ea209847f87f854847c38a81fa2174fc46etargetblank2c2f5eaa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/cfd0f357ae300a16c831e1dd7ab47b1abd9a774c" target="_blank">cfd0f35</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/2c2f5ea209847f87f854847c38a81fa2174fc46e" target="_blank">2c2f5ea</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreecfd0f357ae300a16c831e1dd7ab47b1abd9a774ctargetblankcfd0f35a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree2c2f5ea209847f87f854847c38a81fa2174fc46etargetblank2c2f5eaa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -485,7 +485,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/cfd0f357ae300a16c831e1dd7ab47b1abd9a774c" target="_blank">cfd0f35</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/2c2f5ea209847f87f854847c38a81fa2174fc46e" target="_blank">2c2f5ea</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -501,6 +501,9 @@ were generated:
 <pre><code>
 Ignored files:
     Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  .README.md.swp
 
 </code></pre>
 <p>
@@ -545,6 +548,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/2c2f5ea209847f87f854847c38a81fa2174fc46e/analysis/stats.Rmd" target="_blank">2c2f5ea</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+<td>
+Why n-1 and why squared deviations?
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/e8368efdd4563493e75c3249c252f65a192d8c65/docs/stats.html" target="_blank">e8368ef</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -659,6 +696,67 @@ squares of deviations</em> since that is what we are calculating.</p>
 </div>
 <div id="why-n---1" class="section level2">
 <h2>Why n - 1?</h2>
+<p>The two important basics of degrees of freedom are:</p>
+<ol style="list-style-type: decimal">
+<li>We are calculating statistics from just a small sample rather than
+the entire population of numbers and</li>
+<li>The mean that is used as the basis for the deviations that
+contribute to the sum of squares is based on the <strong>total</strong>
+of just that small sample.</li>
+</ol>
+<p>In ignorance of the true mean of the population, we are forced into
+using the total of our sample to calculate a mean from which the
+deviations are then calculated. It is that use of the
+<strong>total</strong> which restricts our freedom from <span
+class="math inline">\(n\)</span> to <span class="math inline">\(n -
+1\)</span>. If we used the true mean of the population and not the mean
+of the sample in calculating the sum of squares, we would divide by
+<span class="math inline">\(n\)</span> instead.</p>
+<p>As an analogy imagine a bookshelf and that we are trying to work out
+the mean thickness of all the books. We take a small sample of six
+books. and their combined thickness is 158 mm giving a mean of 26.3 mm.
+We need to know the individual deviation from the mean for each of the
+six books to calculate the variance.</p>
+<p>We measure the thickness of one book (1 d.f.) and it is 22mm. The
+remaining five books must total <span class="math inline">\(158 - 22 =
+136mm\)</span> in thickness. We measure one more book (2 d.f.) and it is
+24 mm thick. By the time, we measured the fifth book (fifth degree of
+freedom), the combined thickness is 129 mm. <strong>There are no more
+degrees of freedom for the six books!</strong> We do not need to pick up
+and measure the last book; it must be <span class="math inline">\(158 -
+129 = 29mm\)</span>. Therefore, given the mean of the sample, we know
+<strong>the total thickness of the six books</strong> and from this the
+individual thicknesses of all six books after measuring only five (hence
+5 d.f. for a sample of six!).</p>
+<p>By using the sample mean as the base from which to calculate the
+deviations for the sum of squares, we have lost 1 d.f. Thus variance is
+not the simple mean of the squared deviations, it is the squared
+deviation per <strong>opportunity for variation</strong> once we have
+been given the sample mean.</p>
+</div>
+<div id="why-are-the-deviations-squared" class="section level2">
+<h2>Why are the deviations squared?</h2>
+<p><a href="https://math.stackexchange.com/a/937602">You might</a> look
+at your data as measured in a multidimensional space, where each subject
+is a dimension and each item is a vector in that space from the origin
+towards the items’ measurement over the full subject’s space.</p>
+<p>Additional remark: this view of things has an additional nice flavour
+because it uncovers the condition, that the subjects are assumed
+independent of each other. This is to have the data-space Euclidean;
+changes in that independence-condition require then changes in the
+mathematics of the space: it has correlated (or “oblique”) axes.</p>
+<p>Now the distance of one vector-arrowhead to another is just the
+formula for distances in the Euclidean space, the square root of squares
+of distances-of-coordinates (from the Pythagorean theorem):</p>
+<p><span class="math display">\[
+d = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \cdots + (x_n - y_n)^2}
+\]</span></p>
+<p>And the standard deviation is that value, normalised by the number of
+subjects, if the mean-vector is taken as the y-vector.</p>
+<p><span class="math display">\[
+s = \sqrt{\frac{(x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \cdots + (x_n -
+\bar{x})^2}{n}}
+\]</span></p>
 </div>
 <div id="visualise" class="section level2">
 <h2>Visualise</h2>
