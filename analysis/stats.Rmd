@@ -140,6 +140,82 @@ $$
 s = \sqrt{\frac{\sum (x - \bar{x})^2}{n - 1}}
 $$
 
+## The normal distribution
+
+The word _distribution_ is short for _frequency distribution_, i.e., the frequency with which different numbers are found in a population. The normal distribution is a particular pattern of variation of numbers around the mean. It is symmetrical with the frequency of individual numbers falling off equally away from the mean in both directions.
+
+[One argument (and demonstration)](https://ekamperi.github.io/mathematics/2021/01/29/why-is-normal-distribution-so-ubiquitous.html) for why normal distributions are so common:
+
+> because many variables in the real world are the sum of other independent variables. And, when independent variables are added together, their sum converges to a normal distribution.
+
+Read in example dataset containing the height (inches) and weights (pounds) of 25,000 different humans of 18 years of age (that are converted back to cms and kgs).
+
+```{r}
+readr::read_csv(
+  file = "data/SOCR-HeightWeight.csv.gz",
+  show_col_types = FALSE,
+  col_names = c('index', 'height', 'weight'),
+  skip = 1
+) |>
+  dplyr::mutate(height = height * 2.54) |>
+  dplyr::mutate(weight = weight / 2.205) -> socr
+
+tail(socr)
+```
+
+Plot distribution of heights.
+
+```{r}
+library(ggplot2)
+ggplot(socr, aes(height)) +
+  geom_histogram(
+    aes(y = ..density..),
+    colour = "#000000",
+    fill = "#FFFFFF"
+  ) +
+  geom_density() +
+  geom_vline(
+    xintercept = mean(socr$height),
+    colour = "#990000",
+    lty = 2
+  ) +
+  theme_minimal() +
+  ggtitle("Distribution of heights in 25,000 18 year olds") +
+  NULL
+```
+
+We can see that the mean height coincides with the most frequent height and that the heights are symmetrical about the mean. The `qqnorm` function produces a normal QQ plot and `qqline` adds a line to a "theoretical" QQ plot.
+
+```{r qqnorm}
+qqnorm(socr$height, pch = 16)
+qqline(socr$height, col = 2, lty = 2)
+```
+
+The mean and standard deviation is $172.70 \pm 4.83$.
+
+```{r socr_mean_sd}
+mean(socr$height)
+sd(socr$height)
+```
+
+In a normal distribution, 68% of the data lie between the mean $\pm$ 1 $s$, which is what we observe in this dataset.
+
+```{r}
+x <- mean(socr$height)
+s <- sd(socr$height)
+
+prop.table(table(socr$height > x - s & socr$height < x + s))
+```
+
+95% of the data lie between the mean $\pm$ 2 $s$, which is true again in this dataset.
+
+```{r}
+x <- mean(socr$height)
+s <- sd(socr$height)
+
+prop.table(table(socr$height > x - 2 * s & socr$height < x + 2 * s))
+```
+
 ## Visualise
 
 [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
