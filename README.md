@@ -1,6 +1,6 @@
 # README
 
-![](https://github.com/davetang/bioinformatics_tips/actions/workflows/pages-build-deployment/badge.svg)
+[![pages-build-deployment](https://github.com/davetang/bioinformatics_tips/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/davetang/bioinformatics_tips/actions/workflows/pages/pages-build-deployment)
 
 A [workflowr](https://github.com/workflowr/workflowr) project for sharing bioinformatics tips. See the [Quick start guide](https://workflowr.github.io/workflowr/#quick-start) for more information.
 
