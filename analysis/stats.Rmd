@@ -92,6 +92,37 @@ It is essential to remember that:
 
 ## Why n - 1?
 
+The two important basics of degrees of freedom are:
+
+1. We are calculating statistics from just a small sample rather than the entire population of numbers and
+2. The mean that is used as the basis for the deviations that contribute to the sum of squares is based on the **total** of just that small sample.
+
+In ignorance of the true mean of the population, we are forced into using the total of our sample to calculate a mean from which the deviations are then calculated. It is that use of the **total** which restricts our freedom from $n$ to $n - 1$. If we used the true mean of the population and not the mean of the sample in calculating the sum of squares, we would divide by $n$ instead.
+
+As an analogy imagine a bookshelf and that we are trying to work out the mean thickness of all the books. We take a small sample of six books. and their combined thickness is 158 mm giving a mean of 26.3 mm. We need to know the individual deviation from the mean for each of the six books to calculate the variance.
+
+We measure the thickness of one book (1 d.f.) and it is 22mm. The remaining five books must total $158 - 22 = 136mm$ in thickness. We measure one more book (2 d.f.) and it is 24 mm thick. By the time, we measured the fifth book (fifth degree of freedom), the combined thickness is 129 mm. **There are no more degrees of freedom for the six books!** We do not need to pick up and measure the last book; it must be $158 - 129 = 29mm$. Therefore, given the mean of the sample, we know **the total thickness of the six books** and from this the individual thicknesses of all six books after measuring only five (hence 5 d.f. for a sample of six!).
+
+By using the sample mean as the base from which to calculate the deviations for the sum of squares, we have lost 1 d.f. Thus variance is not the simple mean of the squared deviations, it is the squared deviation per **opportunity for variation** once we have been given the sample mean.
+
+## Why are the deviations squared?
+
+[You might](https://math.stackexchange.com/a/937602) look at your data as measured in a multidimensional space, where each subject is a dimension and each item is a vector in that space from the origin towards the items' measurement over the full subject's space.
+
+Additional remark: this view of things has an additional nice flavour because it uncovers the condition, that the subjects are assumed independent of each other. This is to have the data-space Euclidean; changes in that independence-condition require then changes in the mathematics of the space: it has correlated (or "oblique") axes.
+
+Now the distance of one vector-arrowhead to another is just the formula for distances in the Euclidean space, the square root of squares of distances-of-coordinates (from the Pythagorean theorem):
+
+$$
+d = \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + \cdots + (x_n - y_n)^2}
+$$
+
+And the standard deviation is that value, normalised by the number of subjects, if the mean-vector is taken as the y-vector.
+
+$$
+s = \sqrt{\frac{(x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \cdots + (x_n - \bar{x})^2}{n}}
+$$
+
 ## Visualise
 
 [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
