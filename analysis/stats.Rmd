@@ -123,6 +123,23 @@ $$
 s = \sqrt{\frac{(x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \cdots + (x_n - \bar{x})^2}{n}}
 $$
 
+## The standard deviation
+
+Standard deviation is the square root of variance.
+
+```{r sd}
+sd(x1) == sqrt(var(x1))
+sd(x2)
+```
+
+In the case of `x2` the mean and standard deviation is $48.0 \pm 34.5$, which suggests variation between $48.0-34.5=13.5$ and $48.0+34.5=82.5$.
+
+The standard deviation was once called _root mean square deviation_. This was a helpful name as it reminds us of the calculation in reverse (deviation, square, mean, root), where mean is $n -1$.
+
+$$
+s = \sqrt{\frac{\sum (x - \bar{x})^2}{n - 1}}
+$$
+
 ## Visualise
 
 [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
