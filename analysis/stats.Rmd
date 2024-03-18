@@ -169,7 +169,8 @@ Plot distribution of heights.
 library(ggplot2)
 ggplot(socr, aes(height)) +
   geom_histogram(
-    aes(y = ..density..),
+    aes(y = after_stat(density)),
+    bins = 30,
     colour = "#000000",
     fill = "#FFFFFF"
   ) +
