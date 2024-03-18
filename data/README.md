@@ -15,3 +15,4 @@ curl -H 'Accept: application/json' \
 https://rest.ensembl.org/vep/human/id/ > example.json
 ```
 
+`SOCR-HeightWeight.csv.gz` from <http://socr.ucla.edu/docs/resources/SOCR_Data/SOCR_Data_Dinov_020108_HeightsWeights.html>.
