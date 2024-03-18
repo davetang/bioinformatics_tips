@@ -543,15 +543,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree5ed2a80c27836d7252093af17566c345f78ea79ftargetblank5ed2a80a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree0001a3a6153cd7c4f3be15276a17659c6dfdda73targetblank0001a3aa">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/5ed2a80c27836d7252093af17566c345f78ea79f" target="_blank">5ed2a80</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/0001a3a6153cd7c4f3be15276a17659c6dfdda73" target="_blank">0001a3a</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree5ed2a80c27836d7252093af17566c345f78ea79ftargetblank5ed2a80a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree0001a3a6153cd7c4f3be15276a17659c6dfdda73targetblank0001a3aa"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -561,7 +561,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/5ed2a80c27836d7252093af17566c345f78ea79f" target="_blank">5ed2a80</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/0001a3a6153cd7c4f3be15276a17659c6dfdda73" target="_blank">0001a3a</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -621,6 +621,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/0001a3a6153cd7c4f3be15276a17659c6dfdda73/analysis/stats.Rmd" target="_blank">0001a3a</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+<td>
+Address ggplot2 warnings
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/3a5bc7fc12ef91dd1d765d30554fe514ddbc51ca/docs/stats.html" target="_blank">3a5bc7f</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -995,7 +1029,8 @@ tail(socr)</code></pre>
 <pre class="r"><code>library(ggplot2)
 ggplot(socr, aes(height)) +
   geom_histogram(
-    aes(y = ..density..),
+    aes(y = after_stat(density)),
+    bins = 30,
     colour = &quot;#000000&quot;,
     fill = &quot;#FFFFFF&quot;
   ) +
@@ -1008,12 +1043,6 @@ ggplot(socr, aes(height)) +
   theme_minimal() +
   ggtitle(&quot;Distribution of heights in 25,000 18 year olds&quot;) +
   NULL</code></pre>
-<pre><code>Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
-ℹ Please use `after_stat(density)` instead.
-This warning is displayed once every 8 hours.
-Call `lifecycle::last_lifecycle_warnings()` to see where this warning was
-generated.</code></pre>
-<pre><code>`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="figure/stats.Rmd/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>
 <button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-unnamed-chunk-3-1">
