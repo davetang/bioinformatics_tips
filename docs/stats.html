@@ -467,15 +467,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree2c2f5ea209847f87f854847c38a81fa2174fc46etargetblank2c2f5eaa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree9fc987bfc76b2446009cb75d9ed44e5f1e465acctargetblank9fc987ba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/2c2f5ea209847f87f854847c38a81fa2174fc46e" target="_blank">2c2f5ea</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/9fc987bfc76b2446009cb75d9ed44e5f1e465acc" target="_blank">9fc987b</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree2c2f5ea209847f87f854847c38a81fa2174fc46etargetblank2c2f5eaa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree9fc987bfc76b2446009cb75d9ed44e5f1e465acctargetblank9fc987ba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -485,7 +485,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/2c2f5ea209847f87f854847c38a81fa2174fc46e" target="_blank">2c2f5ea</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/9fc987bfc76b2446009cb75d9ed44e5f1e465acc" target="_blank">9fc987b</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -501,9 +501,6 @@ were generated:
 <pre><code>
 Ignored files:
     Ignored:    .Rproj.user/
-
-Untracked files:
-    Untracked:  .README.md.swp
 
 </code></pre>
 <p>
@@ -548,6 +545,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/9fc987bfc76b2446009cb75d9ed44e5f1e465acc/analysis/stats.Rmd" target="_blank">9fc987b</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+<td>
+Standard deviation
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/52ab7ed5d81886a353f904da13ec8990a513c4a8/docs/stats.html" target="_blank">52ab7ed</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -756,6 +787,25 @@ subjects, if the mean-vector is taken as the y-vector.</p>
 <p><span class="math display">\[
 s = \sqrt{\frac{(x_1 - \bar{x})^2 + (x_2 - \bar{x})^2 + \cdots + (x_n -
 \bar{x})^2}{n}}
+\]</span></p>
+</div>
+<div id="the-standard-deviation" class="section level2">
+<h2>The standard deviation</h2>
+<p>Standard deviation is the square root of variance.</p>
+<pre class="r"><code>sd(x1) == sqrt(var(x1))</code></pre>
+<pre><code>[1] TRUE</code></pre>
+<pre class="r"><code>sd(x2)</code></pre>
+<pre><code>[1] 34.48478</code></pre>
+<p>In the case of <code>x2</code> the mean and standard deviation is
+<span class="math inline">\(48.0 \pm 34.5\)</span>, which suggests
+variation between <span class="math inline">\(48.0-34.5=13.5\)</span>
+and <span class="math inline">\(48.0+34.5=82.5\)</span>.</p>
+<p>The standard deviation was once called <em>root mean square
+deviation</em>. This was a helpful name as it reminds us of the
+calculation in reverse (deviation, square, mean, root), where mean is
+<span class="math inline">\(n -1\)</span>.</p>
+<p><span class="math display">\[
+s = \sqrt{\frac{\sum (x - \bar{x})^2}{n - 1}}
 \]</span></p>
 </div>
 <div id="visualise" class="section level2">
