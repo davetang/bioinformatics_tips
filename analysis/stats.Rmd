@@ -1,0 +1,101 @@
+---
+title: "Learn statistics"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Basics
+
+Statistics are summaries or collections of numbers. The mean, median, and mode are all summary statistics. When we can't take every single possible measurement (the population), which is often the case, we take an estimation using a sample.
+
+Statistics uses a lot of notation (usually algebraic), which is simply a shorthand way of expressing statistical computations. Most statistical calculations simply involve addition, subtraction, multiplication, division, and exponentiation. Common calculations include the "sum of cross products" and "sum of squares":
+
+$$
+\frac{(\sum xy)^2}{\sum x^2 + \sum y^2} = \frac{(sum\ of\ cross\ products)^2}{sum\ of\ squares\ for\ x + sum\ of\ squares\ for\ y}
+$$
+
+Calculating the mean is simply:
+
+$$
+\bar{x} = \frac{\sum x}{n}
+$$
+
+## Variance
+
+The mean as a summary statistic is useful but it does not provide any information on the variance. For example, the two datasets below have the same mean but as you can see have different variances.
+
+```{r eg1}
+x1 <- c(48, 49, 49, 47, 48, 47)
+x2 <- c(12, 62, 3, 50, 93, 68)
+mean(x1) == mean(x2)
+```
+
+The easiest (but least useful) way to summarise variation is by using the range; it's not that useful because it uses just two values (the lowest and highest values) from the total dataset.
+
+```{r eg1_range}
+range(x1)
+range(x2)
+```
+
+To make the best use of the datasets, we need a statistic that uses all the numbers. One key piece of intuition is to realise that **if all numbers are identical, there would be no variation and the numbers would all equal the mean**.
+
+```{r}
+x3 <- rep(48, 6)
+mean(x3)
+```
+
+Therefore, if the numbers are not the same, each number's contribution to the total variation is its _deviation_ (difference) from the mean. We could add all these differences (ignoring whether the difference is + or -) and come up with a "total deviation": $\sum(x - \bar{x})$.
+
+```{r total_deviation}
+sum(abs(x1 - mean(x1)))
+sum(abs(x2 - mean(x2)))
+```
+
+However the main problem with this method is that we can only compare total deviations between datasets with the same number. We need a deviation statistic that is independent of sample size, in the same way the mean is.
+
+We can divide the total deviation by the total number of numbers to get the mean (average) deviation:
+
+$$
+\frac{\sum(x - \bar{x})}{n} = \frac{The\ sum\ of\ all\ the\ deviations\ from\ the\ mean}{The\ number\ of\ numbers}
+$$
+
+```{r mean_deviation}
+sum(abs(x1 - mean(x1))) / length(x1)
+sum(abs(x2 - mean(x2))) / length(x2)
+```
+
+The mean average deviation is very close to the standard measure of variation used in statistics, which is the variance.
+
+$$
+variance = \frac{\sum(x - \bar{x})^2}{n - 1} = \frac{The\ sum\ of\ all\ the\ squared\ deviations\ from\ the\ mean}{One\ less\ than\ the\ number\ of\ numbers}
+$$
+
+```{r variance}
+var(x1)
+var(x2)
+```
+
+The bottom part of the variance equation is known as the _degrees of freedom_ (d.f.) and the top part, $\sum(x - \bar{x})^2$ is known as the _sum of squares_ but should really be called the _sum of squares of deviations_ since that is what we are calculating.
+
+It is essential to remember that:
+
+* _Sum of squares_ in statistics is the technical term for _summed squared deviations from the mean_.
+
+## Why n - 1?
+
+## Visualise
+
+[Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
+
+```{r anscombe}
+eg1 <- datasets::anscombe
+```
