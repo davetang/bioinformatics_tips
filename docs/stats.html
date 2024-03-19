@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2024-03-18" />
+<meta name="date" content="2024-03-19" />
 
 <title>Learn statistics</title>
 
@@ -383,7 +383,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Learn statistics</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2024-03-18</h4>
+<h4 class="date">2024-03-19</h4>
 
 </div>
 
@@ -412,7 +412,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-03-18
+<strong>Last updated:</strong> 2024-03-19
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -543,15 +543,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree0001a3a6153cd7c4f3be15276a17659c6dfdda73targetblank0001a3aa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree3fe5251e96543620d67217e0c5c4d1c4e99d5b19targetblank3fe5251a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/0001a3a6153cd7c4f3be15276a17659c6dfdda73" target="_blank">0001a3a</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/3fe5251e96543620d67217e0c5c4d1c4e99d5b19" target="_blank">3fe5251</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree0001a3a6153cd7c4f3be15276a17659c6dfdda73targetblank0001a3aa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree3fe5251e96543620d67217e0c5c4d1c4e99d5b19targetblank3fe5251a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -561,7 +561,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/0001a3a6153cd7c4f3be15276a17659c6dfdda73" target="_blank">0001a3a</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/3fe5251e96543620d67217e0c5c4d1c4e99d5b19" target="_blank">3fe5251</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -621,6 +621,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/3fe5251e96543620d67217e0c5c4d1c4e99d5b19/analysis/stats.Rmd" target="_blank">3fe5251</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-19
+</td>
+<td>
+Data transformation
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/d232abba732ab5ff978411bc5eb06a1600ff730a/docs/stats.html" target="_blank">d232abb</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-18
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1082,9 +1116,47 @@ Dave Tang
 </div>
 </div>
 <p>We can see that the mean height coincides with the most frequent
-height and that the heights are symmetrical about the mean. The
-<code>qqnorm</code> function produces a normal QQ plot and
-<code>qqline</code> adds a line to a “theoretical” QQ plot.</p>
+height and that the heights are symmetrical about the mean.</p>
+<p>The mean and standard deviation is <span class="math inline">\(172.70
+\pm 4.83\)</span>.</p>
+<pre class="r"><code>mean(socr$height)</code></pre>
+<pre><code>[1] 172.7025</code></pre>
+<pre class="r"><code>sd(socr$height)</code></pre>
+<pre><code>[1] 4.830264</code></pre>
+<p>In a normal distribution, 68% of the data lie between the mean <span
+class="math inline">\(\pm\)</span> 1 <span
+class="math inline">\(s\)</span>, which is what we observe in this
+dataset.</p>
+<pre class="r"><code>x &lt;- mean(socr$height)
+s &lt;- sd(socr$height)
+
+prop.table(table(socr$height &gt; x - s &amp; socr$height &lt; x + s))</code></pre>
+<pre><code>
+  FALSE    TRUE 
+0.31644 0.68356 </code></pre>
+<p>95% of the data lie between the mean <span
+class="math inline">\(\pm\)</span> 2 <span
+class="math inline">\(s\)</span>, which is true again in this
+dataset.</p>
+<pre class="r"><code>x &lt;- mean(socr$height)
+s &lt;- sd(socr$height)
+
+prop.table(table(socr$height &gt; x - 2 * s &amp; socr$height &lt; x + 2 * s))</code></pre>
+<pre><code>
+ FALSE   TRUE 
+0.0454 0.9546 </code></pre>
+<div id="checking-for-normality" class="section level3">
+<h3>Checking for normality</h3>
+<blockquote>
+<p><a href="https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot">In
+statistics</a>, a Q–Q plot (quantile–quantile plot) is a probability
+plot, a graphical method for comparing two probability distributions by
+plotting their quantiles against each other.</p>
+</blockquote>
+<p>The <code>qqnorm</code> function produces a normal Q-Q plot (where
+the x-axis contains the theoretical quantiles of a normal distribution);
+the <code>qqline</code> function adds a line to the “theoretical” Q-Q
+plot. Our height data fits the theoretical line almost perfectly.</p>
 <pre class="r"><code>qqnorm(socr$height, pch = 16)
 qqline(socr$height, col = 2, lty = 2)</code></pre>
 <p><img src="figure/stats.Rmd/qqnorm-1.png" width="672" style="display: block; margin: auto;" /></p>
@@ -1125,34 +1197,78 @@ Dave Tang
 </table>
 </div>
 </div>
-<p>The mean and standard deviation is <span class="math inline">\(172.70
-\pm 4.83\)</span>.</p>
-<pre class="r"><code>mean(socr$height)</code></pre>
-<pre><code>[1] 172.7025</code></pre>
-<pre class="r"><code>sd(socr$height)</code></pre>
-<pre><code>[1] 4.830264</code></pre>
-<p>In a normal distribution, 68% of the data lie between the mean <span
-class="math inline">\(\pm\)</span> 1 <span
-class="math inline">\(s\)</span>, which is what we observe in this
-dataset.</p>
-<pre class="r"><code>x &lt;- mean(socr$height)
-s &lt;- sd(socr$height)
+<p>However, biological data is typically not normally distributed but
+are asymmetrical. We often find data peak well to the left with a long
+right tail. The mean of the distribution will not coincide with the peak
+of the data and therefore using the normal distribution is clearly not
+appropriate.</p>
+<p>Another important point is our estimate of the standard deviation,
+which is based on a sample of the population. If our sample size is too
+small, our estimate of the standard deviation can be very inaccurate and
+therefore our estimate of the distribution.</p>
+<p>If a distribution is non-normal, a function such as logarithm or
+square root can be used to normalise the distribution; this is known as
+<a
+href="https://www.biostathandbook.com/transformation.html">transformation</a>.</p>
+<p>To illustrate transformation we will <a
+href="https://www.biostathandbook.com/transformation.html">use data</a>
+showing the abundance of the fish species <em>Umbra pygmaea</em>
+(Eastern mudminnow) in Maryland streams, which is non-normally
+distributed; there are a lot of streams with a small density of
+mudminnows, and a few streams with lots of them. Below are 12 numbers
+from the mudminnow data set.</p>
+<pre class="r"><code>library(ggridges)
+library(ggplot2)
 
-prop.table(table(socr$height &gt; x - s &amp; socr$height &lt; x + s))</code></pre>
-<pre><code>
-  FALSE    TRUE 
-0.31644 0.68356 </code></pre>
-<p>95% of the data lie between the mean <span
-class="math inline">\(\pm\)</span> 2 <span
-class="math inline">\(s\)</span>, which is true again in this
-dataset.</p>
-<pre class="r"><code>x &lt;- mean(socr$height)
-s &lt;- sd(socr$height)
+tibble::tibble(
+  raw = c(38, 1, 13, 2, 13, 20, 50, 9, 28, 6, 4, 43)
+) |&gt;
+  dplyr::mutate(stream = dplyr::row_number()) |&gt;
+  dplyr::mutate(sqrt = sqrt(raw)) |&gt;
+  dplyr::mutate(log = log(raw)) |&gt;
+  dplyr::mutate(reciprocal = 1/raw) |&gt;
+  dplyr::mutate(arcsine = asin(sqrt(raw/max(raw)))) |&gt;
+  dplyr::select(stream, dplyr::everything()) |&gt;
+  tidyr::pivot_longer(-stream, names_to = &#39;transformation&#39;) |&gt;
+  dplyr::mutate(transformation = factor(transformation, levels = c(&#39;log&#39;, &#39;reciprocal&#39;, &#39;arcsine&#39;, &#39;sqrt&#39;, &#39;raw&#39;))) -&gt; mudminnow
 
-prop.table(table(socr$height &gt; x - 2 * s &amp; socr$height &lt; x + 2 * s))</code></pre>
-<pre><code>
- FALSE   TRUE 
-0.0454 0.9546 </code></pre>
+ggplot(mudminnow, aes(x = value, y = transformation, fill = transformation)) +
+  geom_density_ridges(alpha=0.6, stat=&quot;binline&quot;, bins=30) +
+  theme_ridges() +
+  NULL</code></pre>
+<p><img src="figure/stats.Rmd/mudminnow-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>A square root transformation is used for data that are clumped and
+the variance is greater than the mean. As there is no square root for
+negative numbers, a constant needs to be added to each observation to
+make all observations positive. Note that the square root of a fraction
+becomes larger than the observation being transformed.</p>
+<pre class="r"><code>x &lt;- 0.16
+sqrt(x) &gt; x</code></pre>
+<pre><code>[1] TRUE</code></pre>
+<p>A reciprocal transformation is used when clumping of the data is very
+high. Since the reciprocal of <span class="math inline">\(x\)</span> is
+<span class="math inline">\(\frac{1}{x}\)</span>, the transformation
+leads to large numbers being smaller after transformation than smaller
+ones: <span class="math inline">\(\frac{1}{2} \gt
+\frac{1}{10}\)</span>.</p>
+<p>An arcsine transformation can be used to “stretch out” data points
+that range between the values 0 and 1. This type of transformation is
+typically used when dealing with proportions and percentages, especially
+where high or low percentages are involved. However, it makes little
+difference in the 30-70% range. In the code above, the raw counts were
+divided by the maximum value to create percentage-like values.</p>
+<pre class="r"><code>mudminnow |&gt;
+  dplyr::filter(transformation == &quot;raw&quot;) |&gt;
+  dplyr::pull(value) -&gt; x
+
+x / max(x)</code></pre>
+<pre><code> [1] 0.76 0.02 0.26 0.04 0.26 0.40 1.00 0.18 0.56 0.12 0.08 0.86</code></pre>
+<pre class="r"><code>asin(sqrt(x / max(x)))</code></pre>
+<pre><code> [1] 1.0588236 0.1418971 0.5350708 0.2013579 0.5350708 0.6847192 1.5707963
+ [8] 0.4381490 0.8455431 0.3537416 0.2867566 1.1872993</code></pre>
+<p>Data is transformed to make it suitable for statistical analysis and
+subsequent statistical comparisons.</p>
+</div>
 </div>
 <div id="visualise" class="section level2">
 <h2>Visualise</h2>
@@ -1192,25 +1308,25 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] ggplot2_3.4.4   workflowr_1.7.1
+[1] ggridges_0.5.6  ggplot2_3.4.4   workflowr_1.7.1
 
 loaded via a namespace (and not attached):
- [1] sass_0.4.7        utf8_1.2.4        generics_0.1.3    stringi_1.7.12   
- [5] hms_1.1.3         digest_0.6.33     magrittr_2.0.3    evaluate_0.22    
- [9] grid_4.3.2        fastmap_1.1.1     rprojroot_2.0.3   jsonlite_1.8.7   
-[13] processx_3.8.2    whisker_0.4.1     ps_1.7.5          promises_1.2.1   
-[17] httr_1.4.7        fansi_1.0.5       scales_1.2.1      jquerylib_0.1.4  
-[21] cli_3.6.1         rlang_1.1.1       crayon_1.5.2      munsell_0.5.0    
-[25] bit64_4.0.5       withr_2.5.1       cachem_1.0.8      yaml_2.3.7       
-[29] tools_4.3.2       parallel_4.3.2    tzdb_0.4.0        dplyr_1.1.3      
-[33] colorspace_2.1-0  httpuv_1.6.12     vctrs_0.6.4       R6_2.5.1         
-[37] lifecycle_1.0.3   git2r_0.32.0      stringr_1.5.0     fs_1.6.3         
-[41] bit_4.0.5         vroom_1.6.4       pkgconfig_2.0.3   callr_3.7.3      
-[45] pillar_1.9.0      bslib_0.5.1       later_1.3.1       gtable_0.3.4     
-[49] glue_1.6.2        Rcpp_1.0.11       xfun_0.40         tibble_3.2.1     
-[53] tidyselect_1.2.0  rstudioapi_0.15.0 knitr_1.44        farver_2.1.1     
-[57] htmltools_0.5.6.1 labeling_0.4.3    rmarkdown_2.25    readr_2.1.4      
-[61] compiler_4.3.2    getPass_0.2-2    </code></pre>
+ [1] tidyr_1.3.0       sass_0.4.7        utf8_1.2.4        generics_0.1.3   
+ [5] stringi_1.7.12    hms_1.1.3         digest_0.6.33     magrittr_2.0.3   
+ [9] evaluate_0.22     grid_4.3.2        fastmap_1.1.1     rprojroot_2.0.3  
+[13] jsonlite_1.8.7    processx_3.8.2    whisker_0.4.1     ps_1.7.5         
+[17] promises_1.2.1    httr_1.4.7        purrr_1.0.2       fansi_1.0.5      
+[21] scales_1.2.1      jquerylib_0.1.4   cli_3.6.1         rlang_1.1.1      
+[25] crayon_1.5.2      munsell_0.5.0     bit64_4.0.5       withr_2.5.1      
+[29] cachem_1.0.8      yaml_2.3.7        tools_4.3.2       parallel_4.3.2   
+[33] tzdb_0.4.0        dplyr_1.1.3       colorspace_2.1-0  httpuv_1.6.12    
+[37] vctrs_0.6.4       R6_2.5.1          lifecycle_1.0.3   git2r_0.32.0     
+[41] stringr_1.5.0     fs_1.6.3          bit_4.0.5         vroom_1.6.4      
+[45] pkgconfig_2.0.3   callr_3.7.3       pillar_1.9.0      bslib_0.5.1      
+[49] later_1.3.1       gtable_0.3.4      glue_1.6.2        Rcpp_1.0.11      
+[53] xfun_0.40         tibble_3.2.1      tidyselect_1.2.0  rstudioapi_0.15.0
+[57] knitr_1.44        farver_2.1.1      htmltools_0.5.6.1 labeling_0.4.3   
+[61] rmarkdown_2.25    readr_2.1.4       compiler_4.3.2    getPass_0.2-2    </code></pre>
 </div>
 </div>
 
