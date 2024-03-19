@@ -543,15 +543,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree35d9b85ab5418841499cc4fb8364cf060792b8datargetblank35d9b85a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree2c2bd87813c3b476e5ded4b26981197544e27fcatargetblank2c2bd87a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/35d9b85ab5418841499cc4fb8364cf060792b8da" target="_blank">35d9b85</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/2c2bd87813c3b476e5ded4b26981197544e27fca" target="_blank">2c2bd87</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree35d9b85ab5418841499cc4fb8364cf060792b8datargetblank35d9b85a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree2c2bd87813c3b476e5ded4b26981197544e27fcatargetblank2c2bd87a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -561,7 +561,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/35d9b85ab5418841499cc4fb8364cf060792b8da" target="_blank">35d9b85</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/2c2bd87813c3b476e5ded4b26981197544e27fca" target="_blank">2c2bd87</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -621,6 +621,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/2c2bd87813c3b476e5ded4b26981197544e27fca/analysis/stats.Rmd" target="_blank">2c2bd87</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-19
+</td>
+<td>
+Median Absolute Deviation
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/9f1076f5b79a2deb9bf5538ed8449293393b9338/docs/stats.html" target="_blank">9f1076f</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -970,6 +1004,59 @@ squares of deviations</em> since that is what we are calculating.</p>
 <li><em>Sum of squares</em> in statistics is the technical term for
 <em>summed squared deviations from the mean</em>.</li>
 </ul>
+<div id="median-absolute-deviation" class="section level3">
+<h3>Median Absolute Deviation</h3>
+<blockquote>
+<p>The <a
+href="https://en.wikipedia.org/wiki/Median_absolute_deviation">median
+absolute deviation</a> is a measure of statistical dispersion. Moreover,
+the MAD is a robust statistic, being more resilient to outliers in a
+data set than the standard deviation. In the standard deviation, the
+distances from the mean are squared, so large deviations are weighted
+more heavily, and thus outliers can heavily influence it. In the MAD,
+the deviations of a small number of outliers are irrelevant.</p>
+<p>Because the MAD is a more robust estimator of scale than the sample
+variance or standard deviation, it works better with distributions
+without a mean or variance, such as the Cauchy distribution.</p>
+</blockquote>
+<p>The <code>mad</code> function description:</p>
+<blockquote>
+<p>Compute the median absolute deviation, i.e., the (lo-/hi-) median of
+the absolute deviations from the median, and (by default) adjust by a
+factor for asymptotically normal consistency.</p>
+</blockquote>
+<p>No variance.</p>
+<pre class="r"><code>mad(rep(1, 10))</code></pre>
+<pre><code>[1] 0</code></pre>
+<p>Single outlier.</p>
+<pre class="r"><code>one_outlier &lt;- c(rep(1, 9), 100)
+one_outlier</code></pre>
+<pre><code> [1]   1   1   1   1   1   1   1   1   1 100</code></pre>
+<pre class="r"><code>mad(one_outlier)</code></pre>
+<pre><code>[1] 0</code></pre>
+<p>Same median.</p>
+<pre class="r"><code>four_outlier &lt;- c(rep(1, 6), rep(100, 4))
+four_outlier</code></pre>
+<pre><code> [1]   1   1   1   1   1   1 100 100 100 100</code></pre>
+<pre class="r"><code>mad(four_outlier)</code></pre>
+<pre><code>[1] 0</code></pre>
+<p>Cauchy Distribution.</p>
+<pre class="r"><code>set.seed(1984)
+x &lt;- rcauchy(n = 1000, location = 1, scale = 2)
+hist(x, breaks = 10)
+abline(v = mean(x), col = 2, lty = 2)</code></pre>
+<p><img src="figure/stats.Rmd/cauchy_dist-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Mean and median.</p>
+<pre class="r"><code>mean(x)</code></pre>
+<pre><code>[1] 2.151276</code></pre>
+<pre class="r"><code>median(x)</code></pre>
+<pre><code>[1] 1.063466</code></pre>
+<p>SD and MAD.</p>
+<pre class="r"><code>sd(x)</code></pre>
+<pre><code>[1] 40.77717</code></pre>
+<pre class="r"><code>mad(x)</code></pre>
+<pre><code>[1] 3.006772</code></pre>
+</div>
 </div>
 <div id="why-n---1" class="section level2">
 <h2>Why n - 1?</h2>
