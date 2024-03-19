@@ -90,6 +90,61 @@ It is essential to remember that:
 
 * _Sum of squares_ in statistics is the technical term for _summed squared deviations from the mean_.
 
+### Median Absolute Deviation
+
+> The [median absolute deviation](https://en.wikipedia.org/wiki/Median_absolute_deviation) is a measure of statistical dispersion. Moreover, the MAD is a robust statistic, being more resilient to outliers in a data set than the standard deviation. In the standard deviation, the distances from the mean are squared, so large deviations are weighted more heavily, and thus outliers can heavily influence it. In the MAD, the deviations of a small number of outliers are irrelevant.
+>
+> Because the MAD is a more robust estimator of scale than the sample variance or standard deviation, it works better with distributions without a mean or variance, such as the Cauchy distribution.
+
+The `mad` function description:
+
+> Compute the median absolute deviation, i.e., the (lo-/hi-) median of the absolute deviations from the median, and (by default) adjust by a factor for asymptotically normal consistency.
+
+No variance.
+
+```{r zero_variance_mad}
+mad(rep(1, 10))
+```
+
+Single outlier.
+
+```{r one_outlier_mad}
+one_outlier <- c(rep(1, 9), 100)
+one_outlier
+mad(one_outlier)
+```
+
+Same median.
+
+```{r four_outlier_mad}
+four_outlier <- c(rep(1, 6), rep(100, 4))
+four_outlier
+mad(four_outlier)
+```
+
+Cauchy Distribution.
+
+```{r cauchy_dist}
+set.seed(1984)
+x <- rcauchy(n = 1000, location = 1, scale = 2)
+hist(x, breaks = 10)
+abline(v = mean(x), col = 2, lty = 2)
+```
+
+Mean and median.
+
+```{r cauchy_mean_median}
+mean(x)
+median(x)
+```
+
+SD and MAD.
+
+```{r cauchy_sd_mad}
+sd(x)
+mad(x)
+```
+
 ## Why n - 1?
 
 The two important basics of degrees of freedom are:
