@@ -275,6 +275,13 @@ asin(sqrt(x / max(x)))
 
 Data is transformed to make it suitable for statistical analysis and subsequent statistical comparisons.
 
+## Type 1 and Type 2 errors
+
+* A Type 1 error leads to a false positive, i.e., we erroneously claim a difference where none exists.
+* A Type 2 error is the converse, a false negative, i.e., we fail to identify a true difference.
+
+Convicting an innocent person is a Type 1 error and acquitting a guilty one is a Type 2 error.
+
 ## Visualise
 
 [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
