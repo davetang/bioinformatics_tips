@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2024-03-19" />
+<meta name="date" content="2024-03-27" />
 
 <title>Learn statistics</title>
 
@@ -383,7 +383,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Learn statistics</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2024-03-19</h4>
+<h4 class="date">2024-03-27</h4>
 
 </div>
 
@@ -412,7 +412,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-03-19
+<strong>Last updated:</strong> 2024-03-27
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -543,15 +543,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree2c2bd87813c3b476e5ded4b26981197544e27fcatargetblank2c2bd87a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree27510ee7a21840f3282582d129f1e44beee171fatargetblank27510eea">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/2c2bd87813c3b476e5ded4b26981197544e27fca" target="_blank">2c2bd87</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/27510ee7a21840f3282582d129f1e44beee171fa" target="_blank">27510ee</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree2c2bd87813c3b476e5ded4b26981197544e27fcatargetblank2c2bd87a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree27510ee7a21840f3282582d129f1e44beee171fatargetblank27510eea"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -561,7 +561,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/2c2bd87813c3b476e5ded4b26981197544e27fca" target="_blank">2c2bd87</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/27510ee7a21840f3282582d129f1e44beee171fa" target="_blank">27510ee</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -621,6 +621,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/27510ee7a21840f3282582d129f1e44beee171fa/analysis/stats.Rmd" target="_blank">27510ee</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-27
+</td>
+<td>
+Comparing means
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/e155003e13510c94a7b5c2e1870cf289a67cc3b7/docs/stats.html" target="_blank">e155003</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-19
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1046,6 +1080,43 @@ x &lt;- rcauchy(n = 1000, location = 1, scale = 2)
 hist(x, breaks = 10)
 abline(v = mean(x), col = 2, lty = 2)</code></pre>
 <p><img src="figure/stats.Rmd/cauchy_dist-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-cauchy_dist-1">
+Past versions of cauchy_dist-1.png
+</button>
+</p>
+<div id="fig-cauchy_dist-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/e155003e13510c94a7b5c2e1870cf289a67cc3b7/docs/figure/stats.Rmd/cauchy_dist-1.png" target="_blank">e155003</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-19
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>Mean and median.</p>
 <pre class="r"><code>mean(x)</code></pre>
 <pre><code>[1] 2.151276</code></pre>
@@ -1438,6 +1509,82 @@ identify a true difference.</li>
 </ul>
 <p>Convicting an innocent person is a Type 1 error and acquitting a
 guilty one is a Type 2 error.</p>
+</div>
+<div id="comparing-means" class="section level2">
+<h2>Comparing means</h2>
+<p>Samples from a single source will always show some background
+variation. When comparing means, we need some way of judging the
+likelihood of a difference between two means occurring just by chance
+from the background variation. The standard deviation can be used to
+assess the likelihood of a single observation being picked from the
+normal distribution. What metric do we use to judge the size of a
+<strong>difference between two means</strong>? The <em>standard error of
+a difference between two means</em> (s.e.d.m)! Note that <em>error</em>
+replaces <em>deviation</em> when dealing with variations of means rather
+than individual data.</p>
+<p>Sample 300 eggs, record the mean of each set of three consecutive
+eggs to get 100 means (<code>egg_means</code>). Next create pairs of
+means and subtract the second from the first to get 50 differences
+(<code>egg_diffs</code>). Use <code>egg_diffs</code> to calculate the
+standard deviation and this number can be used to judge whether a
+difference between two means (based on three eggs) is a likely or
+unlikely difference to sample within a single batch of eggs.</p>
+<pre class="r"><code># initial data
+raw_eggs &lt;- c(
+  rep(61, 1),
+  rep(62, 6),
+  rep(63, 10),
+  rep(64, 17),
+  rep(65, 29),
+  rep(66, 19),
+  rep(67, 11),
+  rep(68, 5),
+  rep(69, 2)
+)
+
+set.seed(1984)
+# use parameters from the initial data to create more data
+eggs &lt;- rnorm(n = 300, mean = mean(raw_eggs), sd = sd(raw_eggs))
+
+lapply(seq(from = 1, to = length(eggs), by = 3), function(x){
+  eggs[x:(x+2)]
+}) |&gt;
+  sapply(X = _, mean) -&gt; egg_means
+
+sapply(seq(from = 1, to = length(egg_means), by = 2), function(x){
+  egg_means[x+1] - egg_means[x]
+}) -&gt; egg_diffs
+
+sd(egg_diffs)</code></pre>
+<pre><code>[1] 1.221364</code></pre>
+<p>To calculate the s.e.d.m. directly we need the variance shown by the
+samples and the number of samples in each of the means being compared.
+The variance of individual samples has a very simple relationship with
+the variance of means and also with the variance of differences between
+individual samples.</p>
+<p>Recall:</p>
+<ul>
+<li><span class="math inline">\(s\)</span> is for the standard
+deviation, which is relevant to the variation among single data</li>
+<li><span class="math inline">\(s^2\)</span> is for the variance of
+individual data</li>
+<li><span class="math inline">\(s.e.\)</span> for standard error (the
+equivalent of <span class="math inline">\(s\)</span> for means)</li>
+<li><span class="math inline">\(s.e.d.m.\)</span> for the standard error
+of differences between means.</li>
+</ul>
+<p>The variance of means of <span class="math inline">\(n\)</span>
+numbers is the variance of single data divided by <span
+class="math inline">\(n\)</span>.</p>
+<pre class="r"><code>set.seed(1984)
+n_tests &lt;- 20
+sample_size &lt;- 3
+test &lt;- sapply(1:n_tests, function(x){
+  mean(sample(x = raw_eggs, size = sample_size))
+})
+
+var(test)</code></pre>
+<pre><code>[1] 0.8687135</code></pre>
 </div>
 <div id="visualise" class="section level2">
 <h2>Visualise</h2>
