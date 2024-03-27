@@ -337,6 +337,64 @@ Data is transformed to make it suitable for statistical analysis and subsequent 
 
 Convicting an innocent person is a Type 1 error and acquitting a guilty one is a Type 2 error.
 
+## Comparing means
+
+Samples from a single source will always show some background variation. When comparing means, we need some way of judging the likelihood of a difference between two means occurring just by chance from the background variation. The standard deviation can be used to assess the likelihood of a single observation being picked from the normal distribution. What metric do we use to judge the size of a **difference between two means**? The _standard error of a difference between two means_ (s.e.d.m)! Note that _error_ replaces _deviation_ when dealing with variations of means rather than individual data.
+
+Sample 300 eggs, record the mean of each set of three consecutive eggs to get 100 means (`egg_means`). Next create pairs of means and subtract the second from the first to get 50 differences (`egg_diffs`). Use `egg_diffs` to calculate the standard deviation and this number can be used to judge whether a difference between two means (based on three eggs) is a likely or unlikely difference to sample within a single batch of eggs.
+
+```{r eggs}
+# initial data
+raw_eggs <- c(
+  rep(61, 1),
+  rep(62, 6),
+  rep(63, 10),
+  rep(64, 17),
+  rep(65, 29),
+  rep(66, 19),
+  rep(67, 11),
+  rep(68, 5),
+  rep(69, 2)
+)
+
+set.seed(1984)
+# use parameters from the initial data to create more data
+eggs <- rnorm(n = 300, mean = mean(raw_eggs), sd = sd(raw_eggs))
+
+lapply(seq(from = 1, to = length(eggs), by = 3), function(x){
+  eggs[x:(x+2)]
+}) |>
+  sapply(X = _, mean) -> egg_means
+
+sapply(seq(from = 1, to = length(egg_means), by = 2), function(x){
+  egg_means[x+1] - egg_means[x]
+}) -> egg_diffs
+
+sd(egg_diffs)
+```
+
+To calculate the s.e.d.m. directly we need the variance shown by the samples and the number of samples in each of the means being compared. The variance of individual samples has a very simple relationship with the variance of means and also with the variance of differences between individual samples.
+
+Recall:
+
+* $s$ is for the standard deviation, which is relevant to the variation among single data
+* $s^2$ is for the variance of individual data
+* $s.e.$ for standard error (the equivalent of $s$ for means)
+* $s.e.d.m.$ for the standard error of differences between means.
+
+The variance of means of $n$ numbers is the variance of single data divided by $n$.
+
+```{r}
+set.seed(1984)
+n_tests <- 20
+sample_size <- 3
+test <- sapply(1:n_tests, function(x){
+  mean(sample(x = raw_eggs, size = sample_size))
+})
+
+var(test)
+```
+
 ## Visualise
 
 [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
