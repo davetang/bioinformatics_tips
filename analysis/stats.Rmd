@@ -341,10 +341,13 @@ Convicting an innocent person is a Type 1 error and acquitting a guilty one is a
 
 Samples from a single source will always show some background variation. When comparing means, we need some way of judging the likelihood of a difference between two means occurring just by chance from the background variation. The standard deviation can be used to assess the likelihood of a single observation being picked from the normal distribution. What metric do we use to judge the size of a **difference between two means**? The _standard error of a difference between two means_ (s.e.d.m)! Note that _error_ replaces _deviation_ when dealing with variations of means rather than individual data.
 
-Sample 300 eggs, record the mean of each set of three consecutive eggs to get 100 means (`egg_means`). Next create pairs of means and subtract the second from the first to get 50 differences (`egg_diffs`). Use `egg_diffs` to calculate the standard deviation and this number can be used to judge whether a difference between two means (based on three eggs) is a likely or unlikely difference to sample within a single batch of eggs.
+### Standard error of a difference between two means
 
-```{r eggs}
-# initial data
+This is one way to illustrate and calculate s.e.d.m. First we need a collection of "means"; then we'll calculate the differences between the means; and finally we will calculate the variance of the differences, which is the standard error!
+
+Sample 300 eggs and calculate the means of three consecutive eggs to get a collection of 100 means.
+
+```{r egg_means}
 raw_eggs <- c(
   rep(61, 1),
   rep(62, 6),
@@ -358,42 +361,107 @@ raw_eggs <- c(
 )
 
 set.seed(1984)
-# use parameters from the initial data to create more data
-eggs <- rnorm(n = 300, mean = mean(raw_eggs), sd = sd(raw_eggs))
+eggs <- sample(x = raw_eggs, size = 300, replace = TRUE)
 
 lapply(seq(from = 1, to = length(eggs), by = 3), function(x){
   eggs[x:(x+2)]
 }) |>
   sapply(X = _, mean) -> egg_means
 
+length(egg_means)
+```
+
+Next, calculate the differences in means between each pair of means.
+
+```{r egg_diffs}
 sapply(seq(from = 1, to = length(egg_means), by = 2), function(x){
   egg_means[x+1] - egg_means[x]
 }) -> egg_diffs
 
+egg_diffs
+```
+
+Finally, we can calculate the standard error!
+
+```{r egg_diffs_sd}
 sd(egg_diffs)
 ```
 
-To calculate the s.e.d.m. directly we need the variance shown by the samples and the number of samples in each of the means being compared. The variance of individual samples has a very simple relationship with the variance of means and also with the variance of differences between individual samples.
+But for the sake of comparison, we will use this set of differences as provided in the book.
 
-Recall:
+```{r egg_diffs_book}
+egg_diffs <- c(0.67, 0, -0.67, -0.67, 2, 0.33, 0, 3.33, 1.33, 1.67, -0.67, -1.67, 1.67, -1.67, 1.33, 2, 1, -0.67, -1.33, 1.33, -1.33, 1, 0.67, -0.67, 1.33, 0.33, 1, 2.67, 0, -0.33, 1.67, 1.33, -2.67, 1.67, 1, -2, 0.33, 0.67, 0.33, 0.33, -2.33, 0, 0, 1, 0, -1, 1, -0.67, 0.67, 2.33)
+
+sd(egg_diffs)
+```
+
+Here's the most important concept to grasp:
+
+**Just as we collect a bunch of numbers and calculate the standard deviation to assess whether a newly collected number is likely or not, we calculate the standard error of difference in means to assess whether a newly collected difference in means is likely or not!**
+
+The standard error (of difference in means) can be used to judge whether a difference between two means (based on three eggs) is a likely or unlikely difference to sample within a single batch of eggs.
+
+### Standard error calculation
+
+The standard error can simply be calculated by using the variance in your samples and the number of samples; in the example above, this would be the variance of the three eggs, which means the number of samples is three.
+
+**This is because the variance of individual samples has a very simple relationship with the variance of means, and the variance of differences**.
+
+For this section:
 
 * $s$ is for the standard deviation, which is relevant to the variation among single data
 * $s^2$ is for the variance of individual data
 * $s.e.$ for standard error (the equivalent of $s$ for means)
 * $s.e.d.m.$ for the standard error of differences between means.
 
-The variance of means of $n$ numbers is the variance of single data divided by $n$.
+#### Variance of a sample to variance of means
 
-```{r}
-set.seed(1984)
-n_tests <- 20
-sample_size <- 3
-test <- sapply(1:n_tests, function(x){
-  mean(sample(x = raw_eggs, size = sample_size))
-})
+**The variance of means of $n$ numbers is the variance of the sample divided by $n$**.
 
-var(test)
+Let's demonstrate this! A set of 20 means were calculated by randomly picking three eggs from `raw_eggs` and calculating their means. We can then calculate the variance of this set of means.
+
+```{r egg_means_20}
+egg_means <- c(63.67, 66.67, 63, 64.67, 65.33, 66.63, 64.67, 65, 65, 65.33, 64.33, 64, 64.67, 64, 64.33, 65.67, 64.67, 66.33, 65.67, 65)
+
+var(egg_means)
 ```
+
+Now note that the variance of the means multiplied by $n$ is close to the variance of `raw_eggs`.
+
+```{r variance_data_mean}
+var(egg_means) * 3
+var(raw_eggs)
+```
+
+Therefore, we can estimate the variance of means by taking the variance of the data and dividing by the size of sample used to calculate the means. Let's see if this relationship holds for different $n$'s with a larger data set.
+
+```{r variance_data_mean_test}
+set.seed(1984)
+my_pop <- rnorm(n = 1000000, mean = 50, sd = 25)
+
+variance_of_means <- function(n, nmeans=20, seed=1984){
+  set.seed(seed)
+  my_means <- sapply(1:nmeans, function(x){
+    mean(sample(x = my_pop, size = n, replace = TRUE))
+  })
+  v <- c(var(my_means), var(my_pop) / n)
+  names(v) <- c('var_means', 'var_est')
+  v
+}
+
+data.frame(
+  n3 = variance_of_means(3),
+  n10 = variance_of_means(10),
+  n50 = variance_of_means(50),
+  n100 = variance_of_means(100)
+)
+```
+
+The standard error is the square root of the variance of the mean, which we can estimate from the variance of the single data.
+
+$$
+s.e. = \sqrt{\frac{s^2}{n}} = \frac{s}{\sqrt{n}}
+$$
 
 ## Visualise
 
