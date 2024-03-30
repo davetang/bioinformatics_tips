@@ -463,6 +463,38 @@ $$
 s.e. = \sqrt{\frac{s^2}{n}} = \frac{s}{\sqrt{n}}
 $$
 
+### t-test
+
+Manual calculation
+
+```{r manual_t_test}
+x <- c(75, 72, 68, 66, 65, 65, 60, 58, 50, 48, 42, 40)
+y <- c(80, 76, 74, 70, 68, 68, 66, 65, 62, 58, 56, 43, 40, 39)
+
+correction_factor <- function(x){
+  sum(x)^2 / length(x)
+}
+
+x_ss <- sum(x^2) - correction_factor(x)
+y_ss <- sum(y^2) - correction_factor(y)
+
+pooled_ss <- x_ss + y_ss
+
+pooled_sd <- sqrt(pooled_ss / (length(x) + length(y) - 2))
+
+sedm <- pooled_sd * sqrt((1/length(x) + 1/length(y)))
+
+tstat <- (mean(x) - mean(y)) / sedm
+tstat
+```
+
+Using `t.test()`.
+
+```{r t_test}
+test <- t.test(x = x, y = y)
+test$statistic
+```
+
 ## Visualise
 
 [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
