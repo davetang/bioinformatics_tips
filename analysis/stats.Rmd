@@ -602,6 +602,15 @@ Summary of the _t_-test:
 
 The _t_-test is the significance test normally used to test differences between two means. After sampling two experimental treatments, we finish up with two mean values, one for each treatment. The original data are the basis for measuring sampling variation (i.e., variance of the individual values).
 
+The stages of the _t_-test (where variance in the two treatments can be assumed equal) are as follows:
+
+1. We consider rejecting the hypothesis that there is no real difference between the means of two treatments.
+2. If the null hypothesis were true, then the difference observed between the means is in the range of _likely differences_, i.e., difference as a result of chance sampling when taking small samples from two identical populations.
+3. To test the null hypothesis, we need to know what size differences between two identical means could reasonably be expected just as a result of sampling. We then assess whether the observed difference is large enough for it to be unlikely that it arose by chance.
+4. We calculate the _sum of squares_ separately for each data set. Next, we calculate the pooled variance by adding the two _sum of squares_ and then dividing by the sum of the two degrees of freedom of the two populations ([n - 1] + [n - 1]).
+5. Once we have calculated the standard error (s.e.d.m.) for the sizes of differences we would expect to occur between two means by chance sampling, we use it for judging whether there is a likely difference between the two mean values. An observed difference greater than twice the s.e.d.m. is taken to indicate that the null hypothesis is not true.
+6. Therefore the test is: **is the observed difference more than 2 * s.e.d.m.**? This criterion of 2 (actually 1.96) is for very large samples. For smaller samples, we have to increase it and this is based on the degrees of freedom. The final test is: **is the observed difference/s.e.d.m. greater than _t_**?
+
 ## Visualise
 
 [Anscombe's quartet](https://en.wikipedia.org/wiki/Anscombe%27s_quartet).
