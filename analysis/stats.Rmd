@@ -278,6 +278,16 @@ qqnorm(socr$height, pch = 16)
 qqline(socr$height, col = 2, lty = 2)
 ```
 
+The `shapiro.test()` function can be used to perform the Shapiro-Wilk test of normality an nivariate variable. But this has a limit of 5,000 observations. If we sample 5,000 observations, the test is not statistically significant, which is interesting, since the Q-Q plot shows quite clearly that the points fall along the theoretical line.
+
+```{r shapiro_wilk_test}
+set.seed(1983)
+my_sample <- sample(socr$height, 5000)
+shapiro.test(my_sample)
+qqnorm(my_sample, pch = 16)
+qqline(my_sample, col = 2, lty = 2)
+```
+
 However, biological data is typically not normally distributed but are asymmetrical. We often find data peak well to the left with a long right tail. The mean of the distribution will not coincide with the peak of the data and therefore using the normal distribution is clearly not appropriate.
 
 Another important point is our estimate of the standard deviation, which is based on a sample of the population. If our sample size is too small, our estimate of the standard deviation can be very inaccurate and therefore our estimate of the distribution.
@@ -494,6 +504,103 @@ Using `t.test()`.
 test <- t.test(x = x, y = y)
 test$statistic
 ```
+
+The p-value is `r test$p.value`, which means we cannot reject the null hypothesis that both sets of observations came from the same population.
+
+```{r t_test_results}
+test
+```
+
+Demonstrate the effect on the _t_-test with different comparisons.
+
+Equal number of samples in `x` and `y` repeated 100 times.
+
+```{r}
+t_stats <- lapply(1:100, function(x){
+  set.seed(x)
+  x <- rnorm(n = 30, mean = 50, sd = sqrt(200))
+  y <- rnorm(n = 30, mean = 25, sd = sqrt(50))
+  t.test(x, y)
+})
+
+mean(sapply(t_stats, function(x) x$statistic))
+```
+
+Unequal number of samples in `x` and `y`, where there are more samples in the set with larger variance.
+
+```{r}
+t_stats <- lapply(1:100, function(x){
+  set.seed(x)
+  x <- rnorm(n = 50, mean = 50, sd = sqrt(200))
+  y <- rnorm(n = 10, mean = 25, sd = sqrt(50))
+  t.test(x, y)
+})
+
+mean(sapply(t_stats, function(x) x$statistic))
+```
+
+Unequal number of samples in `x` and `y`, where there are more samples in the set with the smaller variance.
+
+```{r}
+t_stats <- lapply(1:100, function(x){
+  set.seed(x)
+  x <- rnorm(n = 10, mean = 50, sd = sqrt(200))
+  y <- rnorm(n = 50, mean = 25, sd = sqrt(50))
+  t.test(x, y)
+})
+
+mean(sapply(t_stats, function(x) x$statistic))
+```
+
+There is a larger uncertainty in `x` since it has the larger variance that is based on fewer samples. Therefore _t_ has reduced but is still statistically significant.
+
+```{r}
+mean(sapply(t_stats, function(x) x$p.value))
+```
+
+For the paired _t_-test the pooled variance is calculated directly from differences between pairs of numbers instead of from the variance of the individual observations.
+
+```{r}
+x <- c(5.8, 12.4, 1.4, 3.9, 24.4, 16.4, 9.2, 10.4, 6.5, 0.3)
+y <- c(5.7, 11.9, 1.6, 3.8, 24.0, 15.8, 9.0, 10.2, 6.4, 0.3)
+
+t.test(x, y, paired = FALSE)
+t.test(x, y, paired = TRUE)
+```
+
+Plotting the pairs, where you can see (if you squint) that the values are slightly lower in the second pair.
+
+```{r base_r_pairs_plot}
+plot(
+  rep(1, length(x)),
+  x,
+  pch = 16,
+  xlim = c(0.5, 2.5),
+  ylim = c(0, max(c(x, y))),
+  xlab = '',
+  ylab = 'Length',
+  xaxt = 'n',
+  col = 2
+)
+points(rep(2, length(y)), y, pch = 16, col = 3)
+segments(
+  x0 = rep(1, length(x)),
+  y0 = x,
+  x1 = rep(2, length(y)),
+  y1 = y,
+  lty = 2
+)
+```
+
+Summary of the _t_-test:
+
+1. We measure variability by variance.
+2. We can derive variances for other numbers which represent means or difference values all from the variance of individual values.
+3. Standard error (for means or differences between means) is the square root of the appropriate variance.
+4. If variance of individual values is $s^2$, and the variances of two populations are equal, then the standard error appropriate for judging differences between their means is $\sqrt{(2s^2/n)}$.
+5. We normally use the (arbitrary) convention that in large samples any value which is more than some two standard errors different from the mean is regarded as a significantly unlikely event.
+
+The _t_-test is the significance test normally used to test differences between two means. After sampling two experimental treatments, we finish up with two mean values, one for each treatment. The original data are the basis for measuring sampling variation (i.e., variance of the individual values).
 
 ## Visualise
 
