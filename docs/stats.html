@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2024-03-30" />
+<meta name="date" content="2024-04-05" />
 
 <title>Learn statistics</title>
 
@@ -383,7 +383,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Learn statistics</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2024-03-30</h4>
+<h4 class="date">2024-04-05</h4>
 
 </div>
 
@@ -412,7 +412,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-03-30
+<strong>Last updated:</strong> 2024-04-05
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -543,15 +543,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree60d8e9ce3f64265a45e71e9dd336c0516fbfec15targetblank60d8e9ca">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreefa9db43d74bd01c393c87b44101d417eca155628targetblankfa9db43a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/60d8e9ce3f64265a45e71e9dd336c0516fbfec15" target="_blank">60d8e9c</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/fa9db43d74bd01c393c87b44101d417eca155628" target="_blank">fa9db43</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree60d8e9ce3f64265a45e71e9dd336c0516fbfec15targetblank60d8e9ca"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreefa9db43d74bd01c393c87b44101d417eca155628targetblankfa9db43a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -561,7 +561,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/60d8e9ce3f64265a45e71e9dd336c0516fbfec15" target="_blank">60d8e9c</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/fa9db43d74bd01c393c87b44101d417eca155628" target="_blank">fa9db43</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -621,6 +621,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/fa9db43d74bd01c393c87b44101d417eca155628/analysis/stats.Rmd" target="_blank">fa9db43</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-04-05
+</td>
+<td>
+Update t-test
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/9986c549acdbb5ffb0ce26a79950bb689fcb7404/docs/stats.html" target="_blank">9986c54</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-03-30
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -1457,6 +1491,23 @@ Dave Tang
 </table>
 </div>
 </div>
+<p>The <code>shapiro.test()</code> function can be used to perform the
+Shapiro-Wilk test of normality an nivariate variable. But this has a
+limit of 5,000 observations. If we sample 5,000 observations, the test
+is not statistically significant, which is interesting, since the Q-Q
+plot shows quite clearly that the points fall along the theoretical
+line.</p>
+<pre class="r"><code>set.seed(1983)
+my_sample &lt;- sample(socr$height, 5000)
+shapiro.test(my_sample)</code></pre>
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  my_sample
+W = 0.99965, p-value = 0.5567</code></pre>
+<pre class="r"><code>qqnorm(my_sample, pch = 16)
+qqline(my_sample, col = 2, lty = 2)</code></pre>
+<p><img src="figure/stats.Rmd/shapiro_wilk_test-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>However, biological data is typically not normally distributed but
 are asymmetrical. We often find data peak well to the left with a long
 right tail. The mean of the distribution will not coincide with the peak
@@ -1756,6 +1807,134 @@ tstat</code></pre>
 test$statistic</code></pre>
 <pre><code>         t 
 -0.5564689 </code></pre>
+<p>The p-value is 0.5830485, which means we cannot reject the null
+hypothesis that both sets of observations came from the same
+population.</p>
+<pre class="r"><code>test</code></pre>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  x and y
+t = -0.55647, df = 23.971, p-value = 0.583
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -12.725940   7.321178
+sample estimates:
+mean of x mean of y 
+ 59.08333  61.78571 </code></pre>
+<p>Demonstrate the effect on the <em>t</em>-test with different
+comparisons.</p>
+<p>Equal number of samples in <code>x</code> and <code>y</code> repeated
+100 times.</p>
+<pre class="r"><code>t_stats &lt;- lapply(1:100, function(x){
+  set.seed(x)
+  x &lt;- rnorm(n = 30, mean = 50, sd = sqrt(200))
+  y &lt;- rnorm(n = 30, mean = 25, sd = sqrt(50))
+  t.test(x, y)
+})
+
+mean(sapply(t_stats, function(x) x$statistic))</code></pre>
+<pre><code>[1] 8.794256</code></pre>
+<p>Unequal number of samples in <code>x</code> and <code>y</code>, where
+there are more samples in the set with larger variance.</p>
+<pre class="r"><code>t_stats &lt;- lapply(1:100, function(x){
+  set.seed(x)
+  x &lt;- rnorm(n = 50, mean = 50, sd = sqrt(200))
+  y &lt;- rnorm(n = 10, mean = 25, sd = sqrt(50))
+  t.test(x, y)
+})
+
+mean(sapply(t_stats, function(x) x$statistic))</code></pre>
+<pre><code>[1] 8.391348</code></pre>
+<p>Unequal number of samples in <code>x</code> and <code>y</code>, where
+there are more samples in the set with the smaller variance.</p>
+<pre class="r"><code>t_stats &lt;- lapply(1:100, function(x){
+  set.seed(x)
+  x &lt;- rnorm(n = 10, mean = 50, sd = sqrt(200))
+  y &lt;- rnorm(n = 50, mean = 25, sd = sqrt(50))
+  t.test(x, y)
+})
+
+mean(sapply(t_stats, function(x) x$statistic))</code></pre>
+<pre><code>[1] 5.901647</code></pre>
+<p>There is a larger uncertainty in <code>x</code> since it has the
+larger variance that is based on fewer samples. Therefore <em>t</em> has
+reduced but is still statistically significant.</p>
+<pre class="r"><code>mean(sapply(t_stats, function(x) x$p.value))</code></pre>
+<pre><code>[1] 0.001108917</code></pre>
+<p>For the paired <em>t</em>-test the pooled variance is calculated
+directly from differences between pairs of numbers instead of from the
+variance of the individual observations.</p>
+<pre class="r"><code>x &lt;- c(5.8, 12.4, 1.4, 3.9, 24.4, 16.4, 9.2, 10.4, 6.5, 0.3)
+y &lt;- c(5.7, 11.9, 1.6, 3.8, 24.0, 15.8, 9.0, 10.2, 6.4, 0.3)
+
+t.test(x, y, paired = FALSE)</code></pre>
+<pre><code>
+    Welch Two Sample t-test
+
+data:  x and y
+t = 0.06197, df = 17.987, p-value = 0.9513
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+ -6.580842  6.980842
+sample estimates:
+mean of x mean of y 
+     9.07      8.87 </code></pre>
+<pre class="r"><code>t.test(x, y, paired = TRUE)</code></pre>
+<pre><code>
+    Paired t-test
+
+data:  x and y
+t = 2.6312, df = 9, p-value = 0.02731
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 0.0280496 0.3719504
+sample estimates:
+mean difference 
+            0.2 </code></pre>
+<p>Plotting the pairs, where you can see (if you squint) that the values
+are slightly lower in the second pair.</p>
+<pre class="r"><code>plot(
+  rep(1, length(x)),
+  x,
+  pch = 16,
+  xlim = c(0.5, 2.5),
+  ylim = c(0, max(c(x, y))),
+  xlab = &#39;&#39;,
+  ylab = &#39;Length&#39;,
+  xaxt = &#39;n&#39;,
+  col = 2
+)
+points(rep(2, length(y)), y, pch = 16, col = 3)
+segments(
+  x0 = rep(1, length(x)),
+  y0 = x,
+  x1 = rep(2, length(y)),
+  y1 = y,
+  lty = 2
+)</code></pre>
+<p><img src="figure/stats.Rmd/base_r_pairs_plot-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Summary of the <em>t</em>-test:</p>
+<ol style="list-style-type: decimal">
+<li>We measure variability by variance.</li>
+<li>We can derive variances for other numbers which represent means or
+difference values all from the variance of individual values.</li>
+<li>Standard error (for means or differences between means) is the
+square root of the appropriate variance.</li>
+<li>If variance of individual values is <span
+class="math inline">\(s^2\)</span>, and the variances of two populations
+are equal, then the standard error appropriate for judging differences
+between their means is <span
+class="math inline">\(\sqrt{(2s^2/n)}\)</span>.</li>
+<li>We normally use the (arbitrary) convention that in large samples any
+value which is more than some two standard errors different from the
+mean is regarded as a significantly unlikely event.</li>
+</ol>
+<p>The <em>t</em>-test is the significance test normally used to test
+differences between two means. After sampling two experimental
+treatments, we finish up with two mean values, one for each treatment.
+The original data are the basis for measuring sampling variation (i.e.,
+variance of the individual values).</p>
 </div>
 </div>
 <div id="visualise" class="section level2">
@@ -1813,7 +1992,7 @@ loaded via a namespace (and not attached):
 [45] pkgconfig_2.0.3   callr_3.7.3       pillar_1.9.0      bslib_0.5.1      
 [49] later_1.3.1       gtable_0.3.4      glue_1.6.2        Rcpp_1.0.11      
 [53] xfun_0.40         tibble_3.2.1      tidyselect_1.2.0  rstudioapi_0.15.0
-[57] knitr_1.44        farver_2.1.1      htmltools_0.5.6.1 labeling_0.4.3   
+[57] knitr_1.44        farver_2.1.1      htmltools_0.5.8   labeling_0.4.3   
 [61] rmarkdown_2.25    readr_2.1.4       compiler_4.3.2    getPass_0.2-2    </code></pre>
 </div>
 </div>
