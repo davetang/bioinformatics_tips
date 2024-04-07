@@ -62,10 +62,7 @@ Therefore:
 
 $$
 \frac{x^a}{1} \times \frac{1}{x^a} = 1 \\
-
 x^a \times x^{-a} = 1 \\
-
 x^{a - a} = 1 \\
-
 x^0 = 1
 $$
