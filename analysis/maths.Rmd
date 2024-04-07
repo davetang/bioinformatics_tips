@@ -1,0 +1,71 @@
+---
+title: "Maths"
+author: "Dave Tang"
+date: "`r Sys.Date()`"
+output:
+  workflowr::wflow_html:
+    toc: false
+editor_options:
+  chunk_output_type: console
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Recall some maths basics from school.
+
+## Exponentials
+
+Product Rule of Exponents
+
+$$
+x^2 \times x^5 \times x^{14} = x^{21}
+$$
+
+```{r}
+x <- 7
+x^2 * x^5 * x^14 == x^21
+```
+
+Negative exponents are the reciprocal of the positive exponent.
+
+$$
+x^-2 = (\frac{1}{x})^2
+$$
+
+```{r}
+x <- 7
+x^-2 == (1/x)^2
+```
+
+Multiply exponents.
+
+$$
+(x^2)^3 = x^{(2)(3)} = x^6
+$$
+
+```{r}
+x <- 7
+(x^2)^3 == x^6
+```
+
+Why is $x^0 = 1$?
+
+The **multiplicative inverse property of algebra** states that any nonzero real number multiplied by its reciprocal equals 1.
+
+$$
+\frac{4}{3} \times \frac{3}{4} = 1
+$$
+
+Therefore:
+
+$$
+\frac{x^a}{1} \times \frac{1}{x^a} = 1 \\
+
+x^a \times x^{-a} = 1 \\
+
+x^{a - a} = 1 \\
+
+x^0 = 1
+$$

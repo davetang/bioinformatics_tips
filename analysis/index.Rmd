@@ -17,6 +17,7 @@ editor_options:
 * Learn about [data structures](data_struct.html)
 * Recall the [basics of probability](probability.html)
 * Recall the [basics of statistics](stats.html)
+* Recall some [maths basics](maths.html)
 * Write a [script](scripting.html) to automate your tasks
 * Use [dimension reduction](dim_reduct.html) to "compress" your data making it easier to visualise
 * Implement [testing](testing.html) in your scripts, programs, and workflows
