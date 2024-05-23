@@ -11,11 +11,11 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2023-06-27" />
+<meta name="date" content="2024-05-23" />
 
 <title>Queuing system</title>
 
-<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.27/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
@@ -31,22 +31,23 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<link href="site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet" />
+<script src="site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
 <link href="site_libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
-<script src="site_libs/datatables-binding-0.28/datatables.js"></script>
-<link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.min.css" rel="stylesheet" />
-<link href="site_libs/dt-core-1.13.4/css/jquery.dataTables.extra.css" rel="stylesheet" />
-<script src="site_libs/dt-core-1.13.4/js/jquery.dataTables.min.js"></script>
-<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
-<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
-<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
+<script src="site_libs/datatables-binding-0.33/datatables.js"></script>
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="site_libs/dt-core-1.13.6/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="site_libs/dt-core-1.13.6/js/jquery.dataTables.min.js"></script>
+<link href="site_libs/crosstalk-1.2.1/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.1/js/crosstalk.min.js"></script>
+<link href="site_libs/font-awesome-6.4.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -391,7 +392,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Queuing system</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2023-06-27</h4>
+<h4 class="date">2024-05-23</h4>
 
 </div>
 
@@ -420,7 +421,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2023-06-27
+<strong>Last updated:</strong> 2024-05-23
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -438,7 +439,7 @@ title="This is the local directory in which the code in this file was executed."
 This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
 analysis was created with <a
   href="https://github.com/workflowr/workflowr">workflowr</a> (version
-1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
 that were applied when the results were created. The <em>Past
 versions</em> tab lists the development history.
 </p>
@@ -551,15 +552,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree55bfca0a1b3c16908b472c901fb32cf14b10ad4btargetblank55bfca0a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree4924dc4e4b0c4c96bbd230f7a0cf1e31d9bb673etargetblank4924dc4a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/55bfca0a1b3c16908b472c901fb32cf14b10ad4b" target="_blank">55bfca0</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/4924dc4e4b0c4c96bbd230f7a0cf1e31d9bb673e" target="_blank">4924dc4</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree55bfca0a1b3c16908b472c901fb32cf14b10ad4btargetblank55bfca0a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree4924dc4e4b0c4c96bbd230f7a0cf1e31d9bb673etargetblank4924dc4a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -569,7 +570,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/55bfca0a1b3c16908b472c901fb32cf14b10ad4b" target="_blank">55bfca0</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/4924dc4e4b0c4c96bbd230f7a0cf1e31d9bb673e" target="_blank">4924dc4</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -584,15 +585,7 @@ were generated:
 </p>
 <pre><code>
 Ignored files:
-    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
-
-Untracked files:
-    Untracked:  analysis/compsci.Rmd
-    Untracked:  analysis/framework.Rmd
-
-Unstaged changes:
-    Modified:   script/run_rstudio.sh
 
 </code></pre>
 <p>
@@ -607,7 +600,6 @@ have uncommitted changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
-
 <p>
 These are the previous versions of the repository in which changes were
 made to the R Markdown (<code>analysis/queuing.Rmd</code>) and HTML
@@ -638,6 +630,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/4924dc4e4b0c4c96bbd230f7a0cf1e31d9bb673e/analysis/queuing.Rmd" target="_blank">4924dc4</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-05-23
+</td>
+<td>
+Sun Grid Engine
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/e7069bf8193aa6fcb92f3e9b319c014ad68bd318/docs/queuing.html" target="_blank">e7069bf</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-06-27
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 html
@@ -719,6 +745,9 @@ Queuing systems
 your work you should learn to use a batch-queuing system. These systems
 are responsible for scheduling, dispatching, and managing the execution
 of your jobs as well as managing resource allocation.</p>
+<p>See <a
+href="https://en.wikipedia.org/wiki/Comparison_of_cluster_software">Comparison
+of cluster software</a>.</p>
 </div>
 <div id="queuing-systems" class="section level2">
 <h2>Queuing systems</h2>
@@ -794,16 +823,38 @@ complex</li>
 to be allocated to jobs running in the complex</li>
 </ul>
 <p>PBS.</p>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-b85a0ca0e08fa6914506" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b85a0ca0e08fa6914506">{"x":{"filter":"none","vertical":false,"data":[["qstat -q","qstat -a","qstat -u userid","qstat -r","qstat -f job_id","qstat -Qf queue","qstat -B","pbsnodes -aS","pbsnodes -a"],["list all queues","list all jobs","list jobs for userid","list running jobs","list full information about job_id","list full information about queue","list summary status of the job server","list status of all compute nodes","Detailed status of all compute nodes"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Command<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-b85a0ca0e08fa6914506" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-b85a0ca0e08fa6914506">{"x":{"filter":"none","vertical":false,"data":[["qstat -q","qstat -a","qstat -u userid","qstat -r","qstat -f job_id","qstat -Qf queue","qstat -B","pbsnodes -aS","pbsnodes -a"],["list all queues","list all jobs","list jobs for userid","list running jobs","list full information about job_id","list full information about queue","list summary status of the job server","list status of all compute nodes","Detailed status of all compute nodes"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Command<\/th>\n      <th>Description<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","columnDefs":[{"name":"Command","targets":0},{"name":"Description","targets":1}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
 <p>Specific tasks.</p>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8c544e2bca03b6593f89" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-8c544e2bca03b6593f89">{"x":{"filter":"none","vertical":false,"data":[["Job submission","Job deletion","Job status (for user)","Extended job status","Hold a job temporarily","Release job hold","List of usable queues"],["qsub [scriptfile]","qdel [job_id]","qstat -u [username]","qstat -f [job_id]","qhold [job_id]","qrls [job_id]","qstat -Q"],["qsub [scriptfile]","qdel [job_id]","qstat [-j job_id]","qstat -f [-j job_id]","qhold [job_id]","qrls [job_id]","qconf -sql"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Description<\/th>\n      <th>PBS<\/th>\n      <th>SGE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-8c544e2bca03b6593f89" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8c544e2bca03b6593f89">{"x":{"filter":"none","vertical":false,"data":[["Job submission","Job deletion","Job status (for user)","Extended job status","Hold a job temporarily","Release job hold","List of usable queues"],["qsub [scriptfile]","qdel [job_id]","qstat -u [username]","qstat -f [job_id]","qhold [job_id]","qrls [job_id]","qstat -Q"],["qsub [scriptfile]","qdel [job_id]","qstat [-j job_id]","qstat -f [-j job_id]","qhold [job_id]","qrls [job_id]","qconf -sql"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Description<\/th>\n      <th>PBS<\/th>\n      <th>SGE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","columnDefs":[{"name":"Description","targets":0},{"name":"PBS","targets":1},{"name":"SGE","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
 <p>Resources.</p>
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-6b8fcbf3984c13abc01e" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-6b8fcbf3984c13abc01e">{"x":{"filter":"none","vertical":false,"data":[["Queue","Nodes","Processors","Wall clock limit","Standard output file","Standard error","Copy environment","Notification event","Email address","Job name","Job restart","Initial directory","Node usage","Memory requirement"],["#PBS -q [queue]","#PBS -l nodes=[#]","#PBS -l ppn=[#]","#PBS -l walltime=[hh:mm:ss]","#PBS -o [file]","#PBS -e [file]","#PBS -V","#PBS -m abe","#PBS -M [email]","#PBS -N [name]","#PBS -r [y|n]","n/a","#PBS -l naccesspolicy=singlejob","#PBS -l mem=XXXXmb"],["#$ -q [queue]","n/a","#$ -pe ompi [#]","#$ -l time=[hh:mm:ss]","#$ -o [path]","#$ -e [path]","#$ -V","#$ -m abe","#$ -M [email]","#$ -N [name]","#$ -r [yes|no]","#$ -wd [directory]","n/a","#$ -mem [#]G"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Description<\/th>\n      <th>PBS<\/th>\n      <th>SGE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","columnDefs":[],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-6b8fcbf3984c13abc01e" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-6b8fcbf3984c13abc01e">{"x":{"filter":"none","vertical":false,"data":[["Queue","Nodes","Processors","Wall clock limit","Standard output file","Standard error","Copy environment","Notification event","Email address","Job name","Job restart","Initial directory","Node usage","Memory requirement"],["#PBS -q [queue]","#PBS -l nodes=[#]","#PBS -l ppn=[#]","#PBS -l walltime=[hh:mm:ss]","#PBS -o [file]","#PBS -e [file]","#PBS -V","#PBS -m abe","#PBS -M [email]","#PBS -N [name]","#PBS -r [y|n]","n/a","#PBS -l naccesspolicy=singlejob","#PBS -l mem=XXXXmb"],["#$ -q [queue]","n/a","#$ -pe ompi [#]","#$ -l time=[hh:mm:ss]","#$ -o [path]","#$ -e [path]","#$ -V","#$ -m abe","#$ -M [email]","#$ -N [name]","#$ -r [yes|no]","#$ -wd [directory]","n/a","#$ -mem [#]G"]],"container":"<table class=\"cell-border stripe\">\n  <thead>\n    <tr>\n      <th>Description<\/th>\n      <th>PBS<\/th>\n      <th>SGE<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"dom":"t","initComplete":"function(settings, json) {\n$(this.api().table().header()).css({'background-color': '#000', 'color': '#fff'});\n}","columnDefs":[{"name":"Description","targets":0},{"name":"PBS","targets":1},{"name":"SGE","targets":2}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":["options.initComplete"],"jsHooks":[]}</script>
 <p>See <a href="https://community.openpbs.org/"
 class="uri">https://community.openpbs.org/</a>.</p>
+</div>
+<div id="sun-grid-engine" class="section level3">
+<h3>Sun Grid Engine</h3>
+<p>Commonly used options.</p>
+<ul>
+<li><code>-N</code> - specify job name</li>
+<li><code>-S</code> - specify shell</li>
+<li><code>-q</code> - specify queue-name</li>
+<li><code>-l</code> - resource=value[,resource=value]…</li>
+<li><code>-o</code> - specify standard output stream path(s)</li>
+<li><code>-e</code> - specify standard error stream path(s)</li>
+<li><code>-cwd</code> - Execute the job from the current working
+directory</li>
+<li><code>-wd</code> - specify working directory</li>
+</ul>
+<p>Use in script.</p>
+<pre class="bash"><code>#!/usr/bin/env bash
+
+set -euo pipefail
+
+#$ -N name
+#$ -wd /my/path</code></pre>
 </div>
 <div id="slurm" class="section level3">
 <h3>SLURM</h3>
@@ -947,9 +998,9 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.3.0 (2023-04-21)
-Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 22.04.2 LTS
+<pre><code>R version 4.4.0 (2024-04-24)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 22.04.4 LTS
 
 Matrix products: default
 BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
@@ -970,25 +1021,30 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
- [1] DT_0.28         lubridate_1.9.2 forcats_1.0.0   stringr_1.5.0  
- [5] dplyr_1.1.2     purrr_1.0.1     readr_2.1.4     tidyr_1.3.0    
- [9] tibble_3.2.1    ggplot2_3.4.2   tidyverse_2.0.0 workflowr_1.7.0
+ [1] DT_0.33         lubridate_1.9.3 forcats_1.0.0   stringr_1.5.1  
+ [5] dplyr_1.1.4     purrr_1.0.2     readr_2.1.5     tidyr_1.3.1    
+ [9] tibble_3.2.1    ggplot2_3.5.1   tidyverse_2.0.0 workflowr_1.7.1
 
 loaded via a namespace (and not attached):
- [1] sass_0.4.5        utf8_1.2.3        generics_0.1.3    stringi_1.7.12   
- [5] hms_1.1.3         digest_0.6.31     magrittr_2.0.3    timechange_0.2.0 
- [9] evaluate_0.20     grid_4.3.0        fastmap_1.1.1     rprojroot_2.0.3  
-[13] jsonlite_1.8.4    processx_3.8.1    whisker_0.4.1     ps_1.7.5         
-[17] promises_1.2.0.1  httr_1.4.5        fansi_1.0.4       crosstalk_1.2.0  
-[21] scales_1.2.1      jquerylib_0.1.4   cli_3.6.1         rlang_1.1.1      
-[25] ellipsis_0.3.2    munsell_0.5.0     withr_2.5.0       cachem_1.0.7     
-[29] yaml_2.3.7        tools_4.3.0       tzdb_0.4.0        colorspace_2.1-0 
-[33] httpuv_1.6.9      vctrs_0.6.3       R6_2.5.1          lifecycle_1.0.3  
-[37] git2r_0.32.0      htmlwidgets_1.6.2 fs_1.6.2          pkgconfig_2.0.3  
-[41] callr_3.7.3       pillar_1.9.0      bslib_0.4.2       later_1.3.0      
-[45] gtable_0.3.3      glue_1.6.2        Rcpp_1.0.10       xfun_0.39        
-[49] tidyselect_1.2.0  rstudioapi_0.14   knitr_1.42        htmltools_0.5.5  
-[53] rmarkdown_2.21    compiler_4.3.0    getPass_0.2-2    </code></pre>
+ [1] sass_0.4.9        utf8_1.2.4        generics_0.1.3    stringi_1.8.4    
+ [5] hms_1.1.3         digest_0.6.35     magrittr_2.0.3    timechange_0.3.0 
+ [9] evaluate_0.23     grid_4.4.0        fastmap_1.2.0     rprojroot_2.0.4  
+[13] jsonlite_1.8.8    processx_3.8.4    whisker_0.4.1     ps_1.7.6         
+[17] promises_1.3.0    httr_1.4.7        fansi_1.0.6       crosstalk_1.2.1  
+[21] scales_1.3.0      jquerylib_0.1.4   cli_3.6.2         rlang_1.1.3      
+[25] munsell_0.5.1     withr_3.0.0       cachem_1.1.0      yaml_2.3.8       
+[29] tools_4.4.0       tzdb_0.4.0        colorspace_2.1-0  httpuv_1.6.15    
+[33] vctrs_0.6.5       R6_2.5.1          lifecycle_1.0.4   git2r_0.33.0     
+[37] htmlwidgets_1.6.4 fs_1.6.4          pkgconfig_2.0.3   callr_3.7.6      
+[41] pillar_1.9.0      bslib_0.7.0       later_1.3.2       gtable_0.3.5     
+[45] glue_1.7.0        Rcpp_1.0.12       xfun_0.44         tidyselect_1.2.1 
+[49] rstudioapi_0.16.0 knitr_1.46        htmltools_0.5.8.1 rmarkdown_2.27   
+[53] compiler_4.4.0    getPass_0.2-4    </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
