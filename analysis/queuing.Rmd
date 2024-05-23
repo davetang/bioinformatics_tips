@@ -18,6 +18,8 @@ theme_set(theme_minimal())
 
 If you will be using a high-performance computer (HPC) cluster for your work you should learn to use a batch-queuing system. These systems are responsible for scheduling, dispatching, and managing the execution of your jobs as well as managing resource allocation.
 
+See [Comparison of cluster software](https://en.wikipedia.org/wiki/Comparison_of_cluster_software).
+
 ## Queuing systems
 
 * [Oracle Grid Engine](https://en.wikipedia.org/wiki/Oracle_Grid_Engine), previously known as Sun Grid Engine
@@ -243,6 +245,30 @@ DT::datatable(
 ```
 
 See https://community.openpbs.org/.
+
+### Sun Grid Engine
+
+Commonly used options.
+
+* `-N` - specify job name
+* `-S` - specify shell
+* `-q` - specify queue-name
+* `-l` - resource=value[,resource=value]...
+* `-o` - specify standard output stream path(s)
+* `-e` - specify standard error stream path(s)
+* `-cwd` - Execute the job from the current working directory
+* `-wd` - specify working directory
+
+Use in script.
+
+```bash
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+#$ -N name
+#$ -wd /my/path
+```
 
 ### SLURM
 
