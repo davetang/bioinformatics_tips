@@ -276,3 +276,25 @@ if it is a public document. If the document is modified the signature check
    catch. The Digital Signature Standard (DSA) is a public key signature
    algorithm that works as just described. DSA is the primary signing algorithm
    used in GnuPG.
+
+## Using GPG to Encrypt and Decrypt Files
+
+Generate a key and check.
+
+```
+gpg --full-generate-key
+gpg --list-secret-keys
+```
+
+Encrypt.
+
+```
+echo Hi > test.txt
+gpg --encrypt --output test.txt.gpg --recipient me@davetang.org test.txt
+```
+
+Decrypt.
+
+```
+gpg --decrypt --output test2.txt test.txt.gpg
+```
