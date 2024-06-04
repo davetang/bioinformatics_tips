@@ -101,6 +101,14 @@ However there are two problems with the public-key cryptosystem:
 
 The second problem is due to the fact that another party cannot verify whether or not a public key was created by the a particular person. To address this issue, a system of digital certificates is used.
 
+## Hybrid cryptosystem
+
+The shared-key cryptosystem suffers from the key delivery problem, where there's a problem with securely exchanging keys. On the other hand, the public-key cryptosystem suffers from slow processing during encryption and decryption. The hybrid cryptosystem combines the two systems to make up for each other's faults; the shared-key cryptosystem is used to quickly process data encryption and the keys used by the shared-key cryptosystem are exchanged using the public-key cryptosystem.
+
+Let's say party A wants to send data to party B over the Internet. The data is encrypted using the faster shared-key cryptosystem. Since party B needs the same key for decryption, party B creates public and secret keys in advance, and the public key is used by party A to encrypt the shared key. The shared key is sent to party B, along with the encrypted data, and party B can decrypt the shared key using their secret key and finally use it to decrypt the encrypted data.
+
+The hybrid cryptosystem is used in [SSL](https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0,_2.0,_and_3.0).
+
 ## GnuPG concepts
 
 [GnuPG](https://www.gnupg.org/gph/en/manual.html#CONCEPTS) makes use of several
