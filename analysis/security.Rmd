@@ -84,9 +84,22 @@ The problem with shared-key systems is that in order for the receiving party to 
 
 ## Public-key cryptosystem
 
-Unlike the shared-key cryptosystem, the public-key cryptosystem uses different keys for encryption and decryption.
+Unlike the shared-key cryptosystem, the **public-key cryptosystem uses different keys for encryption and decryption**. The key used for encryption is called a "public key" and the key used for decryption is called a "secret key".
 
-To be continued...
+Compared to the shared-key cryptosystem, the public-key cryptosystem tends to take more time for both encryption and decryption. Some examples of methods for public-key encryption are RSA encryption and elliptic curve cryptography.
+
+If party A wants to send data to party B over the Internet, the receiver (party B) creates a public and secret key. The public key is sent to party A and used to encrypt the data. The ciphertext is sent to party B and party B uses the secret key to decrypt the ciphertext from party A.
+
+Even if the public key and ciphertext are intercepted, it's fine because the ciphertext can only be decrypted with the secret key (not that not transmitted). Therefore unlike the shared-key cryptosystem, there is no key delivery problem with the public-key cryptosystem.
+
+The public-key cryptosystem has another advantage of making it easy to exchange information among an unspecified number of parties. For example, if party B has prepared public and secret keys in advance and shared the public key online. Multiple parties can use the public key to encrypt data intended for party B. There is no need for multiple keys for multiple parties.
+
+However there are two problems with the public-key cryptosystem:
+
+1. It takes time for both encryption and decryption and because of this, it's not suitable for exchanging small amounts of data back and forth; the solution is to use a hybrid cryptosystem
+2. Reliability of public keys; there is no way to show who created a public key and a "person-in-the-middle attack" can occur
+
+The second problem is due to the fact that another party cannot verify whether or not a public key was created by the a particular person. To address this issue, a system of digital certificates is used.
 
 ## GnuPG concepts
 
