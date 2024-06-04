@@ -31,6 +31,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
@@ -234,6 +237,69 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
 
 </head>
 
@@ -241,6 +307,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -467,15 +543,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree959c255a712c9c66a9988c807746a69a0d2cd301targetblank959c255a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree71ca2acb276c043e454806d5405b9b5ab43921f0targetblank71ca2aca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/959c255a712c9c66a9988c807746a69a0d2cd301" target="_blank">959c255</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/71ca2acb276c043e454806d5405b9b5ab43921f0" target="_blank">71ca2ac</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree959c255a712c9c66a9988c807746a69a0d2cd301targetblank959c255a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree71ca2acb276c043e454806d5405b9b5ab43921f0targetblank71ca2aca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -485,7 +561,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/959c255a712c9c66a9988c807746a69a0d2cd301" target="_blank">959c255</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/71ca2acb276c043e454806d5405b9b5ab43921f0" target="_blank">71ca2ac</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -545,6 +621,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/71ca2acb276c043e454806d5405b9b5ab43921f0/analysis/security.Rmd" target="_blank">71ca2ac</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-06-04
+</td>
+<td>
+Diffie-Hellman key exchange
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/9fd267464c98b28294fb51c48f1d94df46bf8c0a/docs/security.html" target="_blank">9fd2674</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-06-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -940,6 +1050,38 @@ secret key and finally use it to decrypt the encrypted data.</p>
 <p>The hybrid cryptosystem is used in <a
 href="https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0,_2.0,_and_3.0">SSL</a>.</p>
 </div>
+<div id="diffie-hellman-key-exchange" class="section level2">
+<h2>Diffie-Hellman key exchange</h2>
+<p>The Diffie-Hellman key exchange is a method of securely exchanging
+keys between two parties. To understand the method, we need to first
+understand the <code>mod</code> operation.</p>
+<p><span class="math display">\[ A \mod B = C \]</span></p>
+<p>The <code>mod</code> operation finds the remainder of a division. In
+the example above, <code>C</code> is the remainder of <code>A</code>
+divided by <code>B</code>. In R, to perform a <code>mod</code>
+operation, use <code>%%</code>:</p>
+<pre class="r"><code>8 %% 3</code></pre>
+<pre><code>[1] 2</code></pre>
+<p>Key P (public key) will be expressed as two numbers P and G: key_p =
+P,G. P is an extremely large prime number and G will be chosen from
+among P’s so-called generator (or <a
+href="https://en.wikipedia.org/wiki/Primitive_root_modulo_n">primitive
+root</a>) numbers. A fixed number of primitive roots exist for all prime
+numbers P.</p>
+<p>Party A will prepare prime number P and primitive root G and they are
+sent to party B. Next, party A and B prepare secret numbers X and Y,
+respectively; these secret numbers need to be smaller than prime number
+P-2.</p>
+<p>Party A and B each perform the calculation of <span
+class="math inline">\(G^X \mod P\)</span> and <span
+class="math inline">\(G^Y \mod P\)</span>, respectively and these
+calculations are sent to each other. Next, party A and B calculate <span
+class="math inline">\((G^Y \mod P)^X \mod P\)</span> and <span
+class="math inline">\((G^X \mod P)^Y \mod P\)</span>, respectively;
+these calculations result in the same value: <span
+class="math inline">\(G^{XY} \mod P\)</span>. Thus party A and B were
+able to share numbers usable as codes.</p>
+</div>
 <div id="gnupg-concepts" class="section level2">
 <h2>GnuPG concepts</h2>
 <p><a href="https://www.gnupg.org/gph/en/manual.html#CONCEPTS">GnuPG</a>
@@ -1219,6 +1361,8 @@ footer is added to webpages before the MathJax javascript. -->
 
 
 
+</div>
+</div>
 
 </div>
 
@@ -1251,6 +1395,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>
