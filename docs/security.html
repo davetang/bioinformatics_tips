@@ -467,15 +467,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreea5b3e4c9b7a0f3b9947441b7a17f9e1f698294d2targetblanka5b3e4ca">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree959c255a712c9c66a9988c807746a69a0d2cd301targetblank959c255a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/a5b3e4c9b7a0f3b9947441b7a17f9e1f698294d2" target="_blank">a5b3e4c</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/959c255a712c9c66a9988c807746a69a0d2cd301" target="_blank">959c255</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreea5b3e4c9b7a0f3b9947441b7a17f9e1f698294d2targetblanka5b3e4ca"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree959c255a712c9c66a9988c807746a69a0d2cd301targetblank959c255a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -485,7 +485,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/a5b3e4c9b7a0f3b9947441b7a17f9e1f698294d2" target="_blank">a5b3e4c</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/959c255a712c9c66a9988c807746a69a0d2cd301" target="_blank">959c255</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -545,6 +545,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/959c255a712c9c66a9988c807746a69a0d2cd301/analysis/security.Rmd" target="_blank">959c255</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-06-04
+</td>
+<td>
+Hybrid cryptosystem
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/8cff360c22cdb46c745dd24776aa930486b66f64/docs/security.html" target="_blank">8cff360</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-06-04
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -885,6 +919,26 @@ public key and a “person-in-the-middle attack” can occur</li>
 verify whether or not a public key was created by the a particular
 person. To address this issue, a system of digital certificates is
 used.</p>
+</div>
+<div id="hybrid-cryptosystem" class="section level2">
+<h2>Hybrid cryptosystem</h2>
+<p>The shared-key cryptosystem suffers from the key delivery problem,
+where there’s a problem with securely exchanging keys. On the other
+hand, the public-key cryptosystem suffers from slow processing during
+encryption and decryption. The hybrid cryptosystem combines the two
+systems to make up for each other’s faults; the shared-key cryptosystem
+is used to quickly process data encryption and the keys used by the
+shared-key cryptosystem are exchanged using the public-key
+cryptosystem.</p>
+<p>Let’s say party A wants to send data to party B over the Internet.
+The data is encrypted using the faster shared-key cryptosystem. Since
+party B needs the same key for decryption, party B creates public and
+secret keys in advance, and the public key is used by party A to encrypt
+the shared key. The shared key is sent to party B, along with the
+encrypted data, and party B can decrypt the shared key using their
+secret key and finally use it to decrypt the encrypted data.</p>
+<p>The hybrid cryptosystem is used in <a
+href="https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0,_2.0,_and_3.0">SSL</a>.</p>
 </div>
 <div id="gnupg-concepts" class="section level2">
 <h2>GnuPG concepts</h2>
