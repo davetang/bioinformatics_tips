@@ -4,7 +4,7 @@ author: "Dave Tang"
 date: "`r Sys.Date()`"
 output:
   workflowr::wflow_html:
-    toc: false
+    toc: true
 editor_options: 
   chunk_output_type: inline
 ---
@@ -108,6 +108,24 @@ The shared-key cryptosystem suffers from the key delivery problem, where there's
 Let's say party A wants to send data to party B over the Internet. The data is encrypted using the faster shared-key cryptosystem. Since party B needs the same key for decryption, party B creates public and secret keys in advance, and the public key is used by party A to encrypt the shared key. The shared key is sent to party B, along with the encrypted data, and party B can decrypt the shared key using their secret key and finally use it to decrypt the encrypted data.
 
 The hybrid cryptosystem is used in [SSL](https://en.wikipedia.org/wiki/Transport_Layer_Security#SSL_1.0,_2.0,_and_3.0).
+
+## Diffie-Hellman key exchange
+
+The Diffie-Hellman key exchange is a method of securely exchanging keys between two parties. To understand the method, we need to first understand the `mod` operation.
+
+$$ A \mod B = C $$
+
+The `mod` operation finds the remainder of a division. In the example above, `C` is the remainder of `A` divided by `B`. In R, to perform a `mod` operation, use `%%`:
+
+```{r}
+8 %% 3
+```
+
+Key P (public key) will be expressed as two numbers P and G: key_p = P,G. P is an extremely large prime number and G will be chosen from among P's so-called generator (or [primitive root](https://en.wikipedia.org/wiki/Primitive_root_modulo_n)) numbers. A fixed number of primitive roots exist for all prime numbers P.
+
+Party A will prepare prime number P and primitive root G and they are sent to party B. Next, party A and B prepare secret numbers X and Y, respectively; these secret numbers need to be smaller than prime number P-2.
+
+Party A and B each perform the calculation of $G^X \mod P$ and $G^Y \mod P$, respectively and these calculations are sent to each other. Next, party A and B calculate $(G^Y \mod P)^X \mod P$ and $(G^X \mod P)^Y \mod P$, respectively; these calculations result in the same value: $G^{XY} \mod P$. Thus party A and B were able to share numbers usable as codes.
 
 ## GnuPG concepts
 
