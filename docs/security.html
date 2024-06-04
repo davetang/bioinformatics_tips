@@ -11,7 +11,7 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2024-05-26" />
+<meta name="date" content="2024-06-04" />
 
 <title>Security basics</title>
 
@@ -307,7 +307,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Security basics</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2024-05-26</h4>
+<h4 class="date">2024-06-04</h4>
 
 </div>
 
@@ -336,7 +336,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2024-05-26
+<strong>Last updated:</strong> 2024-06-04
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -467,15 +467,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree6d95a71a99a775baf6919e75f1e8bbe64c417ffftargetblank6d95a71a">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreea5b3e4c9b7a0f3b9947441b7a17f9e1f698294d2targetblanka5b3e4ca">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/6d95a71a99a775baf6919e75f1e8bbe64c417fff" target="_blank">6d95a71</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/a5b3e4c9b7a0f3b9947441b7a17f9e1f698294d2" target="_blank">a5b3e4c</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree6d95a71a99a775baf6919e75f1e8bbe64c417ffftargetblank6d95a71a"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreea5b3e4c9b7a0f3b9947441b7a17f9e1f698294d2targetblanka5b3e4ca"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -485,7 +485,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/6d95a71a99a775baf6919e75f1e8bbe64c417fff" target="_blank">6d95a71</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/a5b3e4c9b7a0f3b9947441b7a17f9e1f698294d2" target="_blank">a5b3e4c</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -545,6 +545,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/a5b3e4c9b7a0f3b9947441b7a17f9e1f698294d2/analysis/security.Rmd" target="_blank">a5b3e4c</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-06-04
+</td>
+<td>
+Public-key cryptosystem
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/7ebd7ec5c3429a7ce890e430681fbb8f8ec5823e/docs/security.html" target="_blank">7ebd7ec</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2024-05-26
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -816,9 +850,41 @@ i.e. performing a key-exchange. There are two types of methods:</p>
 </div>
 <div id="public-key-cryptosystem" class="section level2">
 <h2>Public-key cryptosystem</h2>
-<p>Unlike the shared-key cryptosystem, the public-key cryptosystem uses
-different keys for encryption and decryption.</p>
-<p>To be continued…</p>
+<p>Unlike the shared-key cryptosystem, the <strong>public-key
+cryptosystem uses different keys for encryption and decryption</strong>.
+The key used for encryption is called a “public key” and the key used
+for decryption is called a “secret key”.</p>
+<p>Compared to the shared-key cryptosystem, the public-key cryptosystem
+tends to take more time for both encryption and decryption. Some
+examples of methods for public-key encryption are RSA encryption and
+elliptic curve cryptography.</p>
+<p>If party A wants to send data to party B over the Internet, the
+receiver (party B) creates a public and secret key. The public key is
+sent to party A and used to encrypt the data. The ciphertext is sent to
+party B and party B uses the secret key to decrypt the ciphertext from
+party A.</p>
+<p>Even if the public key and ciphertext are intercepted, it’s fine
+because the ciphertext can only be decrypted with the secret key (not
+that not transmitted). Therefore unlike the shared-key cryptosystem,
+there is no key delivery problem with the public-key cryptosystem.</p>
+<p>The public-key cryptosystem has another advantage of making it easy
+to exchange information among an unspecified number of parties. For
+example, if party B has prepared public and secret keys in advance and
+shared the public key online. Multiple parties can use the public key to
+encrypt data intended for party B. There is no need for multiple keys
+for multiple parties.</p>
+<p>However there are two problems with the public-key cryptosystem:</p>
+<ol style="list-style-type: decimal">
+<li>It takes time for both encryption and decryption and because of
+this, it’s not suitable for exchanging small amounts of data back and
+forth; the solution is to use a hybrid cryptosystem</li>
+<li>Reliability of public keys; there is no way to show who created a
+public key and a “person-in-the-middle attack” can occur</li>
+</ol>
+<p>The second problem is due to the fact that another party cannot
+verify whether or not a public key was created by the a particular
+person. To address this issue, a system of digital certificates is
+used.</p>
 </div>
 <div id="gnupg-concepts" class="section level2">
 <h2>GnuPG concepts</h2>
