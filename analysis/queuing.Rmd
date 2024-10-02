@@ -259,15 +259,16 @@ Commonly used options.
 * `-cwd` - Execute the job from the current working directory
 * `-wd` - specify working directory
 
-Use in script.
+Example script.
+
+```{bash}
+cat script/sge.sh
+```
+
+Submit.
 
 ```bash
-#!/usr/bin/env bash
-
-set -euo pipefail
-
-#$ -N name
-#$ -wd /my/path
+qsub sge.sh
 ```
 
 ### SLURM
