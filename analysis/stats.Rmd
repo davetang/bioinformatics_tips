@@ -267,6 +267,27 @@ s <- sd(socr$height)
 prop.table(table(socr$height > x - 2 * s & socr$height < x + 2 * s))
 ```
 
+### Standard normal distribution
+
+Probability density function (PDF) of the standard normal distribution:
+
+$$
+f(z) = \frac{1}{\sqrt{2\pi}}e^{-\frac{z^2}{2}}
+$$
+
+```{r fz}
+fz <- function(z){
+  e <- exp(1)
+  1/sqrt(2*pi) * e^-(z^2/2)
+}
+
+x <- seq(from = -3, to = 3, by = 0.01)
+y <- fz(x)
+
+plot(x, y, type = "l")
+abline(v = 0, lty = 3)
+```
+
 ### Checking for normality
 
 >[In statistics](https://en.wikipedia.org/wiki/Q%E2%80%93Q_plot), a Q–Q plot (quantile–quantile plot) is a probability plot, a graphical method for comparing two probability distributions by plotting their quantiles against each other.
