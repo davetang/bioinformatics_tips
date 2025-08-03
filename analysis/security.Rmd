@@ -318,11 +318,52 @@ if it is a public document. If the document is modified the signature check
 
 ## Using GPG to Encrypt and Decrypt Files
 
-Generate a key and check.
+Generate a key with the default settings:
+
+* RSA and RSA (default)
+* What keysize do you want? (3072)
+* Key is valid for? (0 = key does not expire)
+
+GnuPG needs to construct a user ID to identify your key.
+
+* Real name: 
+* Email address:
+* Comment:
 
 ```
 gpg --full-generate-key
+```
+
+List secret keys.
+
+```
 gpg --list-secret-keys
+```
+
+To delete a key.
+
+```
+gpg --delete-secret-keys KEYID
+gpg --delete-keys KEYID
+```
+
+Export public key.
+
+```
+gpg --export -a KEYID > pubkey.asc
+```
+
+Export secret key.
+
+```
+gpg --export-secret-keys -a KEYID > privkey.asc
+```
+
+Import.
+
+```
+gpg --import privkey.asc
+gpg --import pubkey.asc
 ```
 
 Encrypt.
