@@ -11,83 +11,46 @@ editor_options:
 
 ## Introduction
 
-I learned bioinformatics many years ago with pretty much no background in
-computer science, mathematics, or statistics. I learned some maths and stats in
-high school but that's about it. Back then a lot of bioinformatic analyses were
-glued (or duct taped) together using custom Perl scripts. And many Perl scripts
-were written by people like me, people without any formal training in computer
-science/software engineering. In addition, at that time there was very little
-material for learning bioinformatics and many of the references available were
-technical books written for people with some computing background. What all
-this meant was that a lot of work was performed on shaky foundations.
+I learned bioinformatics many years ago with pretty much no background in computer science, mathematics, or statistics. I learned some maths and stats in high school but that's about it. Back then a lot of bioinformatic analyses were glued (or duct taped) together using custom Perl scripts. And many Perl scripts were written by people like me, people without any formal training in computer science and/or software engineering. In addition, at that time there was very little material for learning bioinformatics and many of the references available were technical books written for people with some computing background. What all this meant was that a lot of work was performed on shaky foundations.
 
-Bioinformatics has come a long way from those days. Initiatives such as
-[Software Carpentry](https://software-carpentry.org/) have helped many
-researchers develop good foundations. [Bioconda](https://bioconda.github.io/)
-lets you install thousands of software packages related to biomedical research
-using the `conda` package manager. This not only simplifies the install process
-(which sometimes can be a nightmare) but helps reproducibility. Some journals
-such as PLOS Computational Biology have [a
-policy](https://journals.plos.org/ploscompbiol/s/code-availability) that code
-must be publicly shared rather than custom Perl scripts available upon request.
+Bioinformatics has come a long way from those days. Initiatives such as [Software Carpentry](https://software-carpentry.org/) have helped many researchers develop good foundations. [Bioconda](https://bioconda.github.io/) lets you install thousands of software packages related to biomedical research using the `conda` package manager. This not only simplifies the install process (which sometimes can be a nightmare) but helps reproducibility. Some journals such as PLOS Computational Biology have [a policy](https://journals.plos.org/ploscompbiol/s/code-availability) that code must be publicly shared rather than custom Perl scripts available upon request.
 
-Difference between [framework and
-guideline](https://wikidiff.com/framework/guideline).
+## Frameworks and guidelines
 
-Guideline:
+By using frameworks and guidelines, we can ensure that we follow best practices. The difference between [framework and guideline](https://wikidiff.com/framework/guideline) is that a guideline:
 
->A non-specific rule or principle that provides direction to action or
-behaviour.
+> A non-specific rule or principle that provides direction to action or behaviour.
 
-Framework:
+and a framework:
 
->(figuratively, especially in, computing) A basic conceptual structure.
+> (figuratively, especially in, computing) A basic conceptual structure.
 
-The [Cambridge dictionary definition of a
-framework](https://dictionary.cambridge.org/dictionary/english/framework) is:
+The [Cambridge dictionary definition of a framework](https://dictionary.cambridge.org/dictionary/english/framework) is:
 
->a supporting structure around which something can be built.
+> a supporting structure around which something can be built.
 
-This is just as relevant to bioinformatics as it is to the construction of a
-building. In the case of bioinformatics, the "supporting structure" is basically
-an organised set of code or guidelines that follows a defined specification.
+This is just as relevant to bioinformatics as it is to the construction of a building. In the case of bioinformatics, the "supporting structure" is basically an organised set of code or guidelines that follows a defined specification.
 
-For example, if you are going to build an analysis pipeline, use a workflow
-management system like [Snakemake](https://snakemake.readthedocs.io/en/stable/)
-or [Nextflow](https://www.nextflow.io/). While these are considered as workflow
-systems, these are frameworks for building analysis pipelines.
+For example, if you are going to build an analysis pipeline, use a workflow management system like [Snakemake](https://snakemake.readthedocs.io/en/stable/) or [Nextflow](https://www.nextflow.io/). While these are considered as workflow systems, these are frameworks for building analysis pipelines.
 
-If you are going to analyse high-throughput sequencing data, use the
-infrastructure/framework developed by the [Bioconductor
-project](https://www.bioconductor.org/). Many of the Bioconductor packages use
-the same underlying data structure, such as GenomicRanges, so once you have
-pre-processed your data into a common format, you can analyse/visualise your
-data using various Bioconductor packages.
+If you are going to analyse high-throughput sequencing data, use the infrastructure/framework developed by the [Bioconductor project](https://www.bioconductor.org/). Many of the Bioconductor packages use the same underlying data structure, such as GenomicRanges, so once you have pre-processed your data into a common format, you can analyse/visualise your data using various Bioconductor packages.
 
-If you are performing machine learning, use the [tidymodels
-framework](https://www.tidymodels.org/) if you use R or
-[scikit-learn](https://scikit-learn.org/stable/) for Python. These packages
-provide all the code for performing typical machine learning analyses, such as
-splitting your data up, performing cross-validation, plotting performance
-measures, etc.
+If you are performing machine learning, use the [tidymodels framework](https://www.tidymodels.org/) if you use R or [scikit-learn](https://scikit-learn.org/stable/) for Python. These packages provide all the code for performing typical machine learning analyses, such as splitting your data up, performing cross-validation, plotting performance measures, etc.
 
-If what you have to do is not available and you have to write the code yourself,
-you can still adapt a best practices framework for developing your code in the
-language of choice. If you use R, you can follow the guidelines in the [R
-Packages book](https://r-pkgs.org/), which you can read for free!
+If what you have to do is not available and you have to write the code yourself, you can still adapt a best practices framework for developing your code in the language of choice. If you use R, you can follow the guidelines in the [R Packages book](https://r-pkgs.org/), which you can read for free!
 
-On every level of your analysis, you can follow or use some framework to help
-you develop code that is much easier to maintain and is more likely to be
-reproducible. Even when you are writing a single script, you can follow these
-[Ten recommendations for creating usable bioinformatics command line
-software](https://academic.oup.com/gigascience/article/2/1/2047-217X-2-15/2656133).
+On every level of your analysis, you can follow or use some framework to help you develop code that is much easier to maintain and is more likely to be reproducible. Even when you are writing a single script, you can follow these [Ten recommendations for creating usable bioinformatics command line software](https://academic.oup.com/gigascience/article/2/1/2047-217X-2-15/2656133).
 
-[Bionitio: demonstrating and facilitating best practices for bioinformatics
-command-line
-software](https://academic.oup.com/gigascience/article/8/9/giz109/5572530?login=false).
+[Bionitio: demonstrating and facilitating best practices for bioinformatics command-line software](https://academic.oup.com/gigascience/article/8/9/giz109/5572530?login=false).
 
-## Why people don't use frameworks
+## Lack of standards in academic labs
 
-* Learning curve
-* Cost-benefit
+Even with various frameworks and guidelines, there is still a lack of standards of a lot of biological labs. One obvious reason is that people either aren't aware of such frameworks/guidelines or don't appreciate why they exist. A lot of bioinformatics is done by people like me: self-taught and have a background in biology and not computer science and/or software engineering.
 
+One other issue, which is quite a big problem, is that academic labs are always under constant pressure to publish. It really is publish or perish. People pick up just enough to get their analysis done to generate results for a grant deadline or manuscript submission or paper revision. There is just no time to properly think about how to set up proper infrastructure.
+
+Since publishing is really the only metric that people use to assess how well a lab is doing, there is really no incentive to have well-documented code and/or reproducible pipelines. If you want an academic job, people are going to look for how many first or last author papers you have. Hardly anyone is going to inspect your code or how well you've bee documenting your work.
+
+Typically people move on after getting their PhD or in the case of postdocs, they move on after getting their first author paper. In addition, a lot of academic jobs are short term contracts; if you're lucky you will get a 3 year contract and if you're really lucky a 5 year contract. Even if you cared about setting up things properly, academic labs have a very high turnover, and even if the next person who joins the lab cares about proper documentation and reproducibility, they might not follow the convention that you laid down. Then the cycle repeats.
+
+I was once asked whether setting up standards and properly writing documentation would slow me down because the PI was worried that it would slow me down. I guess in the short run, it would obviously slow me down. But this is exactly the mentality that standards are hardly set up in labs.
