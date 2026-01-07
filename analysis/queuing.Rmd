@@ -271,6 +271,26 @@ Submit.
 qsub sge.sh
 ```
 
+#### Consumable Resource
+
+A consumable resource is a resource that Grid Engine tracks and subtracts as jobs are scheduled. For example if the host has 128GB memory:
+
+* Job 1 requests 64GB so Grid Engine marks 64GB as used
+* Job 2 requests 64GB so Grid Engine marks another 64GB as used
+* Job 3 requests 64GB and Grid Engine blocks it (not enough left)
+
+To check whether a resource is consumable, run:
+
+```{bash eval=FALSE}
+qconf -sc
+```
+```
+#name               shortcut   type      relop requestable consumable default  urgency 
+#--------------------------------------------------------------------------------------
+```
+
+If a resource under consumable is `YES` then it is a consumable and Grid Engine tracks it. On my default installation, only `slots` is consumable.
+
 ### SLURM
 
 * A SLURM partition is a queue
