@@ -27,6 +27,6 @@ output:
   workflowr::wflow_html:
     toc: yes
     toc_float: yes
-    theme: darkly
+    theme: simplex
     highlight: textmate
     css: my.css
