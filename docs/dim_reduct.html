@@ -11,14 +11,14 @@
 
 <meta name="author" content="Dave Tang" />
 
-<meta name="date" content="2023-09-10" />
+<meta name="date" content="2026-01-07" />
 
 <title>Dimension reduction</title>
 
-<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/darkly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/simplex.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -31,14 +31,14 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
-<link href="site_libs/font-awesome-6.4.0/css/all.min.css" rel="stylesheet" />
-<link href="site_libs/font-awesome-6.4.0/css/v4-shims.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/all.min.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet" />
 
 <link rel="icon" href="https://github.com/workflowr/workflowr-assets/raw/main/img/reproducible.png">
 <!-- Add a small amount of space between sections. -->
@@ -383,7 +383,7 @@ div.tocify {
 
 <h1 class="title toc-ignore">Dimension reduction</h1>
 <h4 class="author">Dave Tang</h4>
-<h4 class="date">2023-09-10</h4>
+<h4 class="date">2026-01-07</h4>
 
 </div>
 
@@ -412,7 +412,7 @@ class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
 <div class="tab-content">
 <div id="summary" class="tab-pane fade in active">
 <p>
-<strong>Last updated:</strong> 2023-09-10
+<strong>Last updated:</strong> 2026-01-07
 </p>
 <p>
 <strong>Checks:</strong> <span
@@ -430,7 +430,7 @@ title="This is the local directory in which the code in this file was executed."
 This reproducible <a href="https://rmarkdown.rstudio.com">R Markdown</a>
 analysis was created with <a
   href="https://github.com/workflowr/workflowr">workflowr</a> (version
-1.7.0). The <em>Checks</em> tab describes the reproducibility checks
+1.7.1). The <em>Checks</em> tab describes the reproducibility checks
 that were applied when the results were created. The <em>Past
 versions</em> tab lists the development history.
 </p>
@@ -543,15 +543,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreeec130da67a7af9e77a8e480f841254cf8239f424targetblankec130daa">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree60b432b60f216420c9494b03eac4286c52680f42targetblank60b432ba">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/ec130da67a7af9e77a8e480f841254cf8239f424" target="_blank">ec130da</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/60b432b60f216420c9494b03eac4286c52680f42" target="_blank">60b432b</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstreeec130da67a7af9e77a8e480f841254cf8239f424targetblankec130daa"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree60b432b60f216420c9494b03eac4286c52680f42targetblank60b432ba"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -561,7 +561,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/ec130da67a7af9e77a8e480f841254cf8239f424" target="_blank">ec130da</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/60b432b60f216420c9494b03eac4286c52680f42" target="_blank">60b432b</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -591,7 +591,6 @@ have uncommitted changes.
 <hr>
 </div>
 <div id="versions" class="tab-pane fade">
-
 <p>
 These are the previous versions of the repository in which changes were
 made to the R Markdown (<code>analysis/dim_reduct.Rmd</code>) and HTML
@@ -622,6 +621,23 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/0e249408253fe814022d57e24809057bef9f8141/docs/dim_reduct.html" target="_blank">0e24940</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -750,6 +766,43 @@ Mean        5.843333    3.057333        3.758    1.199333
 Max.        7.900000    4.400000        6.900    2.500000</code></pre>
 <pre class="r"><code>boxplot(dat)</code></pre>
 <p><img src="figure/dim_reduct.Rmd/before_scale-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-before_scale-1">
+Past versions of before_scale-1.png
+</button>
+</p>
+<div id="fig-before_scale-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/0e249408253fe814022d57e24809057bef9f8141/docs/figure/dim_reduct.Rmd/before_scale-1.png" target="_blank">0e24940</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 <p>After normalising.</p>
 <pre class="r"><code>round(apply(dat_norm, 2, summary), digits = 6)</code></pre>
 <pre><code>        Sepal.Length Sepal.Width Petal.Length Petal.Width
@@ -761,6 +814,43 @@ Mean        0.000000    0.000000     0.000000    0.000000
 Max.        2.483699    3.080455     1.779869    1.706379</code></pre>
 <pre class="r"><code>boxplot(dat_norm)</code></pre>
 <p><img src="figure/dim_reduct.Rmd/after_scale-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>
+<button type="button" class="btn btn-default btn-xs btn-workflowr btn-workflowr-fig" data-toggle="collapse" data-target="#fig-after_scale-1">
+Past versions of after_scale-1.png
+</button>
+</p>
+<div id="fig-after_scale-1" class="collapse">
+<div class="table-responsive">
+<table class="table table-condensed table-hover">
+<thead>
+<tr>
+<th>
+Version
+</th>
+<th>
+Author
+</th>
+<th>
+Date
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/0e249408253fe814022d57e24809057bef9f8141/docs/figure/dim_reduct.Rmd/after_scale-1.png" target="_blank">0e24940</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2023-09-10
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 <div id="pca" class="section level2">
 <h2>PCA</h2>
@@ -1192,13 +1282,13 @@ Session information
 </p>
 <div id="workflowr-sessioninfo" class="collapse">
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>R version 4.3.0 (2023-04-21)
-Platform: x86_64-pc-linux-gnu (64-bit)
-Running under: Ubuntu 22.04.2 LTS
+<pre><code>R version 4.5.0 (2025-04-11)
+Platform: x86_64-pc-linux-gnu
+Running under: Ubuntu 24.04.3 LTS
 
 Matrix products: default
 BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 
-LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0
+LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.26.so;  LAPACK version 3.12.0
 
 locale:
  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -1215,22 +1305,27 @@ attached base packages:
 [1] stats     graphics  grDevices utils     datasets  methods   base     
 
 other attached packages:
-[1] umap_0.2.10.0   tsne_0.1-3.1    workflowr_1.7.0
+[1] umap_0.2.10.0   tsne_0.1-3.1    workflowr_1.7.1
 
 loaded via a namespace (and not attached):
- [1] Matrix_1.5-4     jsonlite_1.8.4   compiler_4.3.0   highr_0.10      
- [5] promises_1.2.0.1 Rcpp_1.0.10      stringr_1.5.0    git2r_0.32.0    
- [9] callr_3.7.3      later_1.3.0      jquerylib_0.1.4  png_0.1-8       
-[13] yaml_2.3.7       fastmap_1.1.1    reticulate_1.31  lattice_0.21-8  
-[17] R6_2.5.1         knitr_1.42       tibble_3.2.1     openssl_2.0.6   
-[21] rprojroot_2.0.3  bslib_0.4.2      pillar_1.9.0     rlang_1.1.0     
-[25] utf8_1.2.3       cachem_1.0.7     stringi_1.7.12   httpuv_1.6.9    
-[29] xfun_0.39        getPass_0.2-2    fs_1.6.2         sass_0.4.5      
-[33] cli_3.6.1        magrittr_2.0.3   ps_1.7.5         grid_4.3.0      
-[37] digest_0.6.31    processx_3.8.1   rstudioapi_0.14  askpass_1.1     
-[41] lifecycle_1.0.3  vctrs_0.6.2      RSpectra_0.16-1  evaluate_0.20   
-[45] glue_1.6.2       whisker_0.4.1    fansi_1.0.4      rmarkdown_2.21  
-[49] httr_1.4.5       tools_4.3.0      pkgconfig_2.0.3  htmltools_0.5.5 </code></pre>
+ [1] Matrix_1.7-3      jsonlite_2.0.0    compiler_4.5.0    promises_1.3.3   
+ [5] Rcpp_1.0.14       stringr_1.5.1     git2r_0.36.2      callr_3.7.6      
+ [9] later_1.4.2       jquerylib_0.1.4   png_0.1-8         yaml_2.3.10      
+[13] fastmap_1.2.0     reticulate_1.42.0 lattice_0.22-6    R6_2.6.1         
+[17] knitr_1.50        tibble_3.3.0      openssl_2.3.3     rprojroot_2.0.4  
+[21] bslib_0.9.0       pillar_1.11.0     rlang_1.1.6       cachem_1.1.0     
+[25] stringi_1.8.7     httpuv_1.6.16     xfun_0.52         getPass_0.2-4    
+[29] fs_1.6.6          sass_0.4.10       cli_3.6.5         magrittr_2.0.3   
+[33] ps_1.9.1          grid_4.5.0        digest_0.6.37     processx_3.8.6   
+[37] rstudioapi_0.17.1 askpass_1.2.1     lifecycle_1.0.4   vctrs_0.6.5      
+[41] RSpectra_0.16-2   evaluate_1.0.3    glue_1.8.0        whisker_0.4.1    
+[45] rmarkdown_2.29    httr_1.4.7        tools_4.5.0       pkgconfig_2.0.3  
+[49] htmltools_0.5.8.1</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
 </div>
 </div>
 
