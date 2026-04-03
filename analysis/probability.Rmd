@@ -210,7 +210,6 @@ we simply rearrange:
 
 $$
 P(Test+) \times P(Disease+∣Test+)  = P(Disease+) \times P(Test+∣Disease+) \\
-
 P(Disease+∣Test+) = \frac{P(Disease+) \times P(Test+∣Disease+)}{P(Test+)}
 $$
 
