@@ -11,6 +11,9 @@ editor_options:
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+suppressPackageStartupMessages(
+  library(tidyverse)
+)
 ```
 
 A lot of bioinformatics tools use probabilistic models, so it's important to
@@ -95,3 +98,50 @@ One application of Bayes' Theorem is for spam filtering where:
 * Text: the message contains certain words
 
 $$ Pr(spam\ |\ words) = \frac{Pr(words\ |\ spam) \cdot Pr(spam)}{Pr(words)} $$
+
+## Marginal and Conditional Probability
+
+A 2 by 2 contingency table can help illustrate marginal and conditional probability.
+
+```{r two_by_two_table}
+disease_table <- matrix(
+  c(40, 10, 20, 30),
+  nrow = 2,
+  dimnames = list(
+    "Test" = c("Test +", "Test -"),
+    "Disease" = c("Disease +", "Disease -")
+  )
+)
+
+disease_table_with_margins <- addmargins(disease_table)
+
+disease_table_with_margins
+```
+
+Marginal probabilities are read directly from the `totals` in the margins of the table, ignoring the other variable. Reading the `Sum`, probability of disease (`Disease +`) is 0.5 and probability to test positive (`Test +`) is 0.6.
+
+```{r prop_table}
+disease_table |>
+  prop.table() |>
+  addmargins()
+```
+
+Conditional probabilities restrict attention to a single row or column. Given a positive test, we restrict ourselves to the first row.
+
+$P(Disease+|Test+)$ is of those who tested positive, what fraction have disease?
+
+$$
+P(Disease+|Test+) = 0.4 / 0.6 = 0.67
+$$
+
+Given positive to disease, we restrict ourselves to the first column.
+
+$P(Test+|Disease+)$ is of those with disease, what fraction test positive?
+
+$$
+P(Test+|Disease+) = 0.4 / 0.5 = 0.80
+$$
+
+Note that $P(Disease+|Test+)$ is not equal to $P(Test+|Disease+)$; conditional probability is not symmetric. This asymmetry is the source of the base rate fallacy, which is commonly encountered
+in medical testing and legal reasoning, where $P(Disease|Test+)$ is confused
+with $P(Test+|Disease)$.
