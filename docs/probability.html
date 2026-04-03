@@ -467,15 +467,15 @@ project makes it easier to run your code on other machines.</p>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree73835bbc79f2758f8f59fb4270a79e59d86e7fe5targetblank73835bba">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree555e3e3aade026249f3ee5e7f6273aba8d1d7ca6targetblank555e3e3a">
 <span class="glyphicon glyphicon-ok text-success"
 aria-hidden="true"></span> <strong>Repository version:</strong>
-<a href="https://github.com/davetang/bioinformatics_tips/tree/73835bbc79f2758f8f59fb4270a79e59d86e7fe5" target="_blank">73835bb</a>
+<a href="https://github.com/davetang/bioinformatics_tips/tree/555e3e3aade026249f3ee5e7f6273aba8d1d7ca6" target="_blank">555e3e3</a>
 </a>
 </p>
 </div>
 <div
-id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree73835bbc79f2758f8f59fb4270a79e59d86e7fe5targetblank73835bba"
+id="strongRepositoryversionstrongahrefhttpsgithubcomdavetangbioinformaticstipstree555e3e3aade026249f3ee5e7f6273aba8d1d7ca6targetblank555e3e3a"
 class="panel-collapse collapse">
 <div class="panel-body">
 <p>
@@ -485,7 +485,7 @@ reproducibility.
 </p>
 <p>
 The results in this page were generated with repository version
-<a href="https://github.com/davetang/bioinformatics_tips/tree/73835bbc79f2758f8f59fb4270a79e59d86e7fe5" target="_blank">73835bb</a>.
+<a href="https://github.com/davetang/bioinformatics_tips/tree/555e3e3aade026249f3ee5e7f6273aba8d1d7ca6" target="_blank">555e3e3</a>.
 See the <em>Past versions</em> tab to see a history of the changes made
 to the R Markdown and HTML files.
 </p>
@@ -545,6 +545,40 @@ Message
 </tr>
 </thead>
 <tbody>
+<tr>
+<td>
+Rmd
+</td>
+<td>
+<a href="https://github.com/davetang/bioinformatics_tips/blob/555e3e3aade026249f3ee5e7f6273aba8d1d7ca6/analysis/probability.Rmd" target="_blank">555e3e3</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2026-04-03
+</td>
+<td>
+Bayes’ theorem
+</td>
+</tr>
+<tr>
+<td>
+html
+</td>
+<td>
+<a href="https://rawcdn.githack.com/davetang/bioinformatics_tips/c17bafbd58ed769300de99ab3e8ebd9c4fc5c306/docs/probability.html" target="_blank">c17bafb</a>
+</td>
+<td>
+Dave Tang
+</td>
+<td>
+2026-04-03
+</td>
+<td>
+Build site.
+</td>
+</tr>
 <tr>
 <td>
 Rmd
@@ -807,6 +841,91 @@ of the base rate fallacy, which is commonly encountered in medical
 testing and legal reasoning, where <span
 class="math inline">\(P(Disease|Test+)\)</span> is confused with <span
 class="math inline">\(P(Test+|Disease)\)</span>.</p>
+</div>
+<div id="bayes-theorem" class="section level2">
+<h2>Bayes’ theorem</h2>
+<p>A cell in the two by two contingency table is simply a tally, a count
+of people who satisfy two conditions simultaneously. The top-left cell
+is how many people in our total of 100 had both a positive test and the
+disease.</p>
+<p>There are two different ways to express the probability of landing in
+any single cell of the table.</p>
+<pre class="r"><code>disease_table |&gt;
+  addmargins()</code></pre>
+<pre><code>        Disease
+Test     Disease + Disease - Sum
+  Test +        40        20  60
+  Test -        10        30  40
+  Sum           50        50 100</code></pre>
+<p>Consider the top-left cell with 40 people who are both Test+ and
+Disease+.</p>
+<ol style="list-style-type: decimal">
+<li>Start with Disease, then look at Test.</li>
+</ol>
+<p>If we pull aside everyone with disease, we end up with 50 people.
+Then from those 50, if we ask how many tested positive we will get
+40.</p>
+<ul>
+<li>First taking a 50% slice of 100 (Disease+)</li>
+<li>Then taking an 80% slice of those (ones who also tested
+positive)</li>
+</ul>
+<p><span class="math display">\[
+50\%×80\%=40\%
+\]</span></p>
+<ol start="2" style="list-style-type: decimal">
+<li>Start with Test, then look at Disease</li>
+</ol>
+<p>Again, if we pull aside everyone who tested positive, we end up with
+60 people. Then from those 60, if we ask how many actually have the
+disease we get 40 again.</p>
+<ul>
+<li>First taking a 60% slice of 100 (Test+)</li>
+<li>Then taking a 67% slice of those (the ones who also have
+disease)</li>
+</ul>
+<p><span class="math display">\[
+60\%×67\%=40\%
+\]</span></p>
+<ol style="list-style-type: decimal">
+<li>is actually the same as</li>
+</ol>
+<p><span class="math display">\[
+P(Disease+) \times P(Test+∣Disease+)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(P(Disease+)=50/100=50\%\)</span>, which
+is pulling aside Disease+ (marginal)</li>
+<li><span class="math inline">\(P(Test+∣Disease+)=40/50=80\%\)</span>,
+which is then asking among Disease+, how many tested positive
+(conditional)</li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>is the same as</li>
+</ol>
+<p><span class="math display">\[
+P(Test+) \times P(Disease+∣Test+)
+\]</span></p>
+<ul>
+<li><span class="math inline">\(P(Test+)=60/100=60\%\)</span>, which is
+pulling aside Test+ (marginal)</li>
+<li><span class="math inline">\(P(Disease+∣Test+)=40/60=67\%\)</span>,
+which is then asking among Test+, how many have disease
+(conditional)</li>
+</ul>
+<p>Therefore:</p>
+<p><span class="math display">\[
+P(Disease+) \times P(Test+∣Disease+) = P(Test+) \times P(Disease+∣Test+)
+\]</span></p>
+<p>So if we want to know <span class="math inline">\(P(Disease+ |
+Test+)\)</span> but only have <span class="math inline">\(P(Test+ |
+Disease+)\)</span>, we simply rearrange:</p>
+<p>$$ P(Test+) P(Disease+∣Test+) = P(Disease+) P(Test+∣Disease+) \</p>
+<p>P(Disease+∣Test+) = $$</p>
+<p>This is Bayes’ theorem. In the abstract form with A and B:</p>
+<p><span class="math display">\[
+P(A | B) = \frac{P(B | A) \times P(A)}{P(B)}
+\]</span></p>
 <br>
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
