@@ -145,3 +145,77 @@ $$
 Note that $P(Disease+|Test+)$ is not equal to $P(Test+|Disease+)$; conditional probability is not symmetric. This asymmetry is the source of the base rate fallacy, which is commonly encountered
 in medical testing and legal reasoning, where $P(Disease|Test+)$ is confused
 with $P(Test+|Disease)$.
+
+## Bayes' theorem
+
+A cell in the two by two contingency table is simply a tally, a count of people who satisfy two conditions simultaneously. The top-left cell is how many people in our total of 100 had both a positive test and the disease.
+
+There are two different ways to express the probability of landing in any single cell of the table.
+
+```{r disease_table_with_margins}
+disease_table |>
+  addmargins()
+```
+
+Consider the top-left cell with 40 people who are both Test+ and Disease+.
+
+1. Start with Disease, then look at Test.
+
+If we pull aside everyone with disease, we end up with 50 people. Then from those 50, if we ask how many tested positive we will get 40.
+
+* First taking a 50% slice of 100 (Disease+)
+* Then taking an 80% slice of those (ones who also tested positive)
+
+$$
+50\%×80\%=40\%
+$$
+
+2. Start with Test, then look at Disease
+
+Again, if we pull aside everyone who tested positive, we end up with 60 people. Then from those 60, if we ask how many actually have the disease we get 40 again.
+
+* First taking a 60% slice of 100 (Test+)
+* Then taking a 67% slice of those (the ones who also have disease)
+
+$$
+60\%×67\%=40\%
+$$
+
+1. is actually the same as
+
+$$
+P(Disease+) \times P(Test+∣Disease+)
+$$
+
+* $P(Disease+)=50/100=50\%$, which is pulling aside Disease+ (marginal)
+* $P(Test+∣Disease+)=40/50=80\%$, which is then asking among Disease+, how many tested positive (conditional)
+
+2. is the same as
+
+$$
+P(Test+) \times P(Disease+∣Test+)
+$$
+
+* $P(Test+)=60/100=60\%$, which is pulling aside Test+ (marginal)
+* $P(Disease+∣Test+)=40/60=67\%$, which is then asking among Test+, how many have disease (conditional)
+
+Therefore:
+
+$$
+P(Disease+) \times P(Test+∣Disease+) = P(Test+) \times P(Disease+∣Test+)
+$$
+
+So if we want to know $P(Disease+ | Test+)$ but only have $P(Test+ | Disease+)$,
+we simply rearrange:
+
+$$
+P(Test+) \times P(Disease+∣Test+)  = P(Disease+) \times P(Test+∣Disease+) \\
+
+P(Disease+∣Test+) = \frac{P(Disease+) \times P(Test+∣Disease+)}{P(Test+)}
+$$
+
+This is Bayes' theorem. In the abstract form with A and B:
+
+$$
+P(A | B) = \frac{P(B | A) \times P(A)}{P(B)}
+$$
